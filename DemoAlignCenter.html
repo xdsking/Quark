@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css" rel="stylesheet">
+        body{
+            text-align: center;
+        }
+    .div1{
+        background-color: #000000;
+        margin-left: auto;
+        margin-right: auto;
+        width: 200px;
+        height: 100px;
+        color: #f5f5f5;
+    }
+    .div2{
+        text-align: center;
+    }
+    .letterVerticalAlign{
+        text-align: center;
+    }
+    .letterVerticalAlign div{
+        line-height: 50px;
+        vertical-align: middle;
+        border: solid 1px;
+        height: 50px;
+        width: 200px;
+        margin-left: auto;
+        margin-right: auto;
+        font-weight: bold;
+        /*圆角*/
+        border-radius: 10px;
+        border-color: #0000ff;
+    }
+    /*阴影*/
+    .letterVerticalAlign div{
+        margin-top: 10px;
+        cursor: pointer;
+        box-shadow: 0 0 10px gray;
+        border-radius: 15px;
+    }
+    .letterVerticalAlign div:hover{
+        box-shadow: 0 0 15px gray;
+    }
+    .letterVerticalAlign div:active{
+        box-shadow: 0 0 20px gray;
+    }
+    .div3{
+        position: absolute;
+        width: 200px;
+        height: 100px;
+        background-color: blanchedalmond;
+        margin-left: -100px;
+        left: 50%;
+        margin-top: -50px;
+        top: 50%;
+        line-height: 100px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+    </style>
+    <script type="application/javascript" src="js/jquery/jQuery-1.11.1.js"></script>
+    <script type="application/javascript">
+        $(function(){
+            $(".letterVerticalAlign").on("selectstart",function(){
+                return false;
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="div1">div水平居中</div>
+<div class="div2">
+    <img src="images/1742060.gif">
+</div>
+    <div class="letterVerticalAlign" >
+        <div>Beetle</div>
+    </div>
+<div class="div3" style="">div水平/垂直居中</div>
+</body>
+</html>

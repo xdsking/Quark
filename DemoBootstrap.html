@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title></title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="js/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="js/bootstrap-3.3.0-dist/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!--Font Awesome 图标字体-->
+    <link rel="stylesheet" href="js/Font-Awesome-3.2.1/css/font-awesome.min.css">
+    <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+    <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+    <!--[if lt IE 9]>
+    <script src="js/bootstrap-3.3.0-dist/dist/js/html5shiv.js"></script>
+    <script src="js/bootstrap-3.3.0-dist/dist/js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        body {
+            padding-top: 50px;
+        }
+
+        .cstm-btn-group button {
+            display: inline;
+        }
+    </style>
+</head>
+
+<body role="document">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">W3Cschool</a>
+    </div>
+    <div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">iOS</a></li>
+            <li><a href="#">SVN</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Java <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">jmeter</a></li>
+                    <li><a href="#">EJB</a></li>
+                    <li><a href="#">Jasper Report</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">分离的链接</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">另一个分离的链接</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+<ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">2013</a></li>
+    <li class="active">十一月</li>
+</ol>
+
+<button type="button" class="btn btn-lg btn-default">Default <span class="badge"
+                                                                   style="background-color:#05abe0">50</span></button>
+<button type="button" class="btn btn-lg btn-primary">Primary</button>
+<button type="button" class="btn btn-lg btn-success">Success</button>
+<button type="button" class="btn btn-lg btn-info">Info</button>
+<button type="button" class="btn btn-lg btn-warning">Warning</button>
+<button type="button" class="btn btn-lg btn-danger">Danger</button>
+<button type="button" class="btn btn-lg btn-link">Link</button>
+<button type="button" class="btn btn-primary btn-lg" style="text-shadow: black 5px 3px 3px;">
+    <span class="glyphicon glyphicon-user"></span> User
+</button>
+<button type="button" title="播放" class="btn btn-lg btn-default" style="padding: 4px;">
+    <img src="images/play.png">播放
+</button>
+<button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+<button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-user"></span></button>
+<button type="button" class="btn btn-lg btn-default" style="padding: 2px 4px;color: #0000aa;" title="复制到剪贴板"><span
+        class="glyphicon glyphicon-duplicate"></span></button>
+
+
+<button type="button" class="btn btn-default btn-lg" style="padding: 4px">
+    <img src="images/1063835.gif">
+</button>
+<div class="btn-group btn-group-justified">
+    <div class="btn-group">
+        <button type="button" class="btn btn-default">Left</button>
+    </div>
+    <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Dropdown link</a></li>
+            <li><a href="#">Dropdown link</a></li>
+        </ul>
+    </div>
+    <div class="btn-group">
+        <button type="button" class="btn btn-default">Middle</button>
+    </div>
+    <div class="btn-group">
+        <button type="button" class="btn btn-default">Right</button>
+    </div>
+</div>
+<div class="input-group">
+    <div class="input-group-btn">
+        <button type="button" class="btn btn-default"
+                tabindex="-1">下拉菜单
+        </button>
+        <button type="button" class="btn btn-default
+                     dropdown-toggle" data-toggle="dropdown" tabindex="-1">
+            <span class="caret"></span>
+            <span class="sr-only">切换下拉菜单</span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="#">功能</a></li>
+            <li><a href="#">另一个功能</a></li>
+            <li><a href="#">其他</a></li>
+            <li class="divider"></li>
+            <li><a href="#">分离的链接</a></li>
+        </ul>
+    </div>
+    <!-- /btn-group -->
+    <input type="text" class="form-control">
+</div>
+<!-- /input-group -->
+<div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-star"></span> Dropdown
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+        <li role="presentation" class="divider"></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+    </ul>
+</div>
+<div class="btn-toolbar" role="toolbar" style="margin: 0;display: none">
+    <div class="btn-group">
+        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>
+        <button type="button" class="btn btn-default">1</button>
+        <button type="button" class="btn btn-default">2</button>
+        <button type="button" class="btn btn-default">3</button>
+        <button type="button" class="btn btn-default">4</button>
+        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>
+    </div>
+</div>
+<div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
+            class="sr-only">Close</span></button>
+    <strong>Warning!</strong> Better check yourself, you're not looking too good.
+    <div class="panel panel-primary">
+        <div class="panel-body">
+            Panel content
+        </div>
+    </div>
+</div>
+
+<span class="icon-spinner icon-spin icon-3x pull-left"></span>
+<span>loading...</span>
+<span class="label label-primary">缩放至</span>
+<span class="label label-primary">用地报批占压分析</span>
+<span class="label label-primary">主要标签</span>
+<span class="glyphicon glyphicon-duplicate" style="color: #0000aa;cursor: pointer;"></span>
+<a class="btn btn-success" href="#"><i class="icon-shopping-cart icon-large"></i> Checkout</a>
+<a class="btn btn-success" href="#"><i class="icon-twitter icon-large"></i> Checkout</a>
+<a class="btn btn-success" href="#"><i class="icon-twitter icon-2x"></i> Checkout</a>
+<a class="btn btn-danger" href="#"><i class="icon-coffee icon-large"></i> Checkout</a>
+<a class="btn btn-default" href="#"><i class="icon-repeat"></i> Checkout</a>
+<a class="btn btn-primary" href="#"><i class="icon-refresh icon-spin"></i> 刷新</a>
+<a class="btn btn-primary" href="#"><i class="icon-comments"></i> 会话</a>
+<a class="btn btn-primary" href="#" title="计算机"><i class="icon-laptop"></i></a>
+<a class="btn btn-large btn-danger" href="#">
+    <i class="icon-flag icon-2x pull-right"></i>Font Awesome<br>Version 3.0
+</a>
+
+<div class="btn-group">
+    <a class="btn btn-primary" href="#"><i class="icon-user"></i> User</a>
+    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="icon-caret-down"></span></a>
+    <ul class="dropdown-menu">
+        <li><a href="#"><i class="icon-pencil"></i> Edit</a></li>
+        <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
+        <li><a href="#"><i class="icon-ban-circle"></i> Ban</a></li>
+        <li class="divider"></li>
+        <li><a href="#"><i class="i"></i> Make admin</a></li>
+    </ul>
+</div>
+<ul class="file-upload">
+
+    <li>
+        <strong><i class="icon-upload-alt"></i> File_Name_Here.Mp3</strong>
+
+        <div class="file-meta">3.3 of 5MB - 5 mins - 1MB/Sec</div>
+
+        <div class="progress progress-animated progress-striped">
+            <div id="progressBar1" class="progress-bar progress-bar-success" data-percentage="100" style="width: 0%;">
+                0%
+            </div>
+        </div>
+    </li>
+
+    <li>
+        <strong><i class="icon-ok"></i> Third_File_Here.Mp3</strong>
+
+        <div class="file-meta">5MB - 5 mins - Stopped</div>
+    </li>
+
+    <li>
+        <strong><i class="icon-ok"></i> Third_File_Here.Mp3</strong>
+
+        <div class="file-meta">5MB - 5 mins - Stopped</div>
+    </li>
+</ul>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal
+</button>
+<div class="modal fade bs-example-modal-sm" data-backdrop="static" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <img src="images/loading.gif">
+            <!--<span class="icon-spinner icon-spin icon-3x pull-left"></span>-->
+            <span>loading...</span>
+        </div>
+    </div>
+</div>
+<abbr title="World Wide Web">WWW</abbr><br>
+
+<p class="text-center">居中对齐文本</p>
+<blockquote>这是一个带有源标题的引用。
+    <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+</blockquote>
+<p class="alert">插入符实例
+    <button type="button" class="close" data-dismiss="alert"
+            aria-hidden="true">
+        &times;
+    </button>
+    <span class="caret"></span>
+</p>
+<div class="alert alert-warning alert-dismissable" draggable="true">
+    <button type="button" class="close" data-dismiss="alert"
+            aria-hidden="true">
+        &times;
+    </button>
+    警告！请不要提交。
+</div>
+<div class="alert alert-danger" role="alert">
+    <button type="button" class="close" data-dismiss="alert"
+            aria-hidden="true">
+        &times;
+    </button>
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    Enter a valid email address
+</div>
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Email</label>
+
+        <div class="col-sm-10">
+            <p class="form-control-static">email@example.com</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">姓名</label>
+
+        <div class="col-sm-10">
+            <p class="form-control-static">余珊</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">性别</label>
+
+        <div class="col-sm-10">
+            <p class="form-control-static">女</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">年龄</label>
+
+        <div class="col-sm-10">
+            <p class="form-control-static">23</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">地址</label>
+
+        <div class="col-sm-10">
+            <p class="form-control-static">.....</p>
+        </div>
+    </div>
+</form>
+<div style="margin-left: 20px;font-size: 16px;font-family: '微软雅黑'">
+    <del>被删除的文本.</del>
+    <br>
+    <ins>额外插入的文本.</ins>
+    <br>
+    <small>小号文本.</small>
+    <br>
+    通过增加 font-weight值<strong>强调一段文本</strong><br>
+    用<em>斜体强调</em>一段文本.<br>
+
+    <div>改变大小写</div>
+    <p class="text-lowercase">Lowercased text.</p><br>
+
+    <p class="text-uppercase">Uppercased text.</p><br>
+
+    <p class="text-capitalize">Capitalized text.</p><br>
+    当鼠标悬停在缩写和缩写词上时就会显示完整内容,<abbr title="当鼠标悬停在缩写和缩写词上时就会显示完整内容">缩略语</abbr><br>
+    <a href="mailto:xdsking@163.com">联系我们</a>
+    <textarea class="form-control" rows="3">文本域</textarea>
+</div>
+<div class="cstm-btn-group" style="width: 400px;text-align: center;">
+    <button class="btn btn-primary">按钮1</button>
+    <button class="btn btn-primary">按钮2</button>
+    <button class="btn btn-primary">按钮3</button>
+    <button class="btn btn-primary disabled">按钮4</button>
+</div>
+
+
+<ul class="nav nav-tabs navbar-right navbar-static-top">
+    <li role="presentation" class="active"><a href="#">Home</a></li>
+    <li role="presentation"><a href="#">Profile</a></li>
+    <li role="presentation"><a href="#">Messages</a></li>
+</ul>
+<div id="draggable1" class="alert alert-danger" role="alert" style="width: 300px">
+    <button type="button" class="close" data-dismiss="alert"
+            aria-hidden="true">
+        &times;
+    </button>
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    Enter a valid email address
+</div>
+<div id="alterPanel" style="width: 400px;height: 300px;background-color:#000000"></div>
+<script src="js/jquery/jQuery-1.11.1.js"></script>
+<script src="js/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
+<script src="js/jquery-ui-bootstrap-jquery-ui/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="js/bootstrap-3.3.0-dist/dist/js/ie10-viewport-bug-workaround.js"></script>
+<script>
+    $(function () {
+        $("#draggable1").draggable({
+            cursor: "crosshair",
+            containment: "window"//$("#alterPanel")
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <!--让 IE 浏览器运行在最新的渲染模式下-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--可以让部分国产浏览器默认采用高速模式渲染页面(目前只有360浏览器支持)-->
+    <meta name="renderer" content="webkit">
+    <!--为了保证移动端的绘制和触屏缩放  , maximum-scale=1, user-scalable=no(禁用缩放功能，用户只能滚动屏幕)-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>资源列表</title>
+    <link rel="Shortcut Icon" href=images/bmw_Icon.png>
+    <!-- Bootstrap core CSS -->
+    <link href="js/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="js/bootstrap-3.3.0-dist/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <style>
+        .cstm-cursor-pointer {
+            cursor: pointer;
+        }
+
+        .cstm-panel-body-min-height {
+            min-height: 200px;
+            padding: 0;
+        }
+
+        .cstm-panel-heading-font {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .cstm-resorse-control {
+            float: right;
+            margin-top: -8px;
+        }
+
+        .cstm-list-group {
+            max-height: 300px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .cstm-menu-pane {
+            text-align: center;
+            letter-spacing: 60px;
+        }
+
+        .cstm-menu-pane button {
+            margin-bottom: 10px;
+            padding: 2px 8px
+        }
+        .cstm-inClass-font{
+            margin-top: 5px;
+            text-align: center;
+            color: #003478;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, .4), 0 0 30px rgba(0, 0, 0, .075);
+            background: #fff;
+
+        }
+    </style>
+
+</head>
+<body>
+<!--#accordionContainerPane为抽屉的容器-->
+<div class="bs-example" style="width: 300px;">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading cstm-cursor-pointer" role="tab" id="headingOne" data-toggle="collapse"
+                 data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <h4 class="panel-title">
+                    <a class="cstm-panel-heading-font">
+                        人员列表
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body cstm-panel-body-min-height">
+                    <!--内容-->
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading cstm-cursor-pointer" aria-expanded="false" role="tab" id="headingTwo"
+                 data-toggle="collapse" aria-controls="collapseTwo" href="#collapseTwo" data-parent="#accordion">
+                <h4 class="panel-title">
+                    <a class="collapsed cstm-panel-heading-font">
+                        教学资源
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body cstm-panel-body-min-height">
+                    <!--内容-->
+                    <ul class="list-group cstm-list-group">
+                        <li class="list-group-item list-group-item-success">
+                            <label>Cras justo odio</label>
+                            <span class="cstm-resorse-control">
+                                <button type="button" class="btn btn-default btn-sm"><img
+                                        src="images/log.png"></button>
+                                <button type="button" class="btn btn-default btn-sm"><img
+                                        src="images/resize_png_new.png"></button>
+                            </span>
+                        </li>
+                        <li class="list-group-item list-group-item-info">
+                            <label>Dapibus ac facilisis in</label>
+                            <span class="cstm-resorse-control">
+                            <button type="button" class="btn btn-default btn-sm"><img
+                                    src="images/log.png"></button>
+                            <button type="button" class="btn btn-default btn-sm"><img
+                                    src="images/resize_png_new.png"></button>
+                            </span></li>
+                        <li class="list-group-item list-group-item-success">
+                            <label>Morbi leo risus</label>
+                            <span class="cstm-resorse-control">
+                            <button type="button" class="btn btn-default btn-sm"><img
+                                    src="images/log.png"></button>
+                            <button type="button" class="btn btn-default btn-sm"><img
+                                    src="images/resize_png_new.png"></button>
+                            </span></li>
+                        <li class="list-group-item list-group-item-info">
+                            <label>Porta ac consectetur</label>
+                            <span class="cstm-resorse-control">
+                            <button type="button" class="btn btn-default btn-sm"><img
+                                    src="images/log.png"></button>
+                            <button type="button" class="btn btn-default btn-sm"><img
+                                    src="images/resize_png_new.png"></button>
+                            </span></li>
+                        <li class="list-group-item list-group-item-success">
+                            <label>Vestibulum at eros</label>
+                            <span class="cstm-resorse-control">
+                            <button type="button" class="btn btn-default btn-sm"><img
+                                    src="images/log.png"></button>
+                            <button type="button" class="btn btn-default btn-sm"><img
+                                    src="images/resize_png_new.png"></button>
+                            </span>
+                        </li>
+                        <li class="list-group-item list-group-item-info">
+                            <label>Vestibulum at eros</label>
+                            <span class="cstm-resorse-control">
+                            <button type="button" class="btn btn-default btn-sm"><img
+                                    src="images/log.png"></button>
+                            <button type="button" class="btn btn-default btn-sm"><img
+                                    src="images/resize_png_new.png"></button>
+                            </span>
+                        </li>
+                        <li class="list-group-item list-group-item-success">
+                            <label>Vestibulum at eros</label>
+                            <span class="cstm-resorse-control">
+                            <button type="button" class="btn btn-default btn-sm"><img
+                                    src="images/log.png"></button>
+                            <button type="button" class="btn btn-default btn-sm"><img
+                                    src="images/resize_png_new.png"></button>
+                            </span>
+                        </li>
+                        <li class="list-group-item list-group-item-info">
+                            <label>Vestibulum at eros</label>
+                            <span class="cstm-resorse-control">
+                            <button type="button" class="btn btn-default btn-sm"><img
+                                    src="images/log.png"></button>
+                            <button type="button" class="btn btn-default btn-sm"><img
+                                    src="images/resize_png_new.png"></button>
+                            </span>
+                        </li>
+                        <li class="list-group-item list-group-item-success">
+                            <label>Vestibulum at eros</label>
+                            <span class="cstm-resorse-control">
+                            <button type="button" class="btn btn-default btn-sm"><img
+                                    src="images/log.png"></button>
+                            <button type="button" class="btn btn-default btn-sm"><img
+                                    src="images/resize_png_new.png"></button>
+                            </span>
+                        </li>
+                        <li class="list-group-item list-group-item-info">
+                            <label>Vestibulum at eros</label>
+                            <span class="cstm-resorse-control">
+                            <button type="button" class="btn btn-default btn-sm"><img
+                                    src="images/log.png"></button>
+                            <button type="button" class="btn btn-default btn-sm"><img
+                                    src="images/resize_png_new.png"></button>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading cstm-cursor-pointer" role="tab" id="headingThree" data-toggle="collapse"
+                 data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <h4 class="panel-title">
+                    <a class="collapsed cstm-panel-heading-font">
+                        其它工具
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body cstm-panel-body-min-height">
+                    <!--内容-->
+                    <div class="panel-body">
+                        <div class="cstm-menu-pane">
+                            <button title="浏览图片" type="button" class="btn btn-primary btn-lg">
+                                <span class="glyphicon glyphicon-folder-open" style="font-size: 50px;"></span>
+                            </button>
+                            <button title="关闭声音" type="button" class="btn btn-primary btn-lg">
+                                <span class="glyphicon glyphicon-volume-off" style="font-size: 50px;"></span>
+                            </button>
+                        </div>
+                        <div class="cstm-menu-pane">
+                            <button title="截图" type="button" class="btn btn-primary btn-lg">
+                                <span class="glyphicon glyphicon-camera" style="font-size: 50px;"></span>
+                            </button>
+
+                            <button title="上传" type="button" class="btn btn-primary btn-lg">
+                                <span class="glyphicon glyphicon-cloud-upload" style="font-size: 50px;"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div class="panel panel-primary" style="width: 300px;">
+    <div class="panel-heading">
+        <h3 class="panel-title">Panel title</h3>
+    </div>
+    <div class="panel-body cstm-menu-pane">
+        <button type="button" class="btn btn-default btn-sm" ><img
+                src="images/Browse%20pictures.png"></button>
+        <button type="button" class="btn btn-default btn-sm" ><img
+                src="images/closevoice.png"></button>
+        <button type="button" class="btn btn-default btn-sm" ><img
+                src="images/shotallstudent.png"></button>
+        <button type="button" class="btn btn-default btn-sm" ><img
+                src="images/upload.png"></button>
+    </div>
+</div>-->
+<div class="panel panel-primary" style="width: 300px;">
+    <div class="panel-heading">
+        <h3 class="panel-title">工具面板</h3>
+    </div>
+    <div class="panel-body">
+        <h4 class="cstm-inClass-font">上课中...</h4>
+        <div class="cstm-menu-pane">
+            <button title="浏览图片" type="button" class="btn btn-primary btn-lg">
+                <span class="glyphicon glyphicon-folder-open" style="font-size: 50px;"></span>
+            </button>
+            <button title="关闭声音" type="button" class="btn btn-primary btn-lg">
+                <span class="glyphicon glyphicon-volume-off" style="font-size: 50px;"></span>
+            </button>
+        </div>
+        <div class="cstm-menu-pane">
+            <button title="截图" type="button" class="btn btn-primary btn-lg">
+                <span class="glyphicon glyphicon-camera" style="font-size: 50px;"></span>
+            </button>
+
+            <button title="上传" type="button" class="btn btn-primary btn-lg">
+                <span class="glyphicon glyphicon-cloud-upload" style="font-size: 50px;"></span>
+            </button>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap core JavaScript
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery/jQuery-1.11.1.js"></script>
+<script src="js/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="js/bootstrap-3.3.0-dist/dist/js/ie10-viewport-bug-workaround.js"></script>
+<script>
+    $(document).ready(function () {
+        for (var ii = 0; ii <= 10; ii++) {
+            console.log(ii);
+        }
+        $("#username111").click(function () {
+            $("#accordionContainerPane").click();
+        });
+    });
+</script>
+</body>
+</html>

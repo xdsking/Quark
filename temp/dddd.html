@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="tt.js"></script>
+    <script>
+        var str = '{"queryParams":{"form":{"layoutType":"dojox/layout/TableContainer","layoutParams":{"cols":1,"labelWidth":80,"showLabels":true,"class":"integratedQueryTableContainer","style":"text-align: left"},"items":[{"name":"geometry","label":"查询范围：","style":"width:200px;","fieldType":"geometry","drawTypes":[{"circle":"圆形"},{"polygon":"多边形"},{"extent":"矩形"},{"ellipse":"椭圆"}],"colspan":2,"dojoType":"onemap/widget/IntegratedQuery/DrawGeoPane"},{"label":"项目名称：","name":"XIANGMMC","value":"","fieldType":"string","whereTemplate":"${name} like ","style":"width:120px;margin-top:3px;","dojoType":"dijit/form/TextBox"},{"label":"批准文号：","name":"PIZWH","value":"","fieldType":"string","whereTemplate":"${name} like ","style":"width:120px;margin-top:3px;","dojoType":"dijit/form/TextBox"}],"buttons":[{"label":"查询","dojoType":"dijit/form/Button","type":"submit","class":"queryButton"}]},"targetData":[{"groupName":"用地报批","layers":[{"topicLayerId":"2c9bd7814a84319b014a8447d9d60000","subLayers":[{"id":0,"name":"用地报批图层","outFields":["*"]}]}],"displayFields":["QSDWMC","ZLDWDM"]}]},"resultShowParams":{"dojoType":"onemap/widget/customWidget/CustomGrid","params":{"dataGridStyle":""},"resultsDisplayFields":["DKMC","XIANGMMC"],"isShowFeaturesOnMap":true},"action":{"dojoType":"onemap/widget/identify/OverlapAnalysisButton","params":{"title":"占压分析","analysisName":"overlay","bizLayer":"用地报批","targetLayers":["用地报批已批"],"gridParam":{"headerName":[["名称","XIANGMMC","118px"],["重叠面积","overlayArea","80px"]],"formatDataFields":[{"attributeName":"name","valueName":"XIANGMMC"},{"attributeName":"objectId","valueName":"OBJECTID"},{"attributeName":"area","valueName":"overlayArea"},{"attributeName":"overlapGeometry","valueName":"rings"}],"toDataFirstFields":["XIANGMMC","OBJECTID","overlayArea","overlapGeometry"],"toDataSecondFields":["DIKBH","OBJECTID","overlayArea","overlapGeometry"],"clickRowField":["OBJECTID"],"button":["区域坐标","overlapGeometry",{"buttonLabel":"区域坐标"}]}}},"id":"111111111111111","configId":"80cb7f1e7c3649cfb88e1c33e2b60f41"}';
+        var ojson = JSON.parse(str);
+        var fun1 = function (a) {
+        };
+
+        var fun2 = function (params, callback) {
+            var a = 1;
+            console.log(11111);
+            callback(a);
+        };
+        var params = {a: 1, b: 2};
+        fun2(params, fun1);
+
+        function f1() {
+            var n = 999;
+
+            function f2() {
+                alert(n);
+            }
+
+            return f2;
+        }
+        var result = f1();
+        result();
+
+        var name = "The Window";
+        var object = {
+            name: "My Object",
+            getNameFunc: function () {
+                return function () {
+                    return this.name;
+                };
+            }
+        };
+        alert(object.getNameFunc()());
+        var name = "The Window";
+        var object = {
+            name: "My Object",
+            getNameFunc: function () {
+                var that = this;
+                return function () {
+                    return that.name;
+                };
+            }
+        };
+        alert(object.getNameFunc()());
+        debugger;
+
+
+    </script>
+    <script>
+    </script>
+</head>
+<body>
+
+</body>
+</html>

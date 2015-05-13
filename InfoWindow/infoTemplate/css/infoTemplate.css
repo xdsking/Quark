@@ -1,0 +1,62 @@
+
+.esriPopup .esriPopupWrapper {
+    box-shadow: rgb(144, 144, 144) 20px 20px 20px;
+}
+
+/*.esriPopup .titlePane{
+    background-repeat:repeat-x;
+}*/
+.titlePane-default {
+    border-color: #ccc;
+    cursor: pointer !important;
+    background-color: #e0e0e0;
+    background-image: linear-gradient(to bottom, #fff 0, #e0e0e0 100%);
+}
+
+.titlePane-info {
+    border-color: #2aabd2;
+    background-color: #5bc0de;
+    cursor: pointer !important;
+    background-image: linear-gradient(to bottom, #5bc0de 0, #2aabd2 100%);
+}
+
+.titlePane-primary {
+    border-color: #2d6ca2;
+    background-color: #428bca;
+    cursor: pointer !important;
+    background-image: linear-gradient(to bottom, #428bca 0, #2d6ca2 100%);
+}
+
+.titlePane-success {
+    border-color: #3e8f3e;
+    background-color: #5cb85c;
+    cursor: pointer !important;
+    background-image: linear-gradient(to bottom, #5cb85c 0, #419641 100%);
+}
+
+.titlePane-warning {
+    border-color: #e38d13;
+    cursor: pointer !important;
+    background-color: #f0ad4e;
+    background-image: linear-gradient(to bottom, #f0ad4e 0, #eb9316 100%);
+}
+
+.titlePane-danger {
+    border-color: #ac2925;
+    background-color: #d9534f;
+    cursor: pointer !important;
+    background-image: linear-gradient(to bottom, #d9534f 0, #c12e2a 100%);
+}
+.infoWindow-form .infoWindow-group {
+    font-family: "Microsoft YaHei","微软雅黑";
+    font-size: 12px;
+}
+
+.infoWindow-form .infoWindow-group .info-label {
+    text-align: right;
+    font-weight: bold;
+}
+
+.infoWindow-form .infoWindow-group .info-value {
+    padding-left: 5px;
+}

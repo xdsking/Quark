@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="js/dojo-release-1.9.3-src/dijit/themes/claro/claro.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <script type="text/javascript">
+        var dojoConfig = {
+            async: true,
+            parseOnLoad: true,
+            packages: [
+                {
+                    name: "customWidget",
+                    location: "../../customWidget"
+                }
+            ]
+        };
+    </script>
+    <script type="text/javascript" src="js/dojo-release-1.9.3-src/dojo/dojo.js"></script>
+    <script>
+        require([ "dojo/dnd/Source", "dojo/aspect", "dojo/dom-construct", "dijit/form/Button", "dojo/parser"],
+                function (Source, aspect, domConstruct, Button) {
+                    var wishlist = new Source(domConstruct.create("ol", null, document.body));
+                    wishlist.insertNodes(false, [
+                        "Wrist watch",
+                        "Life jacket",
+                        "Toy bulldozer",
+                        "Vintage microphone",
+                        "TIE fighter"
+                    ]);
+                    aspect.after(wishlist, "onDrop", function () {
+                        console.log(111111111111);
+                    });
+                    new Button({
+                        label: "add",
+                        onClick: function () {
+                            wishlist.insertNodes(false, ["test"]);
+                        }
+                    }, domConstruct.create("div", null, document.body));
+                });
+    </script>
+</head>
+<body class="claro">
+<ol data-dojo-type="dojo/dnd/Source" id="wishlistNode" data-dojo-attach-point="wishlistNode" class="container">
+    <li class="dojoDndItem">Wrist watch1</li>
+    <li class="dojoDndItem">Life jacket1</li>
+    <li class="dojoDndItem">Toy bulldozer1</li>
+    <li class="dojoDndItem">Vintage microphone1</li>
+    <li class="dojoDndItem">TIE fighter1</li>
+</ol>
+</body>
+</html>

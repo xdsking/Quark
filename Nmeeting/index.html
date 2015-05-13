@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Nmeeting</title>
+    <link rel="stylesheet" href="../js/dojo-release-1.9.3-src/dijit/themes/soria/soria.css">
+    <link rel="stylesheet" href="../js/dojo-release-1.9.3-src/dojox/layout/resources/FloatingPane.css">
+    <link rel="stylesheet" href="../js/dojo-release-1.9.3-src/dojox/layout/resources/ResizeHandle.css">
+    <link rel="stylesheet" href="css/index_menubar.css">
+    <!-- Bootstrap core CSS -->
+    <link href="../js/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="../js/bootstrap-3.3.0-dist/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!--Font Awesome 图标字体-->
+    <link rel="stylesheet" href="../js/Font-Awesome-3.2.1/css/font-awesome.min.css">
+    <link href="css/index.css" rel="stylesheet">
+    <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+    <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+    <!--[if lt IE 9]>
+    <script src="../js/bootstrap-3.3.0-dist/dist/js/html5shiv.js"></script>
+    <script src="../js/bootstrap-3.3.0-dist/dist/js/respond.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        var dojoConfig = {
+            async:true,
+            parseOnLoad : false,
+            dojoRoot:"/web-app/js/dojo-release-1.9.3-src",
+            libRoot:"/web-app/js/com/teamLib",
+            dockBarId:"dockBar",
+            packages : [ {
+                name : "teamLib",
+                location : "../../../js/com/teamLib"
+            }]
+        };
+    </script>
+    <script type="text/javascript" src="../js/dojo-release-1.9.3-src/dojo/dojo.js"></script>
+    <script type="text/javascript">
+        require(["dojo/_base/config","dojo/dom-construct","dojo/dom",
+            "dijit/form/Button","dojo/dom-style",
+            "teamLib/menuBar/MenuBar","dojo/domReady!"],function(config,domConstruct,dom,
+                                                                 Button,domStyle,
+                                                                 WidgetClass){
+            dom.setSelectable(dojo.body(),false);//禁止鼠标左键选中;
+            var widgetClass=new WidgetClass().placeAt("menuBarPane");
+        });
+    </script>
+</head>
+<body class="soria">
+<div id="menuBarPane"></div>
+<div class="container-fluid cstm-main-panel">
+    <div class="row">
+        <div class="col-lg-2 cstm-col-padding">
+            <div class="panel panel-info cstm-qunmumber-pane">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-asterisk"></span>
+                    <span id="hiddenUserPane" class="glyphicon glyphicon-triangle-right" style="float: right"></span>
+                </div>
+                <div class="panel-body cstm-panel-body-height" style="padding: 0 0;">
+                    <!--内容-->
+                    <div class="btn-group btn-group-justified" role="group">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user" title="与会人员"></span>
+                            </button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home" title="房间列表"></span>
+                            </button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-wrench" title="工具箱"></span>
+                            </button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-tasks" title="资源列表"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 cstm-col-padding">
+            <div class="panel panel-info cstm-video-pane">
+                <div class="panel-heading">
+                    <span id="operateUserPane" class="glyphicon glyphicon-user"></span>
+                    <span id="operateBadgeChartPane" class="badge" style="float: right">14</span>
+                    <span id="operateChartPane" class="glyphicon glyphicon-comment" style="float: right"></span>
+                    <!--<h4 class="panel-title">
+                        <a class="">
+                            视频窗口
+                        </a>
+                    </h4>-->
+                </div>
+                <div class="panel-body cstm-panel-body-height">
+                    <!--内容-->
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 cstm-col-padding">
+            <div class="panel panel-info cstm-chart-pane">
+                <div class="panel-heading">
+                    <span id="hiddenChartPane" class="glyphicon glyphicon-triangle-left"></span>
+                    <!--<h4 class="panel-title">
+                        <a class="">
+                            聊天窗口
+                        </a>
+                    </h4>-->
+                </div>
+                <div class="panel-body cstm-panel-body-height">
+                    <!--内容-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/jquery/jQuery-1.11.1.js"></script>
+<script src="../js/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
+<script src="../js/bootstrap-3.3.0-dist/dist/js/ie10-viewport-bug-workaround.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

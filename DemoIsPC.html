@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="application/javascript" src="js/jquery/jQuery-1.11.1.js"></script>
+    <script type="application/javascript">
+        function IsPC() {
+            var flag = true;
+            var userAgentInfo = navigator.userAgent;
+            var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+            for (var v = 0; v < Agents.length; v++) {
+                if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
+        }
+        $(function () {
+            alert("isPC:"+IsPC());
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

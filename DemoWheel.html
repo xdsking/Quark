@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script >
+var ii=0;
+var footer=5;
+var childLength=0;
+var onUp=function(){
+    //document.getElementById("down1").focus();
+    var node=document.getElementById("pane");
+    ii++;
+    if(ii*footer>(node.children.length-1)){
+        node.children[node.children.length-1].focus();
+        ii=ii-1;
+        return;
+    }
+    node.children[ii*footer].focus();
+    if((ii*footer)>node.children.length-1){
+        ii--;
+    }
+};
+var onDown=function(){
+    //document.getElementById("down2").focus();
+    ii--;
+    var node=document.getElementById("pane");
+    if(ii*footer<=0){
+        node.children[0].focus();
+        ii=1;
+        return;
+    }
+    node.children[ii*footer].focus();
+};
+
+    </script>
+</head>
+<body>
+<button id="up" onclick="onUp()" type="button">向下</button>
+<button id="down" onclick="onDown()" type="button" style="margin-top: 10px;margin-left: 10px;">向上</button>
+<div style="height: 80px;width: 786px;overflow:hidden;background-color: #00a3ef">
+    <div id="pane" onmousewheel="return false;" style="height: 80px;overflow-x: hidden;overflow-y:auto;width: 3000px;background-color: #ff0000">
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#01</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#02</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#03</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#04</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#05</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#06</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#07</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#08</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#09</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#10</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#11</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#12</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#13</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#14</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#15</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#16</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#17</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#18</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#19</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#20</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#21</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#22</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#23</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#24</button>
+            <button  type="button" style="width: 80px;margin-top: 10px;margin-left: 10px;">#25</button>
+    </div>
+</div>
+</body>
+</html>

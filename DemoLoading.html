@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="js/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="js/dojo-release-1.9.3-src/dijit/themes/claro/claro.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <script type="text/javascript">
+        var dojoConfig = {
+            async: true,
+            parseOnLoad: true,
+            packages: [
+                {
+                    name: "customWidget",
+                    location: "../../customWidget"
+                }
+            ]
+        };
+    </script>
+    <script src="js/jquery/jQuery-1.11.1.js"></script>
+    <script src="js/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/dojo-release-1.9.3-src/dojo/dojo.js"></script>
+    <script>
+        require(["dojo/parser","customWidget/loading/Loading"], function (parser,Loading) {
+            new Loading().show();
+            parser.parse();
+        });
+    </script>
+</head>
+<body class="claro">
+
+</body>
+</html>

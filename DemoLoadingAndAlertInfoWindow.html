@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="js/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="js/dojo-release-1.9.3-src/dijit/themes/claro/claro.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <script type="text/javascript">
+        var dojoConfig = {
+            async: true,
+            parseOnLoad: true,
+            packages: [
+                {
+                    name: "customWidget",
+                    location: "../../customWidget"
+                }
+            ]
+        };
+    </script>
+    <script src="js/jquery/jQuery-1.11.1.js"></script>
+    <script src="js/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/dojo-release-1.9.3-src/dojo/dojo.js"></script>
+    <script>
+        require(["dojo/parser", "dijit/form/Button", "customWidget/loading/Loading", "customWidget/alertInfoWindow/AlertInfoWindow"],
+                function (parser, Button, Loading, AlertInfoWindow) {
+                    new Button({
+                        label: "loading",
+                        onClick: function () {
+                            var loading = new Loading();
+                            loading.show();
+                            setTimeout(function () {
+                                new AlertInfoWindow({type: "danger", content: "查询要素服务失败，请检查服务地址是否正确，服务是否正常启动！"}).show();
+                                loading.hide();
+                            }, 2000);
+
+                        }
+                    }).placeAt(document.body);
+                    new Button({
+                        label:"消息提示",
+                        onClick:function(){
+                            new AlertInfoWindow({type: "info", content: "查询要素服务失败，请检查服务地址是否正确，服务是否正常启动！"}).show();
+
+                        }
+                    }).placeAt(document.body);
+                    new Button({
+                        label:"警告信息",
+                        onClick:function(){
+                            new AlertInfoWindow({type: "warning", content: "查询要素服务失败，请检查服务地址是否正确，服务是否正常启动！"}).show();
+
+                        }
+                    }).placeAt(document.body);
+                    new Button({
+                        label:"错误信息",
+                        onClick:function(){
+                            new AlertInfoWindow({type: "danger", content: "查询要素服务失败，请检查服务地址是否正确，服务是否正常启动！"}).show();
+
+                        }
+                    }).placeAt(document.body);
+                    parser.parse();
+                });
+    </script>
+</head>
+<body class="claro">
+
+</body>
+</html>

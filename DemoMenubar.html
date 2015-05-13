@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>team-app</title>
+<link rel="stylesheet" href="js/dojo-release-1.9.3-src/dijit/themes/soria/soria.css">
+<link rel="stylesheet" href="js/dojo-release-1.9.3-src/dojox/layout/resources/FloatingPane.css">
+<link rel="stylesheet" href="js/dojo-release-1.9.3-src/dojox/layout/resources/ResizeHandle.css">
+<link rel="stylesheet" href="css/index_menubar.css">
+<script type="text/javascript">
+	var dojoConfig = {
+		async:true,
+		parseOnLoad : false,
+		dojoRoot:"/web-app/js/dojo-release-1.9.3-src",
+		libRoot:"/web-app/js/com/teamLib",
+		dockBarId:"dockBar",
+		packages : [ {
+			name : "teamLib",
+			location : "../../../js/com/teamLib" 
+		}]
+	};
+</script>
+<script type="text/javascript" src="js/dojo-release-1.9.3-src/dojo/dojo.js"></script>
+<script type="text/javascript">
+require(["dojo/_base/config","dojo/dom-construct","dojo/dom",
+         "dijit/form/Button","dojo/dom-style",
+         "teamLib/menuBar/MenuBar","dojo/domReady!"],function(config,domConstruct,dom,
+        		 Button,domStyle,
+        		 WidgetClass){
+	dom.setSelectable(dojo.body(),false);//禁止鼠标左键选中;
+	var widgetClass=new WidgetClass().placeAt("menuBarPane");
+});
+</script>
+</head>
+<body class="soria">
+    <div id="menuBarPane"></div>
+<div id="floatingPaneContainer" style="position: absolute;left: 400px;top: 10px;background-color: #808080;width: 800px;height: 600px;"></div>
+</body>
+</html>

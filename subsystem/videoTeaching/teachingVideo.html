@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>在线视频教学</title>
+    <link rel="stylesheet" type="text/css" href="../../js/dojo-release-1.9.3-src/dijit/themes/claro/claro.css" />
+    <!--加载浮动面板依赖样式文件-->
+    <link rel="stylesheet" type="text/css" href="../../js/dojo-release-1.9.3-src/dojox/layout/resources/FloatingPane.css" />
+    <link rel="stylesheet" type="text/css" href="../../js/dojo-release-1.9.3-src/dojox/layout/resources/ResizeHandle.css" />
+    <link rel="stylesheet" type="text/css" href="css/videoTeaching.css" />
+    <script type="text/javascript">
+        var dojoConfig = {
+            async:true,
+            parseOnLoad : true,
+            packages : [ {
+                name : "teamLib",
+                location : "../../../js/com/teamLib"
+            }]
+        };
+    </script>
+    <script type="text/javascript" src="../../js/dojo-release-1.9.3-src/dojo/dojo.js"></script>
+    <script type="text/javascript" src="js/teachingVideo.js"></script>
+</head>
+
+<body class="claro">
+<div data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="gutters:true, liveSplitters:false" class="mainBorderContainer">
+    <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top', splitter:false,style:'height:60px;'">
+
+    </div>
+    <div data-dojo-type="dijit/layout/AccordionContainer" data-dojo-props="region:'left', splitter:false" class="leftFeaturePane">
+        <div data-dojo-type="dijit/layout/AccordionPane" id="studentsList"  title="当前在线学生">
+
+        </div>
+        <div data-dojo-type="dijit/layout/AccordionPane" id="teachingResources" title="教学资源">
+
+        </div>
+    </div>
+    <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center', splitter:false,">
+        <div id="videoWindow" class="videoWindow"></div>
+        <div id="menuBarPane"></div>
+
+    </div>
+    <!--<div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'right', splitter:false," style="width: 200px;"></div>&ndash;&gt;-->
+    <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'bottom', splitter:true," class="chatRoomPane">
+
+    </div>
+</div>
+</body>
+</html>

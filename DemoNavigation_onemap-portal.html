@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--为了确保Y移动端适当的绘制和触屏缩放-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title></title>
+    <!-- Bootstrap core CSS -->
+    <link href="js/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="js/bootstrap-3.3.0-dist/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-weight: 500;
+        }
+
+        .cstm-divider {
+            margin: 4px 0;
+        }
+
+        .cstm-font-size {
+            font-size: 20px;
+        }
+        .cstm-navbar-right{
+            margin-top: 9px;
+            margin-right: 10px;
+            float: right;
+        }
+        .cstm-navbar-right li{
+            padding: 0 5px;
+        }
+        .cstm-default-spark{
+            color: cornflowerblue;
+            font-size: 30px;
+            padding: 10px;
+        }
+        .cstm-actived-spark{
+            color: lightskyblue;
+        }
+        @media screen and (max-width: 768px) {
+            .cstm-navbar-inverse {
+                margin-top: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+    <div class="container">
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="glyphicon glyphicon-th-list cstm-font-size"></span>
+        </button>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="collapse navbar-collapse bs-navbar-collapse navbar-inverse navbar-fixed-top cstm-navbar-inverse" role="navigation">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="#"><span class="glyphicon glyphicon-home"></span> 首页</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                                    class="glyphicon glyphicon-globe"></span> 应用系统 <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">综合监管</a></li>
+                                <li class="divider cstm-divider"></li>
+                                <li><a href="#">建设用地</a></li>
+                                <li class="divider cstm-divider"></li>
+                                <li><a href="#">土地收储</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-th-list"></span> 数据资源</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-road"></span> 空间分析资源</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-qrcode"></span> 地图资源</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-euro"></span> 运维管理</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right cstm-navbar-right">
+                        <li>
+                            <button type="button" class="btn-default btn-sm"><span class="glyphicon glyphicon-user"></span> 登录</button>
+                            <button type="button" class="btn-default btn-sm"><span class="glyphicon glyphicon-log-out"></span> 登出</button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<div style="margin-top: 100px;"><span><span id="spark" class="glyphicon glyphicon-volume-down cstm-default-spark" aria-hidden="true"></span></span></div>
+<script src="js/jquery/jQuery-1.11.1.js"></script>
+<script src="js/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="js/bootstrap-3.3.0-dist/dist/js/ie10-viewport-bug-workaround.js"></script>
+<script>
+    $(function(){
+        var timeout=1000;
+        var spark=$("#spark");
+        setInterval(function(){
+            spark.toggleClass("cstm-actived-spark").toggleClass("glyphicon-volume-up").toggleClass("glyphicon-volume-down");
+        },timeout);
+
+    });
+
+</script>
+</body>
+</html>

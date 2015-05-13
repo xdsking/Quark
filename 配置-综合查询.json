@@ -1,0 +1,112 @@
+{
+    "queryParams": {
+        "form": {
+            "layoutType": "dojox/layout/TableContainer",
+            "layoutParams": {
+                "cols": 1,
+                "labelWidth": 80,
+                "showLabels": true,
+                "class": "integratedQueryTableContainer",
+                "style": "text-align: left"
+            },
+            "items": [
+                {
+                    "name": "geometry",
+                    "label": "查询范围：",
+                    "style": "width:200px;",
+                    "fieldType": "geometry",
+                    "drawTypes": [
+                        {
+                            "circle": "圆形"
+                        },
+                        {
+                            "polygon": "多边形"
+                        },
+                        {
+                            "extent": "矩形"
+                        },
+                        {
+                            "ellipse": "椭圆"
+                        }
+                    ],
+                    "colspan": 2,
+                    "dojoType": "onemap/widget/IntegratedQuery/DrawGeoPane"
+                },
+                {
+                    "label": "项目名称：",
+                    "name": "XIANGMMC",
+                    "value": "",
+                    "fieldType": "string",
+                    "whereTemplate": "${name} like '%${value}%'",
+                    "style": "width:120px;margin-top:3px;",
+                    "dojoType": "dijit/form/TextBox"
+                },
+                {
+                    "label": "批准文号：",
+                    "name": "PIZWH",
+                    "value": "",
+                    "fieldType": "string",
+                    "whereTemplate": "${name} like '%${value}%'",
+                    "style": "width:120px;margin-top:3px;",
+                    "dojoType": "dijit/form/TextBox"
+                }
+            ],
+            "buttons": [
+                {
+                    "label": "查询",
+                    "dojoType": "dijit/form/Button",
+                    "type": "submit",
+                    "style": "width:55px;"
+                }
+            ]
+        },
+        "targetData": [
+            {
+                "groupName": "用地报批",
+                "layers": [
+                    {
+                        "topicLayerId": "b6007e27e88c40439294832787597d00",
+                        "subLayers": [
+                            {
+                                "id": 0,
+                                "name": "用地报批图层",
+                                "outFields": [
+                                    "*"
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "displayFields": [
+                    "QSDWMC",
+                    "ZLDWDM"
+                ]
+            }
+        ]
+    },
+    "resultShowParams": {
+        "dojoType": "onemap/widget/IntegratedQuery/LazyTreeGridX",
+        "container": {
+            "id": "b5929b31ec3f4a94b14e8b5df7dd378c",
+            "type": "onemap/FloatingPane",
+            "params": {
+                "title": "查询结果",
+                "style": {
+                    "bottom": "0px",
+                    "right": "6px",
+                    "height": "530px"
+                }
+            }
+        },
+        "style": "",
+        "identifier": "OBJECTID",
+        "XMLabel": "XIANGMMC",
+        "DKLabel": "DKMC",
+        "attributesLabel": [
+            "XIANGMMC",
+            "DKMC"
+        ],
+        "infoWindowDisplayFields": [],
+        "isShowFeaturesOnMap": true
+    }
+}

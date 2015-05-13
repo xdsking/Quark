@@ -1,0 +1,17 @@
+.GeometryWidget{
+    margin: 5px;
+}
+.GeometryWidgetExtentPane{
+    margin-bottom: 8px;
+    text-align: left;
+}
+.GeometryWidgetExtentPane label{
+    cursor: pointer;
+}
+.GeometryWidgetExtentPane input{
+    cursor: pointer;
+}
+/*
+.GeometryWidget option{
+    font-size: 12px;
+}*/

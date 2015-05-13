@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="js/dojo-release-1.9.3-src/dijit/themes/claro/claro.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <script type="text/javascript">
+        var dojoConfig = {
+            async: true,
+            parseOnLoad: true,
+            packages: [
+                {
+                    name: "customWidget",
+                    location: "../../customWidget"
+                }
+            ]
+        };
+    </script>
+    <script type="text/javascript" src="js/dojo-release-1.9.3-src/dojo/dojo.js"></script>
+    <script>
+        require(["dojo/parser", "dojo/dom", "dijit/form/HorizontalSlider","dijit/registry",
+            "dijit/form/HorizontalRule", "dijit/form/HorizontalRuleLabels"], function (parser, dom, HorizontalSlider,registry, HorizontalRule, HorizontalRuleLabels) {
+
+            var slider = new HorizontalSlider({
+                name: "slider",
+                value: 2010,
+                minimum: 2010,
+                maximum: 2015,
+                discreteValues: 6,
+                intermediateChanges: true,
+                style: "width:420px;margin-left: 10px;",
+                onChange: function (value) {
+                    dom.byId("sliderValue").value = value;
+                }
+            }, "slider").startup();
+            var initIntervalRun=function(){
+                setInterval(function(){
+                    var node=registry.byId("slider");
+                    if(node.value>node.maximum-1){
+                        node.setValue(node.minimum);
+                    }else{
+                        node.setValue(node.getValue()+1);
+                    }
+                    node.startup();
+                },2000);
+            };
+            var clearIntervalRun=function(){
+                clearInterval();
+                //TODO
+            };
+            //initIntervalRun();
+            parser.parse();
+        });
+    </script>
+</head>
+<body class="claro">
+<!--<div id="horizontalSlider"
+     style="width:420px;margin-left: 10px;"
+     name="horizontalSlider"
+     data-dojo-type="dijit/form/HorizontalSlider"
+     data-dojo-props="value:1,
+    minimum: 1,
+    maximum:7,
+    discreteValues:6,
+    intermediateChanges:true,
+    showButtons:true">
+    <ol data-dojo-type="dijit/form/HorizontalRuleLabels" container="topDecoration"
+        style="height:1.5em;color:gray;">
+        <li>2010</li>
+        <li>2011</li>
+        <li>2012</li>
+        <li>2013</li>
+        <li>2014</li>
+        <li>2015</li>
+    </ol>
+    <div data-dojo-type="dijit/form/HorizontalRule" container="bottomDecoration"
+         count=6 style="height:5px;"></div>
+</div>-->
+
+<div id="slider">
+    <div data-dojo-type="dijit/form/HorizontalRule" data-dojo-attach-point="horizontalRule" count=6 style="height:5px;"></div>
+    <ol data-dojo-type="dijit/form/HorizontalRuleLabels" data-dojo-attach-point="horizontalRuleLabels" style="height:1.5em;color:gray;">
+        <li>2010</li>
+        <li>2011</li>
+        <li>2012</li>
+        <li>2013</li>
+        <li>2014</li>
+        <li>2015</li>
+    </ol>
+</div>
+<p><input type="text" id="sliderValue" data-dojo-type="dijit/form/TextBox" value="2010"/></p>
+</body>
+</html>

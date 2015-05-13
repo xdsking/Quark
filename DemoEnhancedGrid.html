@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="js/dojo-release-1.9.3-src/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="js/dojo-release-1.9.3-src/dojox/grid/enhanced/resources/claro/EnhancedGrid.css">
+    <link rel="stylesheet" href="js/dojo-release-1.9.3-src/dojox/grid/enhanced/resources/EnhancedGrid_rtl.css">
+   <!-- <link rel="stylesheet" type="text/css" href="http://localhost:8090/onemap-cdn/js/arcgis_js_api/3.9/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://localhost:8090/onemap-cdn/js/arcgis_js_api/3.9/js/dojo/dojox/grid/enhanced/resources/claro/EnhancedGrid.css">
+    <link rel="stylesheet" href="http://localhost:8090/onemap-cdn/js/arcgis_js_api/3.9/js/dojo/dojox/grid/enhanced/resources/EnhancedGrid_rtl.css">-->
+    <script type="text/javascript">
+        var dojoConfig = {
+            async: true,
+            parseOnLoad: true
+        };
+    </script>
+    <script type="text/javascript" src="js/dojo-release-1.9.3-src/dojo/dojo.js"></script>
+    <script type="text/javascript" src="js/jquery/jQuery-1.11.1.js"></script>
+    <!--<script type="text/javascript" src="http://localhost:8090/onemap-cdn/js/arcgis_js_api/3.9/init.js"></script>-->
+    <script>
+        require(["dojo/data/ItemFileReadStore",
+                "dojo/data/ItemFileWriteStore",
+                "dojox/grid/EnhancedGrid",
+                "dojox/grid/enhanced/plugins/Pagination","dojo/dom-construct"], function (ItemFileReadStore, ItemFileWriteStore, EnhancedGrid, Pagination,domConstruct) {
+                    var initDataGrid = function () {
+                        var grid = new EnhancedGrid(
+                                {
+                                    rowSelector: '20px;',
+                                    style: "cursor:pointer;height:400px",
+                                    plugins: {
+                                        pagination: {
+                                            defaultPageSize: 20,
+                                            pageSizes: [],
+                                            description: true,
+                                            sizeSwitch: true,
+                                            pageStepper: true,
+                                            gotoButton: true,
+                                            maxPageStep: 4,
+                                            position: "bottom"
+                                        }
+                                    }
+                                }, domConstruct.create("div", null,
+                                        document.body));
+                        grid.placeAt("grid");
+                        grid.startup();
+                        return grid;
+
+                    };
+                    setGridStructure = function (grid) {
+                        var layout = [
+                            {
+                                'name': 'OBJECTID',
+                                'field': 'OBJECTID'
+                            },
+                            {
+                                'name': '地类名称',
+                                'field': '地类名称'
+                            },
+                            {
+                                'name': '地类编码',
+                                'field': '地类编码',
+                                'width': '140px'
+                            },
+                            {
+                                'name': '权属单位名称',
+                                'field': '权属单位名称',
+                                'width': '100px'
+                            },
+                            {
+                                'name': '面积',
+                                'field': '面积',
+                                'width': '130px'
+                            }
+                        ];
+                        grid.setStructure([layout]);
+                    };
+                    setGridStore = function (grid) {
+                        var featureInfosList = [
+                            {OBJECTID: 315, 地类名称: "沟渠", 地类编码: "117", 坐落图斑编号: "152", 权属单位名称: "松林村", 权属性质: "30", 面积: 1067.33},
+                            {OBJECTID: 316,地类名称: "沟渠",地类编码: "117",坐落图斑编号: "151",权属单位名称: "松林村",权属性质: "30",面积: 807.19}
+
+                        ];
+                        var data = {
+                            identifier: 'OBJECTID',
+                            items: featureInfosList
+                        };
+                        var store = new ItemFileWriteStore(
+                                {
+                                    data: data
+                                });
+                        grid.setStore(store);
+                    };
+                    var grid = initDataGrid();
+                    setGridStructure(grid);
+                    setGridStore(grid);
+                });
+    </script>
+</head>
+<body class="claro">
+<div id="grid"></div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title></title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="js/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="js/bootstrap-3.3.0-dist/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!--Font Awesome 图标字体-->
+    <link rel="stylesheet" href="js/Font-Awesome-3.2.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="js/dndSource/dndSource.css">
+    <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+    <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+    <!--[if lt IE 9]>
+    <script src="js/bootstrap-3.3.0-dist/dist/js/html5shiv.js"></script>
+    <script src="js/bootstrap-3.3.0-dist/dist/js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        body {
+            margin: 0;
+            background-color: #808080;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body role="document">
+<button id="showDragPanel" class="btn btn-warning" style="margin: 15px;" type="button">显示弹出框</button>
+<button id="showDragPanel2" class="btn btn-warning" style="margin: 15px;" type="button">显示弹出框</button>
+<button id="show" class="btn btn-warning" style="margin: 15px;" type="button">组件</button>
+<div id="dockBar"></div>
+<div id="dndSourceX"></div>
+<div id="dndSourceX2"></div>
+<script src="js/jquery/jQuery-1.11.1.js"></script>
+<script src="js/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
+<script src="js/jquery-ui-bootstrap-jquery-ui/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="js/bootstrap-3.3.0-dist/dist/js/ie10-viewport-bug-workaround.js"></script>
+<script type="text/javascript" src="js/dndSource/dndSource.js"></script>
+
+<script>
+    $(function () {
+        $("#showDragPanel").click(function () {
+            //var content=$("<div>html对象</div>");
+            var content=$("#show");
+            var dragNode=$("#dndSourceX");
+            var dndSourceNode=dragNode.dndSource({
+                title: "电子白板",
+                id:"dndSourceX",
+                theme: "info",
+                closable: true,
+                dockable: true,
+                content:content,/*必设参数*/
+                dockTo: $("#dockBar"),
+                style: "width: 500px;position: absolute;top: 200px;left: 400px;display: none"
+            });
+            dragNode.dndSource.show(dndSourceNode);
+        });
+        $("#showDragPanel2").click(function () {
+            var dragNode=$("#dndSourceX2");
+            var dndSourceNode=dragNode.dndSource({
+                title: "上传附件",
+                id:"dndSourceX2",
+               /* theme: "info",*/
+                closable: true,
+                dockable: true,
+                content:"<div>字符窜类型html</div>",/*必设参数*/
+                dockTo: $("#dockBar"),
+                style: "width: 500px;position: absolute;top: 200px;left: 400px;display: none"
+            });
+            dragNode.dndSource.show(dndSourceNode);
+        });
+    });
+</script>
+</body>
+</html>

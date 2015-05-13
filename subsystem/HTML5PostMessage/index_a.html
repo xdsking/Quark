@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<iframe id="ifr" src="http://xspc:9876/web-app/subsystem/HTML5PostMessage/index_b.html"></iframe>
+<script type="text/javascript">
+    window.onload = function() {
+        if(window.postMessage ==="undefined"){
+            console.log("浏览器不支持postMessage!");
+            return;
+        }
+        var ifr = document.getElementById('ifr');
+        var targetOrigin = 'http://xspc:9876/web-app';  // 若写成'http://b.com/c/proxy.html'效果一样
+        // 若写成'http://c.com'就不会执行postMessage了
+        ifr.contentWindow.postMessage('I was there!', targetOrigin);
+        //发送消息给另一个页面：
+        //window.postMessage("Hello, world", "portal.example.com");
+    };
+</script>
+</body>
+</html>

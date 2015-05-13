@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="js/dojo-release-1.9.3-src/dijit/themes/claro/claro.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <script type="text/javascript">
+        var dojoConfig = {
+            async:true,
+            parseOnLoad : true,
+            packages : [ {
+                name : "customWidget",
+                location : "../../customWidget"
+            }]
+        };
+    </script>
+    <script type="text/javascript" src="js/dojo-release-1.9.3-src/dojo/dojo.js"></script>
+    <script>
+        require([
+            "dojo/parser","dijit/layout/BorderContainer","dijit/layout/ContentPane"],function(parser,BorderContainer,ContentPane){
+
+        });
+    </script>
+</head>
+<body class="claro">
+<div data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="gutters:true, liveSplitters:false" class="mainBorderContainer">
+    <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top', splitter:false,style:'height:100px;'"></div>
+    <div data-dojo-type="dijit/layout/AccordionContainer" data-dojo-props="region:'leading', splitter:false" style="width: 240px;" id="leftAccordion">
+        <div data-dojo-type="dijit/layout/AccordionPane" title="One fancy Pane">
+        </div>
+        <div data-dojo-type="dijit/layout/AccordionPane" title="Another one">
+        </div>
+        <div data-dojo-type="dijit/layout/AccordionPane" title="Even more fancy" selected="true">
+        </div>
+        <div data-dojo-type="dijit/layout/AccordionPane" title="Last, but not least">
+        </div>
+    </div>
+    <div data-dojo-type="dijit/layout/TabContainer" data-dojo-props="region:'center', tabStrip:true">
+        <div data-dojo-type="dijit/layout/ContentPane" title="My first tab" selected="true">
+            Lorem ipsum and all around...
+        </div>
+        <div data-dojo-type="dijit/layout/ContentPane" title="My second tab">
+            Lorem ipsum and all around - second...
+        </div>
+        <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="closable:true" title="My last tab">
+            Lorem ipsum and all around - last...
+        </div>
+    </div><!-- end TabContainer -->
+</div>
+</body>
+</html>

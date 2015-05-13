@@ -1,0 +1,20 @@
+<div class="${baseClass}">
+    <div data-dojo-attach-point="extentPane" class="${baseClass}ExtentPane">
+        <input type="radio" data-dojo-type="dijit/form/RadioButton" data-dojo-attach-point="fullScreen" id="fullScreen" checked="checked" name="extentItem"><label for="fullScreen">全幅&nbsp;&nbsp;</label>
+        <input type="radio" data-dojo-type="dijit/form/RadioButton" data-dojo-attach-point="currentScreen" id="currentScreen" name="extentItem"><label for="currentScreen">当前&nbsp;&nbsp;</label>
+        <input type="radio" data-dojo-type="dijit/form/RadioButton" data-dojo-attach-point="userDefined" id="userDefined" name="extentItem" ><label for="userDefined">自定义</label>
+    </div>
+    <div data-dojo-attach-point="userDefinedGeometryTypePane" style="visibility:hidden;height:0;">
+        <div data-dojo-type="dojox/layout/TableContainer" style="padding-top: 5px;padding-left: 0px;"
+             data-dojo-props="labelWidth:60,showLabels:true,cols:2,style:'text-align: left'">
+            <select data-dojo-attach-point="userDefinedGeometryType" style="width:80px;"
+                    data-dojo-props="label:'选择工具:'"
+                    data-dojo-type="dijit/form/Select">
+                <option value="extent">矩形</option>
+                <option value="polygon">多边形</option>
+                <option value="circle">圆形</option>
+                <option value="ellipse">椭圆</option>
+            </select>
+        </div>
+    </div>
+</div>

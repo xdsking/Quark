@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="js/dojo-release-1.9.3-src/dijit/themes/claro/claro.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="http://localhost:8090/onemap-cdn/js/arcgis_js_api/3.9/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" type="text/css"
+          href="http://localhost:8090/onemap-cdn/js/arcgis_js_api/3.9/js/esri/css/esri.css">
+    <!--<script type="text/javascript" src="js/dojo-release-1.9.3-src/dojox/mobile/deviceTheme.js"></script>-->
+    <style type="text/css">
+        body {
+            height: 100%;
+        }
+
+        #map {
+            overflow: hidden;
+            border: solid 1px black;
+            padding: 0;
+        }
+    </style>
+    <script type="text/javascript">
+        var djConfig = {
+            async: true,
+            parseOnLoad: true,
+            packages: [
+                {
+                    name: "teamLib",
+                    location: "/web-app/js/com/teamLib"
+                }
+            ]
+        };
+    </script>
+    <script type="text/javascript" src="http://localhost:8090/onemap-cdn/js/arcgis_js_api/3.9/init.js"></script>
+    <script type="text/javascript">
+        require(["dijit/form/Button","dijit/layout/BorderContainer", "dijit/layout/ContentPane"],
+                function (Button) {
+                });
+
+    </script>
+</head>
+<body class="claro">
+<label style="vertical-align:middle;">缓冲距离:</label>
+<input type="text" data-dojo-type="dijit/form/NumberTextBox" name= "elevation" required="true" value="1" data-dojo-props="style:'width:50px;'" />
+<select name="select1" data-dojo-type="dijit/form/Select">
+    <option value="UNIT_KILOMETER" selected="selected">千米</option>
+    <option value="UNIT_METER">米</option>
+    <option value="UNIT_SQUARE_FEET">尺</option>
+</select>
+<button data-dojo-type="dijit/form/Button" type="button">查询</button>
+</body>
+</html>

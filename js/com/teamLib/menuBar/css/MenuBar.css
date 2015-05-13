@@ -1,0 +1,87 @@
+.MenuBar_yuancheng{
+	width: 29px;
+	height: 29px;
+	background-image:url("../images/icon2.png");
+	border: 0px;
+}
+.MenuBar_xiezhu{
+	width: 29px;
+	height: 29px;
+	background-image:url("../images/icon9.png");
+	border: 0px;
+}
+.MenuBar_hudong{
+	width: 29px;
+	height: 29px;
+	background-image:url("../images/icon1.png");
+	border: 0px;
+}
+.MenuBar_shipin{
+	width: 29px;
+	height: 29px;
+	background-image:url("../images/icon4.png");
+	border: 0px;
+}
+.MenuBar_yuyin{
+	width: 29px;
+	height: 29px;
+	background-image:url("../images/icon11.png");
+	border: 0px;
+}
+.MenuBar_shoucang{
+	width: 29px;
+	height: 29px;
+	background-image:url("../images/icon5.png");
+	border: 0px;
+}
+.MenuBar_sixin{
+	width: 29px;
+	height: 29px;
+	background-image:url("../images/icon3.png");
+	border: 0px;
+}
+.MenuBar_tiwen{
+	width: 29px;
+	height: 29px;
+	background-image:url("../images/icon18.png");
+	border: 0px;
+}
+.MenuBarClassicStyle{
+	margin-bottom: 0px;
+}
+.showORHidden{
+	cursor:pointer;
+	margin-top: 120px;
+	
+}
+.MenuBar_buttonPane{
+	width: 50px;
+	float: right;
+	visibility: visible;
+	border: gray solid 1px;
+    padding-bottom:4px;
+	/* border-left:2px;
+	border-left-color:gray;
+	border-left-style:solid;
+	
+	border-bottom:1px;
+	border-bottom-color:gray;
+	border-bottom-style:solid;
+	
+	border-top:1px;
+	border-top-color:gray;
+	border-top-style:solid; */
+}
+.dojoxDock{
+    font-size: 12px;
+}
+.dojoxDock li{
+    height: 28px;
+}
+.dojoxDockTitleNode{
+    vertical-align:sub;
+}
+.soria .dojoxFloatingMaximizeIcon{
+    width: 12px;
+    background-position: -47px top !important;
+}

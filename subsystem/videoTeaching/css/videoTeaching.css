@@ -1,0 +1,37 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow:hidden;
+}
+.mainBorderContainer{
+   /* background-color:darkgray;*/
+    height: 100%;
+    width: 100%;
+}
+.leftFeaturePane{
+    height: 900px;
+    width: 200px;
+}
+.chatRoomPane{
+    height: 100px;
+}
+.leftAccordion{
+    width: 240px;
+}
+.videoWindow{
+    height: 100%;
+    margin-right: 12px;
+    background-color: gray;
+    background-image: url(../images/11.png);
+}
+#menuBarPane{
+    position: absolute;
+    top: 20%;
+    right: 0px;
+    /* 	background-color: gray; */
+    width: 100px;
+    height: 400px;
+    text-align: center;
+}

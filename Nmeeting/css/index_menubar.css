@@ -1,0 +1,9 @@
+#menuBarPane{
+	position: absolute;
+	top: 20%;
+	right: 0px;
+/* 	background-color: gray;*/
+	width: 400px;
+	height: 200px;
+	text-align: center;
+}

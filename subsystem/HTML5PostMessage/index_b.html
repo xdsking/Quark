@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    var originWhiteList = ["http://localhost:9876"];
+    function checkWhiteList(origin) {
+        for (var i=0; i<originWhiteList.length; i++) {
+            if (origin === originWhiteList[i]) {
+                return true;
+            }
+        }
+        return false;
+    }
+    function messageHandler(e) {
+        if(checkWhiteList(e.origin)) {
+            processMessage(e.data);
+        } else {
+            // ignore messages from unrecognized origins
+        }
+    }
+    window.addEventListener('message', function(event){
+        // 通过origin属性判断消息来源地址
+        if (event.origin == 'http://localhost:9876') {
+            alert(event.data);    // 弹出"I was there!"
+            alert(event.source);  // 对a.com、index.html中window对象的引用
+            // 但由于同源策略，这里event.source不可以访问window对象
+        }
+    }, false);
+</script>
+</body>
+</html>

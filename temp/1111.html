@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<link href="../../../css/bootstrap.css" rel="stylesheet">
+<link href="../../../css/bootstrap-responsive.css" rel="stylesheet">
+<link href="../../../css/docs.css" rel="stylesheet">
+<link href="../../../css/prettify.css" rel="stylesheet">
+<div id="navig_bar" class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container"><img id="bmw-icon" src="/images/bmw.png" style="float: right;" class="brand">
+
+            <div class="nav-collapse collapse">
+                <ul class="nav"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+<body style="padding-top: 0px;">
+<div class="infoListSearch">
+    <div class="infoListSearchPanel">
+        <div class="listOperatorContent">
+            <div id="chooseUserInfoListBtn" click="switchUserListPanel" un="conversation" class="conmu-left-active">
+                <span title="与会人员" style="margin-left: 20px;"
+                      class="glyphicon glyphicon-user cstm-user-panel-action"></span></div>
+            <div id="chooseRoomInfoListBtn" click="switchRoomListPanel" un="conversation" class="conmu-left-active">
+                <span title="房间列表" style="margin-left: 20px;"
+                      class="glyphicon glyphicon-home cstm-room-panel-action"></span></div>
+            <div id="chooseResoureInfoListBtn" click="switchResListPanel" un="conversation" class="conmu-left-active">
+                <span title="资源列表" style="margin-left: 20px;"
+                      class="glyphicon glyphicon-tasks cstm-video-panel-action"></span></div>
+            <div id="chooseToolInfoListBtn" click="switchToolListPanel" un="conversation" class="conmu-left-active">
+                <span title="工具箱" style="margin-left: 20px;"
+                      class="glyphicon glyphicon-wrench cstm-tool-panel-action"></span></div>
+        </div>
+        <div class="infoListSearchInput left"><span class="infoListSearchIcon left"></span>
+            <input id="conv_search" type="text" name="search" value="" keydown="preSearch"
+                   keyup="search@.infoListSearchInput" placeholder="搜索" class="conv_search left"><span
+                    id="conv_search_clean" click="cleanSearchWord@.infoListSearchInput" style="display:none;"
+                    class="searchClean left"></span>
+        </div>
+        <div class="clr"></div>
+    </div>
+</div>
+</body>

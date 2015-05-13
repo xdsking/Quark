@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <!--让 IE 浏览器运行在最新的渲染模式下-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--可以让部分国产浏览器默认采用高速模式渲染页面(目前只有360浏览器支持)-->
+    <meta name="renderer" content="webkit">
+    <!--为了保证移动端的绘制和触屏缩放  , maximum-scale=1, user-scalable=no(禁用缩放功能，用户只能滚动屏幕)-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="Shortcut Icon" href=images/bmw_Icon.png>
+    <title>宝马在线培训</title>
+    <!-- Bootstrap core CSS -->
+    <link href="js/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="js/bootstrap-3.3.0-dist/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/bootstrap-3.3.0-dist/dist/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="js/bootstrap-3.3.0-dist/dist/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="js/bootstrap-3.3.0-dist/dist/js/html5shiv.min.js"></script>
+    <script src="js/bootstrap-3.3.0-dist/dist/js/respond.min.js"></script>
+    <script src="js/bootstrap-3.3.0-dist/dist/css3-mediaqueries-js-master/css3-mediaqueries.js"></script>
+    <![endif]-->
+    <style>
+        body {
+            background-image: url(images/back.png);
+            border-image-repeat: repeat;
+        }
+
+        .cstm-jumbotron {
+            padding: 0;
+            color: #003478;
+
+            text-shadow: 0 1px 3px rgba(0, 0, 0, .4), 0 0 30px rgba(0, 0, 0, .075);
+            background: #fff; /* Old browsers */
+        }
+
+        .cstm-jumbotron h1 {
+            font-weight: 700;
+        }
+
+        .cstm-jumbotron p {
+            font-size: 24px;
+            font-weight: 300;
+            line-height: 30px;
+            margin-bottom: 30px;
+        }
+        .navigationBar {
+            font-family: "Microsoft YaHei";
+            background-color: #EEE;
+            font-weight: 700;
+            font-size: 14px;
+            z-index: 9
+        }
+
+        .cstm-navbar-nav {
+            margin-top: 7px;
+        }
+
+        .cstm-navbar-right {
+            float: right;
+        }
+
+        .cstm-navbar-right li {
+            margin-top: 17px;
+            padding: 0 5px;
+        }
+        .cstm-room-item-depict{
+            float: left;
+            margin-left: 25px;
+            margin-top: 10px;
+        }
+        #rightLog{
+            margin-top: 0;
+        }
+        #rightLog img{
+            height: 60px;
+        }
+        @media screen and (max-width: 768px) {
+            #rightLog {
+                display: none;
+            }
+
+            #navigationBar {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav id="navigationBar" class="navbar navbar-inverse navigationBar" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" style="z-index: 100"
+                    data-target="#cstm-example-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="cstm-example-navbar-collapse">
+            <ul class="nav navbar-nav cstm-navbar-nav">
+                <li><a href="#"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> 课程表</a></li>
+                <li class="active"><a href="#"><span class="glyphicon glyphicon-expand"></span> 观看记录</a></li>
+
+            </ul>
+            <ul id="navbarRight" class="nav navbar-nav navbar-right cstm-navbar-right">
+    <!--            <li>
+                    <button type="button" class="btn-default btn-sm"><span class="glyphicon glyphicon-user"></span> 登录
+                    </button>
+                    <button type="button" class="btn-default btn-sm"><span class="glyphicon glyphicon-log-out"></span>
+                        登出
+                    </button>
+                </li>-->
+                <li id="rightLog"><img src="images/bmw.png"></li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="jumbotron cstm-jumbotron"
+             style="margin-left: 20px;background-image: url(images/back.png);border-image-repeat: repeat;">
+            <h1>宝马在线培训</h1>
+
+            <p>欢迎你...</p>
+        </div>
+
+    </div>
+
+</div>
+<div class="container cstm-statisticsTable">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>用户</th>
+            <th>观看次数</th>
+            <th>观看时间</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="legendTargetPanel">
+                xs
+            </td>
+            <td>12</td>
+            <td>
+                <span class="cstm-witchTime-item">2015-01-21 11:121:33:4353</span>
+        <span class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
+                详情 <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">2015-01-21 11:121:33:4353</a></li>
+                <li><a href="#">2015-01-21</a></li>
+                <li><a href="#">2015-01-21</a></li>
+                <li><a href="#">2015-01-21 Separated link</a></li>
+            </ul>
+        </span>
+            </td>
+        </tr>
+        <tr>
+            <td class="legendTargetPanel">
+                lx
+            </td>
+            <td>2</td>
+            <td>
+                <span class="cstm-witchTime-item">2015-01-21 11:121:33:4353</span>
+        <span class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
+                详情 <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">2015-01-21 11:121:33:4353</a></li>
+                <li><a href="#">2015-01-21</a></li>
+                <li><a href="#">2015-01-21</a></li>
+                <li><a href="#">2015-01-21 Separated link</a></li>
+            </ul>
+        </span>
+            </td>
+        </tr>
+        <tr>
+            <td class="legendTargetPanel">
+                xs
+            </td>
+            <td>12</td>
+            <td>
+                <span class="cstm-witchTime-item">2015-01-21 11:121:33:4353</span>
+        <span class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
+                详情 <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">2015-01-21 11:121:33:4353</a></li>
+                <li><a href="#">2015-01-21</a></li>
+                <li><a href="#">2015-01-21</a></li>
+                <li><a href="#">2015-01-21 Separated link</a></li>
+            </ul>
+        </span>
+            </td>
+        </tr>
+        <tr>
+            <td class="legendTargetPanel">
+                lx
+            </td>
+            <td>2</td>
+            <td>
+                <span class="cstm-witchTime-item">2015-01-21 11:121:33:4353</span>
+        <span class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
+                详情 <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">2015-01-21 11:121:33:4353</a></li>
+                <li><a href="#">2015-01-21</a></li>
+                <li><a href="#">2015-01-21</a></li>
+                <li><a href="#">2015-01-21 Separated link</a></li>
+            </ul>
+        </span>
+            </td>
+        </tr>
+        <tr>
+            <td class="legendTargetPanel">
+                xs
+            </td>
+            <td>12</td>
+            <td>
+                <span class="cstm-witchTime-item">2015-01-21 11:121:33:4353</span>
+        <span class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
+                详情 <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">2015-01-21 11:121:33:4353</a></li>
+                <li><a href="#">2015-01-21</a></li>
+                <li><a href="#">2015-01-21</a></li>
+                <li><a href="#">2015-01-21 Separated link</a></li>
+            </ul>
+        </span>
+            </td>
+        </tr>
+        <tr>
+            <td class="legendTargetPanel">
+                lx
+            </td>
+            <td>2</td>
+            <td>
+                <span class="cstm-witchTime-item">2015-01-21 11:121:33:4353</span>
+        <span class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
+                详情 <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">2015-01-21 11:121:33:4353</a></li>
+                <li><a href="#">2015-01-21</a></li>
+                <li><a href="#">2015-01-21</a></li>
+                <li><a href="#">2015-01-21 Separated link</a></li>
+            </ul>
+        </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="js/jquery/jQuery-1.11.1.js"></script>
+<script src="js/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="js/bootstrap-3.3.0-dist/dist/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>

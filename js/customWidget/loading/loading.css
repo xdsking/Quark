@@ -1,0 +1,14 @@
+.ex-modal-dialog{
+	margin-top: 20%;
+}
+.ex-modal-content{
+	margin-left: auto;
+	margin-right: auto;
+	padding:10px;
+	vertical-align: middle;
+	text-align: center;
+	width: 130px;
+	height:52px;
+	/* background-color: black; */
+	color: black;
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!--The viewport meta tag is used to improve the presentation and behavior
+    of the samples on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Custom Info Window</title>
+    <link rel="stylesheet" type="text/css"
+          href="http://localhost:8090/onemap-cdn/js/arcgis_js_api/3.9/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" type="text/css"
+          href="http://localhost:8090/onemap-cdn/js/arcgis_js_api/3.9/js/esri/css/esri.css">
+    <link rel="stylesheet" href="myModules/InfoWindow.css">
+    <style>
+        html, body, #mapDiv {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+    <script>
+        var djConfig = {
+            async: true,
+            parseOnLoad: true,
+            packages: [
+                {
+                    name: "myModules",
+                    /*"location": location.pathname.replace(/\/[^/]+$/, "") + "/myModules"*/
+                    location: "/web-app/InfoWindow/myModules"
+                },
+                {
+                    name: "infoTemplate",
+                    /*"location": location.pathname.replace(/\/[^/]+$/, "") + "/myModules"*/
+                    location: "/web-app/InfoWindow/InfoTemplate"
+                }
+            ]
+        };
+    </script>
+    <script type="text/javascript" src="http://localhost:8090/onemap-cdn/js/arcgis_js_api/3.9/init.js"></script>
+    <script src="jquery.min.js"></script>
+    <script>
+
+        require([
+            "dojo/dom",
+            "dojo/on",
+            "dojo/_base/lang",
+            "dojo/dom-construct",
+            "esri/map",
+            "myModules/InfoWindow",
+            "infoTemplate/InfoTemplate",
+            "esri/layers/FeatureLayer",
+            "esri/layers/ArcGISTiledMapServiceLayer",
+            "dojo/string",
+            "dojo/domReady!"
+        ], function (dom, on, lang, domConstruct, Map, InfoWindow,InfoTemplate, FeatureLayer, ArcGISTiledMapServiceLayer, string) {
+            //var infoTemplate = new InfoTemplate("Attributes", "${*}");
+            map = new Map("mapDiv", {
+                slider: true,
+                autoResize: false});
+            var layer = new ArcGISTiledMapServiceLayer("http://localhost:6080/arcgis/rest/services/basemap/chinabase/MapServer");
+            map.addLayer(layer);
+            var resizeTimer;
+            on(map, 'onLoad', function () {
+                on(dijit.byId('map'), 'resize', function () {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(function () {
+                        map.reposition();
+                    }, 1000);
+                });
+            });
+            /*var template = new PopupTemplate({
+             title: "Boston Marathon 2013",
+             description: "{Percent_Fi} of starters from {STATE_NAME} finished",
+             fieldInfos: [
+             { //define field infos so we can specify an alias
+             fieldName: "Number_Ent",
+             label: "Entrants"
+             },
+             {
+             fieldName: "Number_Sta",
+             label: "Starters"
+             },
+             {
+             fieldName: "Number_Fin",
+             label: "Finishers"
+             }
+             ]
+             });*/
+            var featureLayer = new FeatureLayer("http://localhost:6080/arcgis/rest/services/basemap/chinabase/MapServer/3", {
+                outFields: ["*"]
+            });
+            on(featureLayer, "click", lang.hitch(this, function (evt) {
+                var infoTitle = evt.graphic.attributes["NAME"] + "详细信息";//NAME: "西安"  OBJECTID: 662  PROV_CODE: "610100"  XZQH: "610100"
+                var content = "NAME:" + evt.graphic.attributes["NAME"] + "</br>";
+                content += "OBJECTID:" + evt.graphic.attributes["OBJECTID"] + "</br>";
+                content += "PROV_CODE:" + evt.graphic.attributes["PROV_CODE"] + "</br>";
+                content += "XZQH:" + evt.graphic.attributes["XZQH"] + "</br>";
+                var infoWindow = new InfoTemplate();
+                infoWindow.setTitle(infoTitle);
+                infoWindow.setContent(content);
+                evt.graphic.setInfoTemplate(infoWindow);
+                //infoWindow.show(evt.screenPoint);
+                //featureLayer.infoTemplate = infoWindow;
+            }));
+            map.addLayer(featureLayer);
+        });
+    </script>
+</head>
+<body>
+<div id="mapDiv"></div>
+</body>
+</html>

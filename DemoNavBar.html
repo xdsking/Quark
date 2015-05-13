@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <!--让 IE 浏览器运行在最新的渲染模式下-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--可以让部分国产浏览器默认采用高速模式渲染页面(目前只有360浏览器支持)-->
+    <meta name="renderer" content="webkit">
+    <!--为了保证移动端的绘制和触屏缩放  , maximum-scale=1, user-scalable=no(禁用缩放功能，用户只能滚动屏幕)-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="Shortcut Icon" href=images/bmw_Icon.png>
+    <title>宝马在线培训</title>
+    <!-- Bootstrap core CSS -->
+    <link href="js/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="js/bootstrap-3.3.0-dist/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <style>
+        .cstm-jumbotron {
+            width: 1000px;
+            padding: 0;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 0;
+            margin-bottom: 0;
+            color: #003478;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, .4), 0 0 30px rgba(0, 0, 0, .075);
+            background: #fff; /* Old browsers */
+        }
+
+        .cstm-jumbotron p {
+            font-size: 24px;
+            font-weight: 300;
+            line-height: 30px;
+            margin-bottom: 30px;
+        }
+
+        .cstm-row {
+            margin-top: 10px;
+        }
+
+        .cstm-room-imageContainer {
+            float: left;
+            cursor: pointer;
+        }
+
+        .demo_image {
+            width: 120px;
+            height: 120px;
+            border: 1px solid #003478;
+            border-radius: 15px;
+            -moz-box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.1);
+            -webkit-box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+</head>
+<body>
+<div style="background-color:#EEE">
+    <div style="width: 1000px;margin: auto;">
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+
+                    </button>
+                    <a class="navbar-brand" href="#">Brand</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Link</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div>
+</div>
+<div class="jumbotron cstm-jumbotron">
+    <div style="position: relative;left: -328px;">
+        <h1>宝马在线培训</h1>
+    </div>
+    <p>欢迎你...</p>
+</div>
+
+<div id="roomContainer" class="container" style="width: 1000px;overflow: auto;">
+    <div class="row">
+        <div class="col-sm-6 col-md-4  cstm-row">
+            <a roomId="545246af85675dc003d8782f" class="cstm-room-imageContainer"><img src="images/classroomaudio.jpg" class="demo_image" alt="...">
+            </a>
+            <div style="float: left;margin-left: 25px;">
+                <h4 class="media-heading"><a roomId="545246af85675dc003d8782f" style="cursor: pointer"
+                                             class="a_custom ifLogin">教室一</a></h4>
+                西北地区学员使用。
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4  cstm-row">
+            <a roomId="545246cd85675dc003d87830" class="cstm-room-imageContainer"><img src="images/classroomaudio.jpg" class="demo_image" alt="...">
+            </a>
+            <div style="float: left;margin-left: 25px;">
+                <h4 class="media-heading"><a roomId="545246cd85675dc003d87830" style="cursor: pointer"
+                                             class="a_custom ifLogin">教室二</a></h4>
+                东北地区学员使用。
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4  cstm-row">
+            <a roomId="545246e385675dc003d87831" class="cstm-room-imageContainer"><img src="images/classroomaudio.jpg" class="demo_image" alt="...">
+            </a>
+            <div style="float: left;margin-left: 25px;">
+                <h4 class="media-heading"><a roomId="545246e385675dc003d87831" style="cursor: pointer"
+                                             class="a_custom ifLogin">教室三</a></h4>
+                华中地区学员使用。
+            </div>
+        </div>
+    </div>
+
+    <div class="page-header"></div>
+    <div class="row">
+        <div class="col-sm-6 col-md-4  cstm-row">
+            <a roomId="545246e385675dc003d87832" class="cstm-room-imageContainer"><img src="images/classroomaudio.jpg"
+                                                                                       class="demo_image" alt="..."></a>
+
+            <div style="float: left;margin-left: 25px;">
+                <h4 class="media-heading"><a roomId="545246e385675dc003d87832" style="cursor: pointer"
+                                             class="a_custom ifLogin">教室四</a></h4>
+                西北地区学员使用。
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4  cstm-row">
+            <a roomId="545246e385675dc003d87833" class="cstm-room-imageContainer"><img src="images/classroomaudio.jpg"
+                                                                                       class="demo_image" alt="..."></a>
+            <div style="float: left;margin-left: 25px;">
+                <h4 class="media-heading"><a roomId="545246e385675dc003d87833" style="cursor: pointer"
+                                             class="a_custom ifLogin">教室五</a></h4>
+                华南地区学员使用。
+            </div>
+
+        </div>
+    </div>
+    <div class="page-header"></div>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery/jQuery-1.11.1.js"></script>
+<script src="js/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="js/bootstrap-3.3.0-dist/dist/js/ie10-viewport-bug-workaround.js"></script>
+<script>
+    $(document).ready(function () {
+        var scrollHeight = document.body.scrollHeight;
+        //$("#roomContainer").css("height", (scrollHeight - 270) + "px");//800-500
+
+    });
+</script>
+</body>
+</html>

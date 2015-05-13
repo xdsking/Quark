@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="js/dojo-release-1.9.3-src/dojo/resources/dojo.css" />
+    <link rel="stylesheet" type="text/css" href="js/dojo-release-1.9.3-src/dijit/themes/claro/claro.css" />
+    <link rel="stylesheet" type="text/css" href="js/dojo-release-1.9.3-src/dojox/grid/resources/Grid.css" />
+    <link rel="stylesheet" type="text/css" href="js/dojo-release-1.9.3-src/dojox/grid/resources/claroGrid.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <script type="text/javascript">
+        var dojoConfig = {
+            async:true,
+            parseOnLoad : true,
+            packages : [ {
+            name : "teamLib",
+            location : "/web-app/js/com/teamLib"
+            }]
+        };
+    </script>
+    <script type="text/javascript" src="js/dojo-release-1.9.3-src/dojo/dojo.js"></script>
+    <script>
+    require(["teamLib/treeGridX/TreeGridX","dojo/ready"], function(TreeGridX,ready){
+        ready(function(){
+            new TreeGridX();
+            //var treeGridX= new TreeGridX().placeAt("treeGridXPane");
+            //dojo.byId("treeGridXPane").appendChild(treeGridX.domNode);
+        });
+    });
+    </script>
+</head>
+<body class="claro"><select><option>分析1</option><option>分析2</option><option>分析2</option></select>
+<select data-dojo-type='dijit/form/Select' data-dojo-attach-point='analysisOperation'><option value='TN'>Tennessee</option><option value='VA' selected='selected'>Virginia</option><option value='WA'>Washington</option><option value='FL'>Florida</option><option value='CA'>California</option>
+</select>
+</body>
+</html>
