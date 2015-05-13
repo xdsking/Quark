@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <link href="js/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="js/dojo-release-1.9.3-src/dijit/themes/claro/claro.css"/>
+    <link rel="stylesheet" type="text/css" href="http://localhost:870/local-cdn//dojo-release-1.10.4/dijit/themes/claro/claro.css"/>
     <link rel="stylesheet" type="text/css" href="css/index.css"/>
     <script type="text/javascript">
         var dojoConfig = {
@@ -13,14 +13,14 @@
             packages: [
                 {
                     name: "customWidget",
-                    location: "../../customWidget"
+                    location: "/Quark/js/customWidget"
                 }
             ]
         };
     </script>
     <script src="js/jquery/jQuery-1.11.1.js"></script>
     <script src="js/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/dojo-release-1.9.3-src/dojo/dojo.js"></script>
+    <script type="text/javascript" src="http://localhost:870/local-cdn//dojo-release-1.10.4/dojo/dojo.js"></script>
     <script>
         require(["dojo/parser", "dijit/form/Button", "customWidget/loading/Loading", "customWidget/alertInfoWindow/AlertInfoWindow"],
                 function (parser, Button, Loading, AlertInfoWindow) {
