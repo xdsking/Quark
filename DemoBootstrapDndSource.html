@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Nmeeting</title>
+    <title>弹出窗口(最大化/最小化)</title>
     <link rel="stylesheet" href="css/index_menubar.css">
     <!-- Bootstrap core CSS -->
     <link href="js/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -52,7 +52,7 @@
                 resizable: true,
                 content: content, /*必设参数*/
                 dockTo: $("#dockBar"),
-                style: "width: 500px;top: 200px;left: 400px;min-height:200px;min-width:300px;"
+                style: "width: 500px;top: 100px;left: 200px;min-height:200px;min-width:300px;"
             });
             dragNode.dndSource.show(dndSourceNode);
 
@@ -75,6 +75,10 @@
             });
             dragNode.dndSource.show(dndSourceNode);
         });
+        $.post("http://www.baidu.com", {
+        }, function(data, textStatus) {
+            alert(textStatus);
+        }, "json");
     });
 </script>
 </body>
