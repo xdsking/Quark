@@ -20,6 +20,18 @@
         this.append(modal);
         var modalDialog= $("<div></div>");
         modalDialog.addClass("modal-dialog cstm-modal-dialog");
+        $.extend(options, params);
+        var alignCenter=function(){
+            if(options.style&&typeof options.style=="object"){
+                var modalStyle=options.style;
+                return {
+                    "width":modalStyle.width+"px",
+                    "height":modalStyle.height+"px",
+                    "margin-left":(-modalStyle.width/2)+"px",
+                    "margin-top":(-modalStyle.height/2)+"px"};
+            }
+        };
+        modalDialog.css(alignCenter());
         modal.append(modalDialog);
         var modalBody=$("<div></div>");
         modalBody.addClass("modal-body cstm-modal-body");
