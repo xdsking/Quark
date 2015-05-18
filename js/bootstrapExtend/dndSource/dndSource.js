@@ -1,5 +1,8 @@
 /**
  * Created by xuds on 2015/4/9.
+ * @summary 弹出框组件(可实现拖拽\最大化\最小化\改变大小功能)
+ * @params params参见options参数
+ * @return dndSource弹出框对象
  */
 (function ($) {
     $.fn.dndSource = function (params) {
