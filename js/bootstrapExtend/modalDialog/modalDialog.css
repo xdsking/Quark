@@ -1,0 +1,34 @@
+.cstm-modal-body {
+    color: #003478;
+    height: 500px;
+    width: 800px;
+    margin-left: -100px;
+    box-shadow: 0 0 40px white;
+    background-color: #1a1d24;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .4), 0 0 30px rgba(0, 0, 0, .075);
+}
+
+/*.cstm-modal-dialog {
+    margin-top: 80px;
+}
+
+.cstm-modal-dialog div {
+    background-color: #1a1d24;
+}
+*/
+.closeVideoDialog {
+    background-color: black!important;
+    top: -36px;
+    position: relative;
+    width: 32px;
+    border: solid 1px !important;
+    border-radius: 50%;
+    font-size: 32px;
+    right: -36px;
+    color: white!important;
+    z-index: -1;
+}
+
+.closeVideoDialog:hover {
+    z-index: 1!important;
+}
