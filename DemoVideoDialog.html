@@ -27,26 +27,8 @@
     <![endif]-->
 </head>
 <body>
-<button id="showModalDialog" type="button" class="btn btn-primary btn-sm" style="margin: 20px;font-size: 14px;font-weight: bold;">显示模态窗口
-</button>
+<button id="showModalDialog" type="button" class="btn btn-primary btn-sm" style="margin: 20px;font-size: 14px;font-weight: bold;">显示模态窗口</button>
 <div id="modalDialogPanel"></div>
-<!--<div class="modal" id="addSchedulePanel" tabindex="-1" role="dialog" aria-labelledby="ScheduleLabel" aria-hidden="true">
-    <div class="modal-dialog cstm-modal-dialog">
-            &lt;!&ndash; <div class="modal-header">
-                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="ScheduleLabel">添加课程</h4>
-            </div>&ndash;&gt;
-            <div class="modal-body cstm-modal-body">
-                <button id="closeVideoDialog" type="button" class="close">
-                    &times;
-                </button>
-            </div>
-            &lt;!&ndash;<div class="modal-footer">
-                <button id="closeModalDiolog" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary">保存</button>
-            </div>&ndash;&gt;
-    </div>
-</div>-->
 <script src="js/jquery/jQuery-1.11.1.js"></script>
 <script src="js/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -88,13 +70,23 @@
         }
     });*/
 $("#showModalDialog").click(function(){
-    var modal=$("#modalDialogPanel").modalDialog({
+    var modal=$("#modalDialogPanel");
+    modal.modalDialog({
         style:{
-            height: 750,
-            width:1400
+            height: 600,
+            width:1000
         }
+    }).modal('show');
+    var leftMenu=modal.modalDialog.getLeftMenu();
+    leftMenu.click(function(){
+        alert("向左");
     });
-    modal.modal('show');
+    var rightMenu=modal.modalDialog.getRightMenu();
+    rightMenu.click(function(){
+        alert("向右");
+    });
+    var modalBody=modal.modalDialog.getModalBody();
+    modalBody.append($("<div style='font-size: 100px;color: #ffffff;text-align: center'>视频窗口</div>"));
 });
 </script>
 </body>

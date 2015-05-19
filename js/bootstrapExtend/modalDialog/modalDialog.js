@@ -3,11 +3,12 @@
  */
 (function($){
     $.fn.modalDialog=function(params){
+        var self=this;
         if (this.children().length > 0) {
             return this.children();
         }
         var options = $.fn.modalDialog.options = {
-
+            speed: 500
         };
         var modal = $("<div></div>");
         modal.addClass("modal");
@@ -33,7 +34,13 @@
         };
         modalDialog.css(alignCenter());
         modal.append(modalDialog);
-        var modalBody=$("<div></div>");
+        //向左翻页
+        var  glyphiconMenuLeft=$.fn.modalDialog.glyphiconMenuLeft=$('<span class="glyphicon glyphicon-menu-left cstm-glyphicon-menu-left" aria-hidden="true"></span>');
+        glyphiconMenuLeft.css({
+            top:((options.style.height-100)/2)+"px"
+        });
+        modalDialog.append(glyphiconMenuLeft);
+        var modalBody=$.fn.modalDialog.modalBody=$("<div></div>");
         modalBody.addClass("modal-body cstm-modal-body");
         modalDialog.append(modalBody);
         var closeVideoDialogButton=$("<button></button>");
@@ -43,20 +50,47 @@
         });
         closeVideoDialogButton.html("&times;");
         modalBody.append(closeVideoDialogButton);
+        //向右翻页
+        var  glyphiconMenuRight=$.fn.modalDialog.glyphiconMenuRight=$('<span class="glyphicon glyphicon-menu-right cstm-glyphicon-menu-right" aria-hidden="true"></span>');
+        glyphiconMenuRight.css({
+            top:((options.style.height-100)/2)+"px"
+        });
+        modalDialog.append(glyphiconMenuRight);
         modal.modal({
             keyboard: false,
             backdrop: "static",
             show: false
         });
         modal.on('show.bs.modal', function (e) {
-            modal.fadeIn(300);
+            modal.fadeIn(options.speed);
             //TODO
         });
         closeVideoDialogButton.click(function () {
-            if (confirm("确认关闭?")) {
-                modal.modal("hide");
-            }
+            $(self).modalDialog.destroy(modal);
+            /*if (confirm("确认关闭?")) {
+                modal.remove();
+                //modal.modal("hide");
+            }*/
         });
         return modal;
-    }
+    };
+    $.fn.modalDialog.destroy = function (domNode) {
+        var speed = 200;//this.options.speed;
+        var flag = confirm("确认关闭?");
+        if(flag){
+            domNode.fadeOut(speed,function () {
+                domNode.remove();
+            });
+        }
+        return flag;
+    };
+    $.fn.modalDialog.getLeftMenu=function(){
+        return this.glyphiconMenuLeft;
+    };
+    $.fn.modalDialog.getRightMenu=function(){
+        return this.glyphiconMenuRight;
+    };
+    $.fn.modalDialog.getModalBody=function(){
+        return this.modalBody;
+    };
 })(jQuery);
