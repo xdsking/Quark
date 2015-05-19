@@ -73,8 +73,8 @@ $("#showModalDialog").click(function(){
     var modal=$("#modalDialogPanel");
     modal.modalDialog({
         style:{
-            height: 600,
-            width:1000
+            height: document.body.scrollHeight-50,
+            width:document.body.scrollWidth-200
         }
     }).modal('show');
     var leftMenu=modal.modalDialog.getLeftMenu();

@@ -19,21 +19,10 @@
             "aria-hidden":true
         });
         this.append(modal);
-        var modalDialog= $("<div></div>");
+        var modalDialog= $.fn.modalDialog.modalDialog=$("<div></div>");
         modalDialog.addClass("modal-dialog cstm-modal-dialog");
         $.extend(options, params);
-        var alignCenter=function(){
-            if(options.style&&typeof options.style=="object"){
-                var modalStyle=options.style;
-                return {
-                    "width":modalStyle.width+"px",
-                    "height":modalStyle.height+"px",
-                    "margin-left":(-modalStyle.width/2)+"px",
-                    "margin-top":(-modalStyle.height/2)+"px"};
-            }
-        };
-        modalDialog.css(alignCenter());
-        modal.append(modalDialog);
+
         //向左翻页
         var  glyphiconMenuLeft=$.fn.modalDialog.glyphiconMenuLeft=$('<span class="glyphicon glyphicon-menu-left cstm-glyphicon-menu-left" aria-hidden="true"></span>');
         glyphiconMenuLeft.css({
@@ -56,6 +45,9 @@
             top:((options.style.height-100)/2)+"px"
         });
         modalDialog.append(glyphiconMenuRight);
+        $(this).modalDialog.setModalDialogStyle(options.style);
+        modal.append(modalDialog);
+
         modal.modal({
             keyboard: false,
             backdrop: "static",
@@ -71,6 +63,13 @@
                 modal.remove();
                 //modal.modal("hide");
             }*/
+        });
+        $(window).resize(function(){
+            style={
+                height: document.body.scrollHeight-50,
+                width:document.body.scrollWidth-200
+            };
+            $(self).modalDialog.setModalDialogStyle(style);
         });
         return modal;
     };
@@ -92,5 +91,23 @@
     };
     $.fn.modalDialog.getModalBody=function(){
         return this.modalBody;
+    };
+    //设置模态窗口水平/垂直居中
+    $.fn.modalDialog.setModalDialogStyle=function(style){
+        if(typeof style=="object"){
+            var modalStyle=style;
+            this.modalDialog.css({
+                "width":modalStyle.width+"px",
+                "height":modalStyle.height+"px",
+                "margin-left":(-modalStyle.width/2)+"px",
+                "margin-top":(-modalStyle.height/2)+"px"
+            });
+            this.glyphiconMenuLeft.css({
+                top:((style.height-100)/2)+"px"
+            });
+            this.glyphiconMenuRight.css({
+                top:((style.height-100)/2)+"px"
+            });
+        }
     };
 })(jQuery);
