@@ -1,163 +1,128 @@
-define(["dojo/_base/declare", "dojo/_base/array", "require", "dojo/_base/lang", "dojo/_base/window", "dojo/dom-construct", "dojo/ready", "dijit/_WidgetBase", "dijit/_TemplatedMixin", "dijit/_WidgetsInTemplateMixin", "dijit/registry",
-    "dijit/form/HorizontalSlider", "dijit/form/HorizontalRule", "dijit/form/HorizontalRuleLabels",
-    "onemap/store/TopicStore", "../../MapManager", "../../TopicManager"], function (declare, array, require, lang, window, domConstruct, ready, _WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, registry, HorizontalSlider, HorizontalRule, HorizontalRuleLabels, TopicStore, MapManager, TopicManager) {
-    return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
-        baseClass: "horizontalSlider",
-        templateString: "",
-        sliderInstance: null,
-        interval: null,
-        map: null,
-        topicManager: null,
-        intervalTime: 2000,//自动播放间隔
-        imagePath: require.toUrl("./images/"),
-        layerInstanceList: [],
-        isPlay: false,
-        constructor: function (params) {
-            this._createtemplateString(params.rules);
-            this.inherited(arguments);
-        },
-        /**
-         * @summary 根据数据库配置信息创建游标模板字段
-         * @params rules 标尺数组
-         */
-        _createtemplateString: function (rules) {
-            var ruleLabelItems = "";
-            array.forEach(rules, function (rule) {
-                ruleLabelItems += "<li value='" + rule.value + "' topicid='" + rule.ruleLabel + "'>" + rule.ruleLabel + "</li>";
-            });
-            this.templateString = '<div class="${baseClass}"><div data-dojo-type="dijit/form/HorizontalSlider" style="width:400px;float:left;margin-left:5px;margin-top:10px;" data-dojo-attach-point="horizontalSlider">' +
-                '<div data-dojo-type="dijit/form/HorizontalRule" data-dojo-attach-point="horizontalRule" count=6 style="height:5px;"></div>' +
-                '<ol data-dojo-type="dijit/form/HorizontalRuleLabels" data-dojo-attach-point="horizontalRuleLabels" style="height:1.5em;color:gray;">' + ruleLabelItems + '</ol></div><span style="float:left;margin-left:10px;margin-top:10px;cursor:pointer;"><img data-dojo-attach-point="sliderControl"></span></div>';
-        },
-        /**
-         * @summary 根据参数rules初始化滑块
-         */
-        _initHorizontalSlider: function () {
-            //var minimum=value=Math.max.apply(null, a);
-            lang.mixin(this.horizontalSlider, {
-                value: this.rules[0].value,
-                minimum: this.rules[0].value,
-                maximum: this.rules[this.rules.length - 1].value,
-                discreteValues: this.rules.length,
-                intermediateChanges: true,
-                onChange: lang.hitch(this, this._addLayer, this.horizontalSlider.value)
-            });
-            this._addLayer(0, this.rules[0].value);
-        },
-        /**
-         * @summary 根据value 确定topicid,添加要素图层
-         * @params value是horizontalSlider的value参数
-         */
-        _addLayer: function (index, value) {
-            var topicId = "", self = this;
-            var rules = this.rules;
-            for (var i = 0; i < rules.length; i++) {
-                if (rules[i].value == value) {
-                    topicId = rules[i].topicid;
-                    break;
-                }
-            }
-            if (topicId == "") {
-                console.log("未找到匹配的topicId");
-                return;
-            } else {
-                TopicStore.getTopics({isBasemap: false}).then(function (responses) {
-                    var subLayers = [];
-                    array.forEach(responses, function (response) {
-                        if (response.topicid === topicId || response.parentid === topicId) {
-                            //subLayers.push(response.layer);
-                            subLayers.push(response);
-                        }
-                    });
-                    if (subLayers.length > 0) {
-                        var map = self.map;
-                        if (!self.topicManager) {
-                            self.topicManager = TopicManager.getInstance(map);
-                        }
-                        array.forEach(self.layerInstanceList, function (layerInstance) {
-                            //map.removeLayer(layerInstance);
-                            self.topicManager.removeTopic(layerInstance);
-                            lang.mixin(layerInstance, {checked: false});
-                        });
-                        self.layerInstanceList = [];
-                        array.forEach(subLayers, function (layerInstance) {
-                            self.layerInstanceList.push(layerInstance);
-                            self.topicManager.addTopic(layerInstance);
-                            lang.mixin(layerInstance, {checked: true});
-                            /*require([layer.layerType],function(className){
-                             var layerInstance=new className(layer.url,layer);
-                             map.addLayer(layerInstance);
-                             self.layerInstanceList.push(layerInstance);
-                             });*/
-                        });
-                    } else {
-                        console.log("未匹配到topicId对应的图层信息");
+define(["dojo/_base/declare","esri/request","dojo/json","dojo/_base/lang"],function(declare,esriRequest,JSON,lang){
+    return declare(null,{
+        serverUrl:"http://localhost:6080/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task/execute",
+        map:null,
+        format:"PDF",
+        layoutTemplate:"Letter ANSI A Landscape",
+        options:{
+            "mapOptions": {
+                "showAttribution": true,
+                "extent": {
+                    "xmin": 37429253.914243326,
+                    "ymin": 2361729.1751253344,
+                    "xmax": 37724794.08865701,
+                    "ymax": 2518362.821725961,
+                    "spatialReference": {
+                        "wkid": 2361,
+                        "latestWkid": 2361
                     }
-                });
-            }
-        },
-        /**
-         * @summary 初始化播放/暂停按钮
-         */
-        _initSliderControl: function () {
-            var self = this;
-            lang.mixin(this.sliderControl, {src: this.imagePath + "play.png", title: "播放"});
-            this.sliderControl.onclick = function (evt) {
-                    if (self.isPlay) {
-                    lang.mixin(self.sliderControl, {src: self.imagePath + "play.png", title: "播放"});
-                    self.isPlay = false;
-                    self.clearIntervalRun();
-                } else {
-                    lang.mixin(self.sliderControl, {src: self.imagePath + "pause.png", title: "暂停"});
-                    self.isPlay = true;
-                    self.initIntervalRun();
+                },
+                "spatialReference": {
+                    "wkid": 2361,
+                    "latestWkid": 2361
+                },
+                "scale": 999999.9999999959
+            },
+            "operationalLayers": [
+                {
+                    "id": "8b6043290cce4b9b8a9cdc038cc7ff3d",
+                    "title": "8b6043290cce4b9b8a9cdc038cc7ff3d",
+                    "opacity": 1,
+                    "minScale": 1000000,
+                    "maxScale": 4000,
+                    "url": "http://localhost:6080/arcgis/rest/services/YJ/XZQ/MapServer"
+                },
+                {
+                    "id": "mapPane_graphics",
+                    "opacity": 1,
+                    "minScale": 0,
+                    "maxScale": 0,
+                    "featureCollection": {
+                        "layers": []
+                    }
+                }
+            ],
+            "layoutOptions": {
+                /*"titleText": "打印标题",*/
+                "customTextElements": [
+                    {
+                        "dwmc": "清远市清城区龙塘房地产开发公司"
+                    },
+                    {
+                        "zdh": "6100001"
+                    },
+                    {
+                        "tdyt": "商性用地"
+                    },
+                    {
+                        "mj": "10000km2"
+                    },
+                    {
+                        "hzrq": "2015/01/02"
+                    },
+                    {
+                        "shrq": "2015/03/05"
+                    },
+                    {
+                        "hty": "张三"
+                    },
+                    {
+                        "shy": "李四"
+                    },
+                    {
+                        "chdw": "清远市国土局"
+                    }
+                ],
+                "scaleBarOptions": {
+                    "metricUnit": "Kilometers",
+                    "metricLabel": "km",
+                    "nonMetricUnit": "Miles",
+                    "nonMetricLabel": "mi"
+                },
+                "legendOptions": {
+                    "operationalLayers": []
                 }
             }
         },
-        postCreate: function () {
-            var self = this;
-            this.map = MapManager.getMap();//获取主地图对象
-            ready(function () {
-                self._initHorizontalSlider();
-                self._initSliderControl();
-            });
+        constructor:function(params){
+            declare.safeMixin(this, params);
+            this._initOptionsParam();
         },
-        /**
-         * @summary 播放函数
-         */
-        initIntervalRun: function () {
-            var self = this;
-            this.interval = setInterval(function () {
-                /*if(!self.horizontalSlider){
-                 clearInterval(self.interval);
-                 return;
-                 }*/
-                var instance = self.horizontalSlider;
-                if (instance.value > instance.maximum - 1) {
-                    instance.setValue(instance.minimum);
-                } else {
-                    instance.setValue(instance.getValue() + 1);
-                }
-                instance.startup();
-            }, self.intervalTime);
+        /*postCreate:function(){
 
+         }*/
+        _initOptionsParam:function(){
+            if(!this.map){
+                console.log("未获得地图对象!");
+                return;
+            }else{
+                var extent=this.map.extent,options=this.options;
+                if(options&&options.mapOptions&&options.mapOptions.extent){
+                    options.mapOptions.extent=
+
+                }
+            }
         },
-        /**
-         * @summary 停止播放
-         */
-        clearIntervalRun: function () {
-            clearInterval(this.interval);
-            //TODO
-        },
-        destroy: function () {
-            var self = this;
-            this.clearIntervalRun(this.interval);
-            array.forEach(this.layerInstanceList, function (layerInstance) {
-                self.topicManager.removeTopic(layerInstance);
-                lang.mixin(layerInstance, {checked: false});
+        execute:function(){
+            if(!lang.isString(this.options)){
+                this.options=JSON.stringify(this.options);
+            }
+            var content = {
+                Web_Map_as_JSON:this.options,
+                Format:this.format,//"PDF",
+                Layout_Template:this.layoutTemplate,//"Letter ANSI A Landscape",
+                f : "json"
+            };
+            var foo = esriRequest({
+                url :this.serverUrl,
+                content : content,
+                callbackParamName : "callback"
             });
-            this.layerInstanceList = [];
-            this.inherited(arguments);
+            foo.then(function(data) {
+                debugger;
+            },function(){
+                console.log("提交失败!");
+            });
         }
     });
 });

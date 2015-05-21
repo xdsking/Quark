@@ -6,17 +6,18 @@
           content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <title></title>
-    <link rel="stylesheet" type="text/css" href="js/dojo-release-1.9.3-src/dijit/themes/claro/claro.css"/>
     <link rel="stylesheet" type="text/css"
-          href="http://localhost:8090/onemap-cdn/js/arcgis_js_api/3.9/js/dojo/dijit/themes/claro/claro.css">
+          href="http://localhost:870/local-cdn/dojo-release-1.10.4/dijit/themes/claro/claro.css"/>
     <link rel="stylesheet" type="text/css"
-          href="http://localhost:8090/onemap-cdn/js/arcgis_js_api/3.9/js/esri/css/esri.css">
+          href="http://localhost:870/local-cdn/arcgis_js_api/3.9/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" type="text/css"
+          href="http://localhost:870/local-cdn/arcgis_js_api/3.9/js/esri/css/esri.css">
     <!--<script type="text/javascript" src="js/dojo-release-1.9.3-src/dojox/mobile/deviceTheme.js"></script>-->
     <style type="text/css">
-        body {
+        .mapPanel {
+            width: 100%;
             height: 100%;
         }
-
         #map {
             overflow: hidden;
             border: solid 1px black;
@@ -30,26 +31,28 @@
             packages: [
                 {
                     name: "teamLib",
-                    location: "/web-app/js/com/teamLib"
+                    location: "/Quark/js/com/teamLib"
                 }
             ]
         };
     </script>
-    <script type="text/javascript" src="http://localhost:8090/onemap-cdn/js/arcgis_js_api/3.9/init.js"></script>
+    <script type="text/javascript" src="http://localhost:870/local-cdn/arcgis_js_api/3.9/init.js"></script>
     <script type="text/javascript">
         require(["dojo/_base/Color", "dojo/on", "dojo/_base/array", "dojo/ready", "esri/map",
                     "esri/dijit/Measurement", "esri/layers/ArcGISTiledMapServiceLayer", "esri/layers/FeatureLayer",
-                    "esri/tasks/BufferParameters", "esri/tasks/GeometryService","esri/graphic",
+                    "esri/tasks/BufferParameters", "esri/tasks/GeometryService", "esri/graphic",
                     "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol", "esri/units", "esri/tasks/query",
                     "teamLib/spatialQueryPane/SpatialQueryPane",
                     "dijit/form/Button",
+                    "esri/symbols/TextSymbol","esri/Color", "esri/symbols/Font",
                     "dijit/layout/BorderContainer", "dijit/layout/ContentPane"],
-                function (Color, on, array, ready, Map, Measurement, ArcGISTiledMapServiceLayer, FeatureLayer, BufferParameters, GeometryService,Graphic, SimpleFillSymbol, SimpleLineSymbol, units, Query, SpatialQueryPane, Button) {
+                function (Color, on, array, ready, Map, Measurement, ArcGISTiledMapServiceLayer, FeatureLayer, BufferParameters, GeometryService, Graphic, SimpleFillSymbol, SimpleLineSymbol, units, Query, SpatialQueryPane, Button,
+                          TextSymbol,esriColor,Font) {
                     var map;
-
+                    var addTextSymbol;
                     function init() {
                         map = new Map("map", {slider: true, autoResize: false});
-                        var layer = new ArcGISTiledMapServiceLayer("http://localhost:6080/arcgis/rest/services/basemap/chinabase/MapServer");
+                        var layer = new ArcGISTiledMapServiceLayer("http://localhost:6080/arcgis/rest/services/YJ/XZQ/MapServer");
                         map.addLayer(layer);
                         var resizeTimer;
                         on(map, 'onLoad', function () {
@@ -83,15 +86,15 @@
                         }
 
                         new Button({
-                            label: "添加省级图层",
+                            label: "添加土地用途图层",
                             onClick: function () {
                                 if (featureLayer) {
                                     alert("已添加!");
                                     return;
                                 }
-                                featureLayer = new FeatureLayer("http://localhost:6080/arcgis/rest/services/basemap/chinabase/MapServer/3",
+                                featureLayer = new ArcGISTiledMapServiceLayer("http://localhost:6080/arcgis/rest/services/YJ/TDYT/MapServer",
                                         {
-                                            opacity: 0.5
+                                            opacity: 0.7
                                         });
                                 on(featureLayer, "click", function (evt) {
                                     var lineSymbol = new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID).setWidth(2).setColor(new Color([211, 0, 0]));
@@ -103,27 +106,42 @@
                                 map.addLayer(featureLayer);
                             }
                         }).placeAt("toolPane");
+
+                        new Button({
+                            label: "addTextSymbol",
+                            onClick: function () {
+                                addTextSymbol=on(map,"click",function(evt){
+                                    var textSymbol =  new TextSymbol("<div>Hello World</div>").setColor(
+                                            new esriColor([128,0,0])).setAlign(Font.ALIGN_START).setAngle(0).setFont(
+                                            new Font("12pt").setWeight(Font.WEIGHT_BOLD));
+                                    var labelGraphic = new Graphic(evt.mapPoint, textSymbol);
+                                    map.graphics.add(labelGraphic);
+
+                                });
+
+                            }
+                        }).placeAt("toolPane");
                         new Button({
                             label: "查询相邻地块",
                             onClick: function (evt) {
                                 if (curGraphic) {
-                                    var bufferParameters=new BufferParameters();
+                                    var bufferParameters = new BufferParameters();
                                     bufferParameters.distances = [1];
-                                    bufferParameters.unit =GeometryService.UNIT_KILOMETER;
+                                    bufferParameters.unit = GeometryService.UNIT_KILOMETER;
                                     bufferParameters.outSpatialReference = map.spatialReference;
                                     bufferParameters.geometries = [curGraphic.geometry];
-                                    var geometryService=new GeometryService("http://localhost:6080/arcgis/rest/services/Utilities/Geometry/GeometryServer");
-                                    geometryService.buffer(bufferParameters, function(bufferedGeometries){
+                                    var geometryService = new GeometryService("http://localhost:6080/arcgis/rest/services/Utilities/Geometry/GeometryServer");
+                                    geometryService.buffer(bufferParameters, function (bufferedGeometries) {
                                         var symbol = new SimpleFillSymbol(
                                                 SimpleFillSymbol.STYLE_SOLID,
                                                 new SimpleLineSymbol(
                                                         SimpleLineSymbol.STYLE_SOLID,
-                                                        new Color([255,0,0,0.65]), 2
+                                                        new Color([255, 0, 0, 0.65]), 2
                                                 ),
-                                                new Color([255,0,0,0.35])
+                                                new Color([255, 0, 0, 0.35])
                                         );
 
-                                        array.forEach(bufferedGeometries, function(geometry) {
+                                        array.forEach(bufferedGeometries, function (geometry) {
                                             var graphic = new Graphic(geometry, symbol);
                                             map.graphics.add(graphic);
                                             var query = new Query();
@@ -139,7 +157,10 @@
                         }).placeAt("toolPane");
                         new Button({
                             label: "清除",
-                            onClick: function (evt) {
+                            onClick: function () {
+                                if(addTextSymbol){
+                                    addTextSymbol.remove();
+                                }
                                 map.graphics.clear();
                             }
                         }).placeAt("toolPane");
@@ -169,7 +190,9 @@
     </script>
 </head>
 <body class="claro">
-<div id="map" data-dojo-type="dijit/layout/ContentPane" region="center"></div>
+<div class="mapPanel">
+    <div id="map" data-dojo-type="dijit/layout/ContentPane" region="center"></div>
+</div>
 <div style="position: absolute;top: 9px;right: 9px;font-size: 12px;">
     <div data-dojo-type="dijit/TitlePane" id="widgetPane"
          data-dojo-props="open:false,title:'客户端绘制',style:'float:right;background-color: #808080;'"></div>
