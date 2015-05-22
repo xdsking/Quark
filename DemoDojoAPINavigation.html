@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>导航</title>
+    <style>
+        #header ul {
+            margin: 0;
+            font-family: Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
+        }
+        #header ul li {
+            list-style: none;
+            display: inline;
+        }
+        #header li a {
+            margin: 0 1px;
+            padding: 7px 15px;
+            display: block;
+            float: left;
+            color: #fff;
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 1.5em;
+            min-width: 62px;
+            text-decoration: none;
+            text-align: center;
+            letter-spacing: -0.0035em;
+            background-color: #5BAED5;
+            background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(0, 176, 216)), to(rgb(0, 136, 196)));
+            background-image: -webkit-linear-gradient(top, rgb(0, 176, 216), rgb(0, 136, 196));
+            background-image: -moz-linear-gradient(top, rgb(0, 176, 216), rgb(0, 136, 196));
+            background-image: -o-linear-gradient(top, rgb(0, 176, 216), rgb(0, 136, 196));
+            background-image: -ms-linear-gradient(top, rgb(0, 176, 216), rgb(0, 136, 196));
+            background-image: linear-gradient(top, rgb(0, 176, 216), rgb(0, 136, 196));
+            border-top: 1px solid #64D0E7;
+            -webkit-border-top-left-radius: 3px;
+            -webkit-border-top-right-radius: 3px;
+            -moz-border-radius-topleft: 3px;
+            -moz-border-radius-topright: 3px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, .5);
+        }
+        #header .home a {
+            min-width: 15px;
+            width: 15px;
+            padding-bottom: 6px;
+        }
+        .dj_ie7 #header li a {
+            height: 21px; /* Get IE 7 to display the nav tabs correctly */
+        }
+        #header li.active a {
+            font-weight: bold;
+            border-bottom: 3px solid #0099CC;
+        }
+        .homeIcon {
+            display: inline-block;
+            width: 16px;
+            height: 15px;
+        }
+        #header ul .homeIcon,
+        .homePage #header ul .homeIcon {
+            background: url(images/homeIcon.png) no-repeat 0 -15px;
+        }
+        #header ul .homeIcon {
+            background-position: 0 0
+        }
+        .homePage #header ul .home a,
+        .demosPage #header ul .demos a,
+        .downloadPage #header ul .download a,
+        .featuresPage #header ul .features a,
+        .communityPage #header ul .community a,
+        .blogPage #header ul .blog a,
+        .examplesPage #header ul .examples a,
+        .docPage #header ul .docs a {
+            background: #FFF;
+            color: #656565;
+            text-shadow: none;
+            border-color: #FFF;
+        }
+    </style>
+</head>
+<body>
+<div style="position: relative;top: 10px;left: 100px;">
+    <div id="header">
+        <div class="container">
+            <ul id="navigation">
+                <li class="home"><a href="#"><span class="homeIcon"></span></a></li>
+                <li class="download"><a href="#">下&nbsp;&nbsp;载</a></li>
+                <li class="features"><a href="#">Features</a></li>
+                <li class="docs"><a href="#">文&nbsp;&nbsp;档</a></li>
+                <li class="community"><a href="#">Community</a></li>
+                <li class="blog"><a href="#">博&nbsp;&nbsp;客</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
