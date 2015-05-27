@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>jquery 调用ajax服务</title>
+    <script src="js/jquery/jQuery-1.11.1.js"></script>
+    <script type="application/javascript">
+        var getData = function (params) {
+            var settings = {
+                "type": "GET",
+                "async": true,
+                "dataType": "json",
+                "error": function () {
+                    console.log(arguments);
+                }
+            };
+            $.extend(settings, params);
+            var foo = $.ajax(settings);
+            return foo;
+        };
+        var data = {
+            Web_Map_as_JSON: '{"mapOptions":{"showAttribution":true,"extent":{"xmin":38366705.597283185,"ymin":2479660.5064521534,"xmax":38385620.16844566,"ymax":2489685.059834594,"spatialReference":{"wkid":2362,"latestWkid":2362}},"spatialReference":{"wkid":2362,"latestWkid":2362},"scale":64000.00000000499},"operationalLayers":[{"id":"2c9bd7814a7ef190014a7f2859710002","title":"2c9bd7814a7ef190014a7f2859710002","opacity":1,"minScale":1000000,"maxScale":4000,"url":"http://192.168.1.119:6080/arcgis/rest/services/jiangmen/xzq/MapServer"},{"id":"2c9bd7814a84319b014a8447d9d60000","title":"2c9bd7814a84319b014a8447d9d60000","opacity":1,"minScale":0,"maxScale":0,"url":"http://192.168.1.119:6080/arcgis/rest/services/jiangmen/ydbp/MapServer","visibleLayers":null,"layers":[]},{"id":"mapPane_graphics","opacity":1,"minScale":0,"maxScale":0,"featureCollection":{"layers":[]}}],"layoutOptions":{"titleText":"打印标题","customTextElements":[{"printDescribe":"建设用图层打印输出"}],"scaleBarOptions":{"metricUnit":"Kilometers","metricLabel":"km","nonMetricUnit":"Miles","nonMetricLabel":"mi"},"legendOptions":{"operationalLayers":[]}}}',
+            f: "json",
+            Format: "PDF",
+            Layout_Template: "Letter ANSI A Landscape"
+        };
+        /*$(function () {
+         getData({
+         url: "http://192.168.1.119:6080/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task/execute/execute",
+         type: "post",
+         async: true,
+
+         data: data}).then(function (statisticsData) {
+         debugger;
+         });
+         });*/
+        /*$(function () {
+         getData({
+         url: "http://xspc:8090/onemap-webapp/admin/gisservers/getCpuInfo?dataType=jsonp&jsoncallback=getCpuInfoCallBack",
+         dataType: "jsonp",
+         type: "post"
+         });
+         });*/
+        $(function () {
+            getData({
+                "url": "http://xspc:8090/onemap-webapp/admin/gisservers/getCpuInfo",
+                "dataType":"jsonp",
+                /*jsonp:'getCpuInfoCallBack',*/
+                "jsonpCallback":"getCpuInfoCallBack",
+                "data": {
+                    "dataType": "jsonp",
+                    "jsoncallback": "getCpuInfoCallBack"
+                }
+            }).then(function(){debugger});
+        });
+        var xhr = new XDomainRequest();
+        var url = 'http://xspc:8090/onemap-webapp/admin/gisservers/getCpuInfo?dataType=jsonp&jsoncallback=getCpuInfoCallBack';
+        function crossDomainRequest() {
+            if (xhr) {
+                xhr.open('GET', url);
+                xhr.onload = handler;
+                xhr.send();
+            } else {
+                document.getElementById("content").innerHTML = "不能创建 XDomainRequest";
+            }
+        }
+        function handler(evtXHR) {debugger;
+            document.getElementById("content").innerHTML = "结果：" + xhr.responseText;
+        }
+        crossDomainRequest();
+    </script>
+</head>
+<body>
+
+</body>
+</html>
