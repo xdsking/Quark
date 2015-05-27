@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="js/dojo-release-1.9.3-src/dijit/themes/claro/claro.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <script type="text/javascript">
+        var dojoConfig = {
+            async: true,
+            parseOnLoad: true,
+            packages: [
+                {
+                    name: "customWidget",
+                    location: "../../customWidget"
+                }
+            ]
+        };
+    </script>
+    <script type="text/javascript" src="js/dojo-release-1.9.3-src/dojo/dojo.js"></script>
+    <script>
+        require(["dojo/parser", "dojo/dom", "dijit/form/HorizontalSlider","dijit/registry",
+            "dijit/form/HorizontalRule", "dijit/form/HorizontalRuleLabels"], function (parser, dom, HorizontalSlider,registry, HorizontalRule, HorizontalRuleLabels) {
+
+            var slider = new HorizontalSlider({
+                name: "slider",
+                value: 2010,
+                minimum: 2010,
+                maximum: 2015,
+                discreteValues: 6,
+                intermediateChanges: true,
+                style: "width:420px;margin-left: 10px;",
+                onChange: function (value) {
+                    dom.byId("sliderValue").value = value;
+                }
+            }, "slider").startup();
+            var initIntervalRun=function(){
+                setInterval(function(){
+                    var node=registry.byId("slider");
+                    if(node.value>node.maximum-1){
+                        node.setValue(node.minimum);
+                    }else{
+                        node.setValue(node.getValue()+1);
+                    }
+                    node.startup();
+                },2000);
+            };
+            var clearIntervalRun=function(){
+                clearInterval();
+                //TODO
+            };
+            //initIntervalRun();
+            parser.parse();
+        });
+    </script>
+</head>
+<body class="claro">
+<div class="${baseClass}">
+    <div data-dojo-type="dojox.layout.TableContainer" style="padding-top:10px;padding-left:10px"
+         data-dojo-props="labelWidth:80,showLabels:true,cols:1,style:\'text-align: left;margin-top:4px;\'"><select
+            name="printFormat" data-dojo-attach-point="printFormat" style="width:200px"
+            data-dojo-props="label:\'输出格式：\'" data-dojo-type="dijit/form/Select"></select><select name="printType"
+                                                                                                  data-dojo-attach-point="printType"
+                                                                                                  style="width:200px;margin-top:5px"
+                                                                                                  data-dojo-props="label:\'篇幅样式：\'"
+                                                                                                  data-dojo-type="dijit/form/Select"></select>
+
+        <div data-dojo-type="dijit/form/NumberTextBox" data-dojo-attach-point="outputDPI"
+             style="width:198px;margin-top:5px" data-dojo-props="label:\'分&nbsp;&nbsp;辨&nbsp;&nbsp;率:\'"></div>
+    </div>
+    <div style="padding-left:10px;margin-top:5px;" data-dojo-attach-point="printMapSizePane"><input
+            data-dojo-type="dijit/form/RadioButton" data-dojo-attach-point="fullScreen" style="cursor: pointer;"
+            type="radio" id="${id}_fullScreen" name="printMapSize"><label style="cursor: pointer;"
+                                                                          for="${id}_fullScreen">全幅&nbsp;&nbsp;&nbsp;&nbsp;</label><input
+            data-dojo-type="dijit/form/RadioButton" data-dojo-attach-point="currentScreen" style="cursor: pointer;"
+            type="radio" id="${id}_currentScreen" checked="checked" name="printMapSize"><label style="cursor: pointer;"
+                                                                                               for="${id}_currentScreen">当前视图&nbsp;&nbsp;&nbsp;&nbsp;</label><input
+            type="radio" name="printMapSize" data-dojo-attach-point="userDefined" style="cursor: pointer;"
+            data-dojo-type="dijit/form/RadioButton" id="${id}_userDefined"><label style="cursor: pointer;"
+                                                                                  for="${id}_userDefined">自定义区域</label>
+    </div>
+    <div style="padding-top:10px">
+        <button data-dojo-type="dijit/form/Button" class="submitButton" data-dojo-attach-point="submitPrint">提&nbsp;交
+        </button>
+        <span id="printToolExecuteResultsPane" style="margin-left:10px"></span></div>
+</div>
+</body>
+</html>
