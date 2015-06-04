@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>电子白板</title>
+    <!-- Bootstrap core CSS -->
+    <link href="js/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="js/bootstrap-3.3.0-dist/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!--Font Awesome 图标字体-->
+    <link rel="stylesheet" href="js/Font-Awesome-3.2.1/css/font-awesome.min.css">
+    <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+    <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+    <!--[if lt IE 9]>
+    <script src="js/bootstrap-3.3.0-dist/dist/js/html5shiv.js"></script>
+    <script src="js/bootstrap-3.3.0-dist/dist/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div id="whiteboardPanel" style="position: absolute; margin-left: 0px; margin-top: 0px; width: 100%; height: 88%;" class="landscape">
+    <div id="aww-container" style="position: absolute;" class="aww-container">
+        <div style="position: absolute;" class="aww-canvas-wrapper">
+            <canvas id="myCanvas" width="725px" height="300px" style="background: url(&quot;/images/whiteboard_bag.png&quot;);" class="aww-canvas"></canvas>
+            <canvas id="myCanvasDrawCurve" width="725px" height="300px" style="position: absolute;left: 0px;top: 0px;-webkit-user-select: none;" class="aww-canvas"></canvas>
+        </div>
+    </div>
+    <div id="aww-toolbar-window" class="aww-toolbar aww-not-touch">
+        <div class="aww-menu">
+            <div style="background: rgb(0, 0, 0);" class="aww-colors aww-menu-item aww-submenu-indicator">
+                <div class="aww-submenu col-8">
+                    <div class="aww-menu-item">
+                        <div style="background-color: rgb(0, 0, 0);" class="aww-color-icon"></div>
+                    </div>
+                    <div class="aww-menu-item">
+                        <div style="background-color: rgb(244, 67, 54);" class="aww-color-icon"></div>
+                    </div>
+                    <div class="aww-menu-item">
+                        <div style="background-color: rgb(76, 175, 80);" class="aww-color-icon"></div>
+                    </div>
+                    <div class="aww-menu-item">
+                        <div style="background-color: rgb(33, 150, 243);" class="aww-color-icon"></div>
+                    </div>
+                    <div class="aww-menu-item">
+                        <div style="background-color: rgb(255, 193, 7);" class="aww-color-icon"></div>
+                    </div>
+                    <div class="aww-menu-item">
+                        <div style="background-color: rgb(156, 39, 176);" class="aww-color-icon"></div>
+                    </div>
+                    <div class="aww-menu-item">
+                        <div style="background-color: rgb(233, 30, 99);" class="aww-color-icon"></div>
+                    </div>
+                    <div class="aww-menu-item">
+                        <div style="background-color: rgb(121, 85, 72);" class="aww-color-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="aww-sizes aww-menu-item aww-submenu-indicator">
+                <div class="aww-tool-size-2">
+                    <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1664 896q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"></path>
+                    </svg>
+                </div>
+                <div class="aww-submenu col-5">
+                    <div data-size="2" class="aww-menu-item aww-pen-size">
+                        <div data-size="2" class="aww-tool-size-0">
+                            <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1664 896q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div data-size="5" class="aww-menu-item aww-pen-size">
+                        <div data-size="5" class="aww-tool-size-1">
+                            <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1664 896q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div data-size="10" class="aww-menu-item aww-pen-size">
+                        <div data-size="10" class="aww-tool-size-2">
+                            <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1664 896q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div data-size="15" class="aww-menu-item aww-pen-size">
+                        <div class="aww-tool-size-3">
+                            <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1664 896q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div data-size="20" class="aww-menu-item aww-pen-size">
+                        <div class="aww-tool-size-4">
+                            <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1664 896q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="aww-tools aww-menu-item aww-submenu-indicator">
+                <div>
+                    <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M100 1600Q50 50 800 800T1600 10" style="fill:none;stroke:black;stroke-width:200;">
+                            <set attributeName="stroke" to="green" begin="mouseover" end="mouseout"></set>
+                        </path>
+                    </svg>
+                </div>
+                <div class="aww-submenu col-8">
+                    <div data-drawtype="curve" class="aww-menu-item aww-draw-type">
+                        <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M100 1600Q50 50 800 800T1600 10" style="fill:none;stroke:white;stroke-width:200;">
+                                <set attributeName="stroke" to="green" begin="mouseover" end="mouseout"></set>
+                            </path>
+                        </svg>
+                    </div>
+                    <div data-drawtype="line" class="aww-menu-item aww-draw-type">
+                        <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="100" y1="1600" x2="1600" y2="100" style="stroke:white;stroke-width:200;">
+                                <set attributeName="stroke" to="green" begin="mouseover" end="mouseout"></set>
+                            </line>
+                        </svg>
+                    </div>
+                    <div data-drawtype="rect" class="aww-menu-item aww-draw-type">
+                        <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="100" y="100" width="1550" height="1550" style="fill:white;stroke:white;stroke-width:200;">
+                                <set attributeName="fill" to="green" begin="mouseover" end="mouseout"></set>
+                                <set attributeName="stroke" to="green" begin="mouseover" end="mouseout"></set>
+                            </rect>
+                        </svg>
+                    </div>
+                    <div data-drawtype="circle" class="aww-menu-item aww-draw-type">
+                        <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="900" cy="900" r="800" style="fill:white;stroke:white;stroke-width:200;">
+                                <set attributeName="fill" to="green" begin="mouseover" end="mouseout"></set>
+                                <set attributeName="stroke" to="green" begin="mouseover" end="mouseout"></set>
+                            </circle>
+                        </svg>
+                    </div>
+                    <div data-drawtype="ellipse" class="aww-menu-item aww-draw-type">
+                        <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="900" cy="900" rx="800" ry="700" style="fill:white;stroke:white;stroke-width:200;">
+                                <set attributeName="fill" to="green" begin="mouseover" end="mouseout"></set>
+                                <set attributeName="stroke" to="green" begin="mouseover" end="mouseout"></set>
+                            </ellipse>
+                        </svg>
+                    </div>
+                    <div data-drawtype="recthollow" class="aww-menu-item aww-draw-type">
+                        <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="100" y="100" width="1550" height="1550" style="fill:black;stroke:white;stroke-width:200;">
+                                <set attributeName="stroke" to="green" begin="mouseover" end="mouseout"></set>
+                            </rect>
+                        </svg>
+                    </div>
+                    <div data-drawtype="circlehollow" class="aww-menu-item aww-draw-type">
+                        <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="900" cy="900" r="800" style="fill:black;stroke:white;stroke-width:200;">
+                                <set attributeName="stroke" to="green" begin="mouseover" end="mouseout"></set>
+                            </circle>
+                        </svg>
+                    </div>
+                    <div data-drawtype="ellipsehollow" class="aww-menu-item aww-draw-type">
+                        <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="900" cy="900" rx="800" ry="700" style="fill:black;stroke:white;stroke-width:200;">
+                                <set attributeName="stroke" to="green" begin="mouseover" end="mouseout"></set>
+                            </ellipse>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="aww-tools aww-menu-item aww-submenu-indicator">
+                <div>
+                    <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M491 1536l91-91-235-235-91 91v107h128v128h107zm523-928q0-22-22-22-10 0-17 7l-542 542q-7 7-7 17 0 22 22 22 10 0 17-7l542-542q7-7 7-17zm-54-192l416 416-832 832h-416v-416zm683 96q0 53-37 90l-166 166-416-416 166-165q36-38 90-38 53 0 91 38l235 234q37 39 37 91z"></path>
+                    </svg>
+                </div>
+                <div class="aww-submenu col-6">
+                    <div class="aww-menu-item">
+                        <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M491 1536l91-91-235-235-91 91v107h128v128h107zm523-928q0-22-22-22-10 0-17 7l-542 542q-7 7-7 17 0 22 22 22 10 0 17-7l542-542q7-7 7-17zm-54-192l416 416-832 832h-416v-416zm683 96q0 53-37 90l-166 166-416-416 166-165q36-38 90-38 53 0 91 38l235 234q37 39 37 91z"></path>
+                        </svg>
+                    </div>
+                    <div class="aww-menu-item">
+                        <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M832 1408l336-384h-768l-336 384h768zm1013-1077q15 34 9.5 71.5t-30.5 65.5l-896 1024q-38 44-96 44h-768q-38 0-69.5-20.5t-47.5-54.5q-15-34-9.5-71.5t30.5-65.5l896-1024q38-44 96-44h768q38 0 69.5 20.5t47.5 54.5z"></path>
+                        </svg>
+                    </div>
+                    <div class="aww-menu-item">
+                        <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M789 559l-170 450q33 0 136.5 2t160.5 2q19 0 57-2-87-253-184-452zm-725 1105l2-79q23-7 56-12.5t57-10.5 49.5-14.5 44.5-29 31-50.5l237-616 280-724h128q8 14 11 21l205 480q33 78 106 257.5t114 274.5q15 34 58 144.5t72 168.5q20 45 35 57 19 15 88 29.5t84 20.5q6 38 6 57 0 4-.5 13t-.5 13q-63 0-190-8t-191-8q-76 0-215 7t-178 8q0-43 4-78l131-28q1 0 12.5-2.5t15.5-3.5 14.5-4.5 15-6.5 11-8 9-11 2.5-14q0-16-31-96.5t-72-177.5-42-100l-450-2q-26 58-76.5 195.5t-50.5 162.5q0 22 14 37.5t43.5 24.5 48.5 13.5 57 8.5 41 4q1 19 1 58 0 9-2 27-58 0-174.5-10t-174.5-10q-8 0-26.5 4t-21.5 4q-80 14-188 14z"></path>
+                        </svg>
+                    </div>
+                    <div class="aww-menu-item">
+                        <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M576 576q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm1024 384v448h-1408v-192l320-320 160 160 512-512zm96-704h-1600q-13 0-22.5 9.5t-9.5 22.5v1216q0 13 9.5 22.5t22.5 9.5h1600q13 0 22.5-9.5t9.5-22.5v-1216q0-13-9.5-22.5t-22.5-9.5zm160 32v1216q0 66-47 113t-113 47h-1600q-66 0-113-47t-47-113v-1216q0-66 47-113t113-47h1600q66 0 113 47t47 113z"></path>
+                        </svg>
+                    </div>
+                    <div class="aww-menu-item aww-clear-canvas">
+                        <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1664 896q0 156-61 298t-164 245-245 164-298 61q-172 0-327-72.5t-264-204.5q-7-10-6.5-22.5t8.5-20.5l137-138q10-9 25-9 16 2 23 12 73 95 179 147t225 52q104 0 198.5-40.5t163.5-109.5 109.5-163.5 40.5-198.5-40.5-198.5-109.5-163.5-163.5-109.5-198.5-40.5q-98 0-188 35.5t-160 101.5l137 138q31 30 14 69-17 40-59 40h-448q-26 0-45-19t-19-45v-448q0-42 40-59 39-17 69 14l130 129q107-101 244.5-156.5t284.5-55.5q156 0 298 61t245 164 164 245 61 298z"></path>
+                        </svg>
+                    </div>
+                    <div class="aww-menu-item">
+                        <svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M704 1376v-704q0-14-9-23t-23-9h-64q-14 0-23 9t-9 23v704q0 14 9 23t23 9h64q14 0 23-9t9-23zm256 0v-704q0-14-9-23t-23-9h-64q-14 0-23 9t-9 23v704q0 14 9 23t23 9h64q14 0 23-9t9-23zm256 0v-704q0-14-9-23t-23-9h-64q-14 0-23 9t-9 23v704q0 14 9 23t23 9h64q14 0 23-9t9-23zm-544-992h448l-48-117q-7-9-17-11h-317q-10 2-17 11zm928 32v64q0 14-9 23t-23 9h-96v948q0 83-47 143.5t-113 60.5h-832q-66 0-113-58.5t-47-141.5v-952h-96q-14 0-23-9t-9-23v-64q0-14 9-23t23-9h309l70-167q15-37 54-63t79-26h320q40 0 79 26t54 63l70 167h309q14 0 23 9t9 23z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery/jQuery-1.11.1.js"></script>
+<script src="js/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
+<script src="js/jquery-ui-bootstrap-jquery-ui/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="js/bootstrap-3.3.0-dist/dist/js/ie10-viewport-bug-workaround.js"></script>
+<script src="js/white-board/socket.io-1.3.5.js"></script>
+<script src="js/white-board/fabric-0.9.15.min.js"></script>
+<script src="js/white-board/whiteboard.js"></script>
+<script src="js/white-board/draw.js"></script>
+</body>
+</html>

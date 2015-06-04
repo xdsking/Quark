@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css"
+          href="http://localhost:870/local-cdn/dojo-release-1.10.4/dijit/themes/claro/claro.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <style>
+        body{
+            color: #003478;
+        }
+    </style>
+    <script type="text/javascript">
+        var dojoConfig = {
+            async: true,
+            parseOnLoad: true,
+            packages: [
+                {
+                    name: "customWidget",
+                    location: "/Quark/js/customWidget"
+                }
+            ]
+        };
+    </script>
+    <script type="text/javascript" src="http://localhost:870/local-cdn//dojo-release-1.10.4/dojo/dojo.js"></script>
+    <script>
+        require(["dojo/parser", "dojox/form/Uploader","dojo/ready"], function (parser, Uploader,ready) {
+            ready(function(){
+            });
+        });
+    </script>
+</head>
+<body class="claro">
+<form>
+    <form method="post" action="coordinateFileUploader/importFile" data-dojo-attach-point="importFileForm">
+        <input class="fileInput" name="file" multiple="true" showInput="before" widgetsInTemplate=true uploadOnSelect=true type="file"
+               data-dojo-type="dojox/form/Uploader"
+               data-dojo-props="style:'width:320px;'"
+               data-dojo-attach-point="uploaderRef"
+               force="form" label="请选择文件"/>
+        <input type="submit" data-dojo-type="dijit/form/Button" label="&nbsp;添&nbsp;&nbsp;加&nbsp;"
+               data-dojo-attach-point="previewGraphics" class="analysisButon"/>
+    </form>
+</form>
+</body>
+</html>
