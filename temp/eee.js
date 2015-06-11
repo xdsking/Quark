@@ -1,128 +1,86 @@
-define(["dojo/_base/declare","esri/request","dojo/json","dojo/_base/lang"],function(declare,esriRequest,JSON,lang){
-    return declare(null,{
-        serverUrl:"http://localhost:6080/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task/execute",
+define(["dojo/_base/declare",
+    "dojo/cookie",
+    "dojo/json",
+    "dojo/_base/lang",
+    "dijit/_WidgetBase",
+    "dijit/_OnDijitClickMixin",
+    "dijit/_TemplatedMixin",
+    "dijit/_WidgetsInTemplateMixin",
+    "dojo/query",
+    "esri/dijit/Bookmarks",
+    "esri/dijit/BookmarkItem",
+    "require",
+    "dojo/dom-construct",
+    "dojo/_base/window",
+    "dojo/_base/config"
+],function(declare,cookie,JSON,lang, _WidgetBase, _OnDijitClickMixin, _TemplatedMixin, _WidgetsInTemplateMixin,
+           query, Bookmarks, BookmarkItem, require, domConstruct, window, config){
+    var storageName = 'onemap_bookmarks',cssAdded = false;
+    function get_local_storage(){
+        try {
+            return 'localStorage' in window && window['localStorage'] !== null;
+        } catch( e ){
+            return false;
+        }
+    };
+    var  useLocalStorage = get_local_storage();
+    return declare([_WidgetBase, _OnDijitClickMixin, _TemplatedMixin,_WidgetsInTemplateMixin],{
+        templateString : '<div><div data-dojo-attach-point="bookMarkDiv"></div></div>',
+        cssPath : require.toUrl("./Bookmark.css"),
         map:null,
-        format:"PDF",
-        layoutTemplate:"Letter ANSI A Landscape",
-        options:{
-            "mapOptions": {
-                "showAttribution": true,
-                "extent": {
-                    "xmin": 37429253.914243326,
-                    "ymin": 2361729.1751253344,
-                    "xmax": 37724794.08865701,
-                    "ymax": 2518362.821725961,
-                    "spatialReference": {
-                        "wkid": 2361,
-                        "latestWkid": 2361
-                    }
-                },
-                "spatialReference": {
-                    "wkid": 2361,
-                    "latestWkid": 2361
-                },
-                "scale": 999999.9999999959
-            },
-            "operationalLayers": [
-                {
-                    "id": "8b6043290cce4b9b8a9cdc038cc7ff3d",
-                    "title": "8b6043290cce4b9b8a9cdc038cc7ff3d",
-                    "opacity": 1,
-                    "minScale": 1000000,
-                    "maxScale": 4000,
-                    "url": "http://localhost:6080/arcgis/rest/services/YJ/XZQ/MapServer"
-                },
-                {
-                    "id": "mapPane_graphics",
-                    "opacity": 1,
-                    "minScale": 0,
-                    "maxScale": 0,
-                    "featureCollection": {
-                        "layers": []
-                    }
-                }
-            ],
-            "layoutOptions": {
-                /*"titleText": "打印标题",*/
-                "customTextElements": [
-                    {
-                        "dwmc": "清远市清城区龙塘房地产开发公司"
-                    },
-                    {
-                        "zdh": "6100001"
-                    },
-                    {
-                        "tdyt": "商性用地"
-                    },
-                    {
-                        "mj": "10000km2"
-                    },
-                    {
-                        "hzrq": "2015/01/02"
-                    },
-                    {
-                        "shrq": "2015/03/05"
-                    },
-                    {
-                        "hty": "张三"
-                    },
-                    {
-                        "shy": "李四"
-                    },
-                    {
-                        "chdw": "清远市国土局"
-                    }
-                ],
-                "scaleBarOptions": {
-                    "metricUnit": "Kilometers",
-                    "metricLabel": "km",
-                    "nonMetricUnit": "Miles",
-                    "nonMetricLabel": "mi"
-                },
-                "legendOptions": {
-                    "operationalLayers": []
-                }
+        bookmarks:null,
+        baseClass:"bookmark",
+        postCreate : function(){
+            if(!cssAdded){
+                domConstruct.create("link", {
+                    rel : "stylesheet",
+                    type : "text/css",
+                    href : this.cssPath
+                },window.doc.head||window.doc.getElementsByTagName("head")[0]);
+                cssAdded = true;
             }
-        },
-        constructor:function(params){
-            declare.safeMixin(this, params);
-            this._initOptionsParam();
-        },
-        /*postCreate:function(){
+            var bookmarks = this.bookmarks=new Bookmarks({
+                map:this.map,
+                bookmarks: [],
+                editable : true
+            },this.bookMarkDiv);
+            var bmJSON;
+            if (useLocalStorage) {
+                bmJSON = window.localStorage.getItem(storageName);
+            } else {
+                bmJSON = cookie(storageName);
+            }
 
-         }*/
-        _initOptionsParam:function(){
-            if(!this.map){
-                console.log("未获得地图对象!");
-                return;
-            }else{
-                var extent=this.map.extent,options=this.options;
-                if(options&&options.mapOptions&&options.mapOptions.extent){
-                    options.mapOptions.extent=
-
-                }
+            if ( bmJSON && bmJSON != 'null' && bmJSON.length > 4) {
+                var bmarks = JSON.parse(bmJSON);
+                dojo.forEach(bmarks, function(b) {
+                    this.bookmarks.addBookmark(b);
+                },this);
+            } else {
+                console.log('no stored bookmarks...');
+            }
+            bookmarks.on('edit',lang.hitch(this,"refreshBookmarks"));
+            bookmarks.on('remove',lang.hitch(this,"refreshBookmarks"));
+            /*  var self=this;
+             this.btnAddBookMarkItem.on("click", function(){
+             var bookmarkItem = new BookmarkItem({
+             "extent": self.map.extent,
+             "name": "无标题"
+             });
+             self.bookmarks.addBookmark(bookmarkItem);
+             });*/
+        },
+        refreshBookmarks : function() {
+            if (useLocalStorage) {
+                window.localStorage.setItem(storageName, JSON.stringify(this.bookmarks.toJson()));
+            } else {
+                var exp = 7;
+                cookie(storageName,JSON.stringify(this.bookmarks.toJson()), {expires: exp});
             }
         },
-        execute:function(){
-            if(!lang.isString(this.options)){
-                this.options=JSON.stringify(this.options);
-            }
-            var content = {
-                Web_Map_as_JSON:this.options,
-                Format:this.format,//"PDF",
-                Layout_Template:this.layoutTemplate,//"Letter ANSI A Landscape",
-                f : "json"
-            };
-            var foo = esriRequest({
-                url :this.serverUrl,
-                content : content,
-                callbackParamName : "callback"
-            });
-            foo.then(function(data) {
-                debugger;
-            },function(){
-                console.log("提交失败!");
-            });
+        destroy:function() {
+            this.bookmarks.destroy();
+            this.inherited(arguments);
         }
     });
 });
