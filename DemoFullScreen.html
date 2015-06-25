@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<body  >
+
+<button id="btn" > full screen </button>
+
+<div id="content" style="height:500px;width:500px;background:#fff">
+    <h1>综合查询/关键字查询/空间查询/</h1>
+    <h2>项目名称:</h2>
+        <p>批准文号:</p>
+        <p>查询关键字:</p>
+</div>
+
+</body>
+
+<script language="JavaScript">
+    document.getElementById("btn").onclick=function(){
+        var elem = document.getElementById("content");
+        requestFullScreen(elem);
+    };
+
+    function requestFullScreen(element) {
+
+        var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
+
+        if (requestMethod) {
+            requestMethod.call(element);
+        } else if (typeof window.ActiveXObject !== "undefined") {
+            var wscript = new ActiveXObject("WScript.Shell");
+            if (wscript !== null) {
+                wscript.SendKeys("{F11}");
+            }
+        }
+    }
+
+</script>
+</html>

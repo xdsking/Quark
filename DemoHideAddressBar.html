@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery/jQuery-1.11.1.js"></script>
+    <script>
+        function hideAddressBar_android(){
+            var self = document.getElementsByTagName('body')[0];
+            if (self.requestFullscreen) {
+                //html5新增的全屏方法
+                self.requestFullscreen();
+            } else if (self.mozRequestFullScreen) {
+                //针对mozlia内核的hack
+                self.mozRequestFullScreen();
+            } else if (self.webkitRequestFullScreen) {
+                //针对webkit内核的hack
+                self.webkitRequestFullScreen();
+            }
+        }
+        $(function(){
+            hideAddressBar_android();
+        });
+    </script>
+</head>
+<body>
+hello world!
+</body>
+</html>
