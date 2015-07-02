@@ -1,38 +1,118 @@
 <!DOCTYPE html>
 <html>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<body  >
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>div手机端演示</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            overflow: hidden
+        }
 
-<button id="btn" > full screen </button>
+        #content {
+            width: 100%;
+            height: 400px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rosybrown;
+        }
+    </style>
+    <script type="application/javascript" src="../CDN/lib/jQuery/jQuery-1.11.1.js"></script>
+    <script language="JavaScript">
+        var requestFullScreen = function (element) {
+            var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
+            if (requestMethod) {
+                requestMethod.call(element);
+            } else if (typeof window.ActiveXObject !== "undefined") {
+                var wscript = new ActiveXObject("WScript.Shell");
+                if (wscript !== null) {
+                    wscript.SendKeys("{F11}");
+                }
+            }
+        };
+        var exitFullscreen = function () {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+            else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            }
+            else if (document.webkitCancelFullScreen) {
+                document.webkitCancelFullScreen();
+            }
+            else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        };
+        var IsPC = function () {
+            var flag = true;
+            var userAgentInfo = navigator.userAgent;
+            var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+            for (var v = 0; v < Agents.length; v++) {
+                if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
+        };
+        $(function () {
+            //var windowWidth=$(window).width();
+            /*var bodyHeight = $(window).height();
+             $("#content").css("height", "100%");*/
+            var windowWidth =$(window).width();
+            $("#content").css({height:"400",width:windowWidth});
+            $("#fullScreen").click(function () {
+                var elem = document.getElementById("content");
+                requestFullScreen(elem);
+            });
+            $("#exitScreen").click(function () {
+                exitFullscreen();
+            });
+            var flag = false;
+            if (document.exitFullscreen) {
+                document.onexitFullscreenchange = function () {
 
-<div id="content" style="height:500px;width:500px;background:#fff">
-    <h1>综合查询/关键字查询/空间查询/</h1>
-    <h2>项目名称:</h2>
-        <p>批准文号:</p>
-        <p>查询关键字:</p>
+                }
+            } else if (document.webkitCancelFullScreen) {
+                document.onwebkitfullscreenchange = function () {
+                    var windowHeight;
+                    if (flag) {
+                        windowHeight = 400;
+                        flag = false;
+                    } else {
+                        windowHeight = window.screen.height;
+                        flag = true;
+                    }
+                    $("#content").css("height", windowHeight + "px");
+                    $("#content").css("width", windowWidth + "px");
+                }
+            } else if (document.msExitFullscreen) {
+                document.onmsExitFullscreenchange = function () {
+
+                }
+            }
+            /*$(window).resize(function () {
+             if (IsPC()) {
+             var bodyHeight = $(window).height();
+             } else {
+             bodyHeight = window.screen.height;
+             }
+
+             $("#content").css("height", bodyHeight + "px");
+             });*/
+        });
+    </script>
+</head>
+<body>
+<div id="content">
+    <div style="position: absolute;left: 0;top: 0;background-color: #2aabd2;width: 100px;height: 100px;"></div>
+    <div style="position: absolute;right: 0;bottom: 0;background-color: #2aabd2;width: 100px;height: 100px;"></div>
+    <button style="margin-top: 200px;" id="fullScreen"> full screen</button>
+    <button style="margin-top: 200px;" id="exitScreen"> exit screen</button>
 </div>
 
 </body>
-
-<script language="JavaScript">
-    document.getElementById("btn").onclick=function(){
-        var elem = document.getElementById("content");
-        requestFullScreen(elem);
-    };
-
-    function requestFullScreen(element) {
-
-        var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
-
-        if (requestMethod) {
-            requestMethod.call(element);
-        } else if (typeof window.ActiveXObject !== "undefined") {
-            var wscript = new ActiveXObject("WScript.Shell");
-            if (wscript !== null) {
-                wscript.SendKeys("{F11}");
-            }
-        }
-    }
-
-</script>
 </html>
