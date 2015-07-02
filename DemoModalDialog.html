@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="http://localhost:870/local-cdn/dojo-release-1.10.4/dijit/themes/claro/claro.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <style type="text/css">
+        .dialogUnderlay{
+            width: 400px!important;
+            height: 300px!important;;
+            background-color: #0000aa !important;
+        }
+        #modalDialogContainerNode{
+            position: absolute;
+            width: 400px;
+            height: 300px;
+            top: 200px;
+            right: 100px;
+            background-color: #808080;
+        }
+    </style>
+    <script type="text/javascript">
+        var dojoConfig = {
+            async: true,
+            parseOnLoad: true,
+            packages: [
+                {
+                    name: "customWidget",
+                    location: "/Quark/js/customWidget"
+                }
+            ]
+        };
+    </script>
+    <script type="text/javascript" src="http://localhost:870/local-cdn/dojo-release-1.10.4/dojo/dojo.js"></script>
+    <script>
+        require(["dojo/parser", "dojo/dom", "dijit/DialogUnderlay","dijit/form/Button","dijit/registry","dojo/dom-construct"
+           ], function (parser, dom, DialogUnderlay,Button,registry,domConstruct) {
+            var foo = new DialogUnderlay({
+                "class":"dialogUnderlay"
+            },domConstruct.create("div"));
+            foo.placeAt("modalDialogContainerNode").startup();
+
+            new Button({label:"遮罩",
+                onClick:function(){
+                    foo.show();
+                }
+            },"showModalDiolog").startup();
+            new Button({label:"隐藏",
+                onClick:function(){
+                    foo.hide();
+                }
+            },"hideModalDiolog").startup();
+        });
+    </script>
+</head>
+<body class="claro">
+<div id="showModalDiolog"></div>
+<div id="hideModalDiolog"></div>
+<div id="modalDialogContainerNode">
+    11111111111111111111111111111111111
+</div>
+</body>
+</html>
