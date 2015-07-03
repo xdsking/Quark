@@ -10,104 +10,57 @@
             overflow: hidden
         }
 
-        #content {
-            width: 100%;
+        .content {
+            width: 600px;
             height: 400px;
             position: absolute;
+            top: 100px;
+            left: 200px;
+            background-color: rosybrown;
+        }
+
+        .fullScreen {
+            width: 100%;
+            height: 100%;
             top: 0;
             left: 0;
-            background-color: rosybrown;
         }
     </style>
     <script type="application/javascript" src="../CDN/lib/jQuery/jQuery-1.11.1.js"></script>
+    <script type="application/javascript" src="../CDN/lib/screenfull.js-gh-pages/dist/screenfull.min.js"></script>
     <script language="JavaScript">
-        var requestFullScreen = function (element) {
-            var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
-            if (requestMethod) {
-                requestMethod.call(element);
-            } else if (typeof window.ActiveXObject !== "undefined") {
-                var wscript = new ActiveXObject("WScript.Shell");
-                if (wscript !== null) {
-                    wscript.SendKeys("{F11}");
+        $(function(){
+            var target = $('#content')[0]; // Get DOM element from jQuery collection
+            $('#fullScreen').click(function () {
+                if (screenfull.enabled) {
+                    screenfull.request(target);
                 }
-            }
-        };
-        var exitFullscreen = function () {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            }
-            else if (document.mozCancelFullScreen) {
-                document.mozCancelFullScreen();
-            }
-            else if (document.webkitCancelFullScreen) {
-                document.webkitCancelFullScreen();
-            }
-            else if (document.msExitFullscreen) {
-                document.msExitFullscreen();
-            }
-        };
-        var IsPC = function () {
-            var flag = true;
-            var userAgentInfo = navigator.userAgent;
-            var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
-            for (var v = 0; v < Agents.length; v++) {
-                if (userAgentInfo.indexOf(Agents[v]) > 0) {
-                    flag = false;
-                    break;
+            });
+            $('#exitScreen').click(function () {
+                if (screenfull.enabled) {
+                    screenfull.exit();
                 }
-            }
-            return flag;
-        };
-        $(function () {
-            //var windowWidth=$(window).width();
-            /*var bodyHeight = $(window).height();
-             $("#content").css("height", "100%");*/
-            var windowWidth =$(window).width();
-            $("#content").css({height:"400",width:windowWidth});
-            $("#fullScreen").click(function () {
-                var elem = document.getElementById("content");
-                requestFullScreen(elem);
             });
-            $("#exitScreen").click(function () {
-                exitFullscreen();
-            });
-            var flag = false;
-            if (document.exitFullscreen) {
-                document.onexitFullscreenchange = function () {
+            if (screenfull.enabled) {
+                document.addEventListener(screenfull.raw.fullscreenchange, function () {
+                    if(screenfull.isFullscreen){
+                        $('#content').addClass("fullScreen");
+                    }else{
 
-                }
-            } else if (document.webkitCancelFullScreen) {
-                document.onwebkitfullscreenchange = function () {
-                    var windowHeight;
-                    if (flag) {
-                        windowHeight = 400;
-                        flag = false;
-                    } else {
-                        windowHeight = window.screen.height;
-                        flag = true;
+                        $('#content').removeClass("fullScreen");
                     }
-                    $("#content").css("height", windowHeight + "px");
-                    $("#content").css("width", windowWidth + "px");
-                }
-            } else if (document.msExitFullscreen) {
-                document.onmsExitFullscreenchange = function () {
-
-                }
+                });
             }
-            /*$(window).resize(function () {
-             if (IsPC()) {
-             var bodyHeight = $(window).height();
-             } else {
-             bodyHeight = window.screen.height;
-             }
-
-             $("#content").css("height", bodyHeight + "px");
-             });*/
+            if (screenfull.enabled) {
+                document.addEventListener(screenfull.raw.fullscreenerror, function (event) {
+                    console.error('Failed to enable fullscreen', event);
+                });
+            }
         });
     </script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
     <div style="position: absolute;left: 0;top: 0;background-color: #2aabd2;width: 100px;height: 100px;"></div>
     <div style="position: absolute;right: 0;bottom: 0;background-color: #2aabd2;width: 100px;height: 100px;"></div>
     <button style="margin-top: 200px;" id="fullScreen"> full screen</button>
