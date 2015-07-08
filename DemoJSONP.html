@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="application/javascript" src="../CDN/lib/jQuery/jQuery-1.11.1.js"></script>
+    <script type="application/javascript">
+        $(function () {
+            $.ajax({
+                url:"http://xspc:8080/onemap-webapp/admin/gisservers/getCpuInfo",
+                type:"GET",
+                dataType: 'jsonp',
+                data:{aa:1,bb:2},
+                success: function (data) {
+                    debugger;
+                },
+                error:function(){
+                    debugger;
+                }
+            });
+        });
+    </script>
+    <!--jsonp原理-->
+    <script type="text/javascript">
+        function showPrice(data) {
+            console.log("Symbol: " + data.symbol + ", Price: " + data.price);
+        }
+    </script>
+    <script type="text/javascript">showPrice({symbol: 'IBM', price: 91.42});</script>
+</head>
+<body>
+</body>
+</html>
