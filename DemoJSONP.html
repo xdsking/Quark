@@ -3,31 +3,45 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <script type="application/javascript" src="../CDN/lib/jQuery/jQuery-1.11.1.js"></script>
-    <script type="application/javascript">
+    <script type="text/javascript" src="../CDN/lib/jQuery/jQuery-1.11.1.js"></script>
+    <script type="text/javascript">
         $(function () {
             $.ajax({
                 url:"http://xspc:8080/onemap-webapp/admin/gisservers/getCpuInfo",
                 type:"GET",
                 dataType: 'jsonp',
-                data:{aa:1,bb:2},
+                /*data:{aa:1,bb:2},*/
                 success: function (data) {
-                    debugger;
+                    $("#dataPane").html(JSON.stringify(data));
                 },
-                error:function(){
-                    debugger;
+                error:function(error){
+                    console.log(error);
                 }
+            });
+            if(!window.localStorage){
+                document.body.innerHTML="浏览器不支持本地存储";
+                return;
+            }
+            $("#btn").click(function(){
+                sessionStorage.setItem("sessinId",1234);
             });
         });
     </script>
     <!--jsonp原理-->
     <script type="text/javascript">
         function showPrice(data) {
-            console.log("Symbol: " + data.symbol + ", Price: " + data.price);
+            $("#testPane").html("Symbol: " + data.symbol + ", Price: " + data.price);
         }
     </script>
-    <script type="text/javascript">showPrice({symbol: 'IBM', price: 91.42});</script>
+    <script type="text/javascript">
+        $(function(){
+            showPrice({symbol: 'IBM', price: 91.42});
+        });
+    </script>
 </head>
 <body>
+<div id="dataPane"></div>
+<div id="testPane"></div>
+<button id="btn" type="button">sessionStorage</button>
 </body>
 </html>
