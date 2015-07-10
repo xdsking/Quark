@@ -5,7 +5,7 @@
     <title>字符串截取</title>
     <script type="text/javascript" src="../CDN/lib/jQuery/jQuery-1.11.1.js"></script>
     <script type="text/javascript">
-        $(function(){
+        $(function () {
             /**
              * @summary 字符串截取
              * @param str 字符串
@@ -13,24 +13,25 @@
              * @param flag 是否保留扩展名
              * @return newString
              */
-            var subString=function(str,leng,flag){
-                var newStr="";
-                if(str.length>leng){
-                    var extensionString="";
-                    if(flag){
-                        var dotIndex=str.indexOf(".");
-                        extensionString =str.substring(dotIndex,str.length);
+            var subString = function (str, leng, flag) {
+                var newStr = "";
+                if (str.length > leng) {
+                    var extensionString = "";
+                    if (flag) {
+                        var dotIndex = str.indexOf(".");
+                        if (dotIndex != -1) {
+                            extensionString = str.substring(dotIndex, str.length);
+                        }
                     }
-
-                    newStr= str.substring(0,leng-1)+"..."+extensionString;
+                    newStr = str.substring(0, leng - 1) + "..." + extensionString;
                     return newStr;
-                }else{
+                } else {
                     return str;
                 }
             };
-            var str="HTML5移动Web开发指南.pdf";
-            var newString=subString(str,12,true);
-            $("#label1").text(newString).attr("title",str);
+            var str = "HTML5移动Web开发指南.mp4";
+            var newString = subString(str, 12, true);
+            $("#label1").text(newString).attr("title", str);
         });
     </script>
 </head>
