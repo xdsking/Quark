@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../CDN/lib/JSON-js-master/cycle.js"></script>
+    <script type="text/javascript">
+        var oJson={
+            a:1111,
+            "b":2222,
+            "c":{"dd":"www","yy":"ggg"}
+        };
+        oJson.c.yy=oJson;
+        var dd=JSON.decycle(oJson);
+        var ddd=JSON.stringify(dd);
+        console.log(ddd);
+        console.log( JSON.parse(ddd));
+        var rr=JSON.retrocycle(dd);
+        console.log(rr);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
