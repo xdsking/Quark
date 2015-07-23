@@ -3,10 +3,11 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Deferred all when request </title>
-    <link rel="stylesheet" type="text/css" href="http://localhost:870/local-cdn/dojo-release-1.10.4/dijit/themes/claro/claro.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="http://localhost:870/local-cdn/dojo-release-1.10.4/dijit/themes/claro/claro.css"/>
     <link href="//cdn.bootcss.com/animate.css/3.3.0/animate.css" rel="stylesheet">
     <style type="text/css">
-        *{
+        * {
             overflow: hidden;
         }
     </style>
@@ -20,46 +21,65 @@
     </script>
     <script type="text/javascript" src="http://localhost:870/local-cdn/dojo-release-1.10.4/dojo/dojo.js"></script>
     <script>
-        require(["dojo/when","dojo/promise/all", "dojo/Deferred","dojo/request", "dojo/dom", "dojo/on", "dojo/domReady!"],
-                function (when,all, Deferred,request, dom, on) {
-            var fun1=function(){
-                var deferred=new Deferred();
-                setTimeout(function(){
-                    var res={ss:1};
-                    deferred.resolve(res);
-                },1000);
-                return deferred.promise;
-            };
-            var fun2=function(){
-                var deferred=new Deferred();
-                setTimeout(function(){
-                    var res={dd:2};
-                    deferred.resolve(res);
-                },2000);
-                return deferred.promise;
-            };
-            var requestFun=function(){
-                return request("resource/json.g",{handleAs:"json"});
-            };
-            on(dom.byId("startButton"), "click", function(){
-               /* when(requestFun()).then(function(data){
-                    console.log(data);
+        require(["dojo/when", "dojo/promise/all", "dojo/Deferred", "dojo/request", "dojo/dom", "dojo/on", "dojo/domReady!"],
+                function (when, all, Deferred, request, dom, on) {
+                    var fun1 = function () {
+                        var deferred = new Deferred();
+                        setTimeout(function () {
+                            var res = {ss: 1};
+                            deferred.resolve(res);
+                        }, 1000);
+                        return deferred.promise;
+                    };
+                    var fun2 = function () {
+                        var deferred = new Deferred();
+                        setTimeout(function () {
+                            var res = {dd: 2};
+                            deferred.resolve(res);
+                        }, 2000);
+                        return deferred.promise;
+                    };
+                    var requestFun = function () {
+                        return request("resource/json.g", {handleAs: "json"});
+                    };
+                    var fun3 = function () {
+                        var deferred = new Deferred();
+                        setTimeout(function(){
+                            deferred.progress("111111111111111111");
+                        },1000);
+                        setTimeout(function(){
+                            deferred.resolve("22222222222222");
+                        },2000);
+
+                        return deferred.promise;
+                    };
+                    on(dom.byId("startButton"), "click", function () {
+                        /* when(requestFun()).then(function(data){
+                         console.log(data);
+                         });
+                         fun1().then(function(data){
+                         console.log(data);
+                         });
+                         when(fun1()).then(function(data){
+                         console.log(data);
+                         });*/
+                        /*all([fun1(), fun2(), requestFun()]).then(function (data) {
+                         console.log(data);
+                         });*/
+                        fun3().then(function (data) {
+                            debugger;
+                        }, function (data) {
+                            debugger;
+                        }, function (data) {
+                            debugger;
+                        });
+                    });
                 });
-                fun1().then(function(data){
-                    console.log(data);
-                });
-                when(fun1()).then(function(data){
-                    console.log(data);
-                });*/
-                all([fun1(),fun2(),requestFun()]).then(function(data){
-                    console.log(data);
-                });
-            });
-        });
     </script>
 </head>
 <body class="claro">
 <h1>Output:</h1>
+
 <div id="output"></div>
 <button type="button" id="startButton">Start</button>
 </body>
