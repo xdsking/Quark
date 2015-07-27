@@ -1,29 +1,134 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-    <script src="js/jquery/jQuery-1.11.1.js"></script>
+<head>
+    <meta charset=utf-8 />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>我是个网页，但不显示滚动条</title>
     <script>
-        function hideAddressBar_android(){
-            var self = document.getElementsByTagName('body')[0];
-            if (self.requestFullscreen) {
-                //html5新增的全屏方法
-                self.requestFullscreen();
-            } else if (self.mozRequestFullScreen) {
-                //针对mozlia内核的hack
-                self.mozRequestFullScreen();
-            } else if (self.webkitRequestFullScreen) {
-                //针对webkit内核的hack
-                self.webkitRequestFullScreen();
+        /*!
+         Intelligent auto-scrolling to hide the mobile device address bar
+         Optic Swerve, opticswerve.com
+         Documented at http://menacingcloud.com/?c=iPhoneAddressBar
+         */
+
+        var bodyTag;
+        var executionTime = new Date().getTime(); // JavaScript execution time
+
+        // Document ready
+        //----------------
+        documentReady(function() {
+            // Don't hide address bar after a distracting amount of time
+            var readyTime = new Date().getTime();
+            if((readyTime - executionTime) < 3000){
+                hideAddressBar(true);
+                quickHideAddressBar();
             }
-        }
-        $(function(){
-            hideAddressBar_android();
+
         });
+
+        // Run specified function when document is ready (HTML5)
+        //------------------------------------------------------
+        function documentReady(readyFunction) {
+            document.addEventListener('DOMContentLoaded', function() {
+                document.removeEventListener('DOMContentLoaded', arguments.callee, false);
+                readyFunction();
+
+            }, false);
+
+        }
+
+        // Hide address bar on devices like the iPhone
+        //---------------------------------------------
+        function hideAddressBar(bPad) {
+            // Big screen. Fixed chrome likely.
+            if(screen.width > 980 || screen.height > 980) return;
+
+            // Standalone (full screen webapp) mode
+            if(window.navigator.standalone === true) return;
+
+            // Page zoom or vertical scrollbars
+            if(window.innerWidth !== document.documentElement.clientWidth) {
+                // Sometimes one pixel too much. Compensate.
+                if((window.innerWidth - 1) !== document.documentElement.clientWidth) return;
+
+            }
+
+            // Pad content if necessary.
+            if(bPad === true && (document.documentElement.scrollHeight <= document.documentElement.clientHeight)) {
+                // Extend body height to overflow and cause scrolling
+                bodyTag = document.getElementsByTagName('body')[0];
+
+                // Viewport height at fullscreen
+                bodyTag.style.height = document.documentElement.clientWidth / screen.width * screen.height + 'px';
+
+            }
+
+            setTimeout(function() {
+                // Already scrolled?
+                if(window.pageYOffset !== 0) return;
+
+                // Perform autoscroll
+                window.scrollTo(0, 1);
+
+                // Reset body height and scroll
+                if(bodyTag !== undefined) bodyTag.style.height = window.innerHeight + 'px';
+                window.scrollTo(0, 0);
+
+            }, 1000);
+
+        }
+
+        // Quick address bar hide on devices like the iPhone
+        //---------------------------------------------------
+        function quickHideAddressBar() {
+            setTimeout(function() {
+                if(window.pageYOffset !== 0) return;
+                window.scrollTo(0, window.pageYOffset + 1);
+
+            }, 1000);
+
+        }
     </script>
+    <style>
+        /*输入框圆角显示*/
+        input {
+            background:#fff; border: 1px solid #080;
+            padding:5px;
+            -webkit-border-radius:5px;
+        }
+        /* button
+        ---------------------------------------------- */
+        .button {
+            display: inline-block;
+            zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+            *display: inline;
+            vertical-align: baseline;
+            margin: 0 2px;
+            outline: none;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            font: 14px/100% Arial, Helvetica, sans-serif;
+            padding: .5em 2em .55em;
+            text-shadow: 0 1px 1px rgba(0,0,0,.3);
+            -webkit-border-radius: .5em;
+            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+        }
+
+        /* green */
+        .green {
+            color: #e8f0de;
+            border: solid 1px #538312;
+            background: #64991e;
+            background: -webkit-gradient(linear, left top, left bottom, from(#7db72f), to(#4e7d0e));
+        }
+    </style>
 </head>
-<body>
-hello world!
+<body style="background: #ededed;">
+<div style="padding-top:20%;padding-left:20%">
+    帐号：<input type="text"><br/>
+    密码：<input type="text"><br/>
+    <div>
+        <div style="padding-top:5%;padding-left:23%"><input type="button" class="button green" value="登录"></div>
 </body>
 </html>

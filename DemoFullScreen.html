@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
     <meta charset="UTF-8">
     <title>div手机端演示</title>
     <style type="text/css">
@@ -11,41 +14,39 @@
         }
 
         .content {
-            width: 600px;
-            height: 400px;
-            position: absolute;
-            top: 100px;
-            left: 200px;
-            background-color: rosybrown;
-        }
-
-        .fullScreen {
             width: 100%;
             height: 100%;
+            position: absolute;
+            background-color: rosybrown;
+        }
+        .fullScreen {
             top: 0;
             left: 0;
         }
+        /*@media all and (orientation : landscape) {
+        body {
+
+        }
+        }
+        @media all and (orientation : portrait){
+        body {
+            transform: rotate(90deg);
+            -ms-transform: rotate(90deg);		*//* IE 9 *//*
+            -webkit-transform: rotate(90deg);	*//* Safari and Chrome *//*
+            -o-transform: rotate(90deg);		*//* Opera *//*
+            -moz-transform: rotate(90deg);		*//* Firefox *//*
+        }
+        }*/
     </style>
     <script type="application/javascript" src="../CDN/lib/jQuery/jQuery-1.11.1.js"></script>
     <script type="application/javascript" src="../CDN/lib/screenfull.js-gh-pages/dist/screenfull.min.js"></script>
     <script language="JavaScript">
-        $(function(){
-            var target = $('#content')[0]; // Get DOM element from jQuery collection
-            $('#fullScreen').click(function () {
-                if (screenfull.enabled) {
-                    screenfull.request(target);
-                }
-            });
-            $('#exitScreen').click(function () {
-                if (screenfull.enabled) {
-                    screenfull.exit();
-                }
-            });
+        var func = function (callBack) {
             if (screenfull.enabled) {
                 document.addEventListener(screenfull.raw.fullscreenchange, function () {
-                    if(screenfull.isFullscreen){
+                    if (screenfull.isFullscreen) {
                         $('#content').addClass("fullScreen");
-                    }else{
+                    } else {
 
                         $('#content').removeClass("fullScreen");
                     }
@@ -56,6 +57,33 @@
                     console.error('Failed to enable fullscreen', event);
                 });
             }
+            callBack();
+        };
+        //判断手机横竖屏状态：
+        function hengshuping() {
+            if (window.orientation == 180 || window.orientation == 0) {
+            }
+            if (window.orientation == 90 || window.orientation == -90) {
+            }
+        }
+        window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", hengshuping, false);
+        $(function () {
+            var target = $('#content')[0]; // Get DOM element from jQuery collection
+            func(function () {
+                $('#fullScreen').click(function () {
+                    if (screenfull.enabled) {
+                        screenfull.request(target);
+                    }
+                });
+                $('#exitScreen').click(function () {
+                    if (screenfull.enabled) {
+                        screenfull.exit();
+                    }
+                });
+            });
+            $(window).on("beforeunload", function () {
+                return confirm("确认关闭页面吗?");
+            });
         });
     </script>
 </head>
