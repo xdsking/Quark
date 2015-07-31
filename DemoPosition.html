@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <title>Position测试</title>
+    <style>
+        *{
+            margin: 0;
+            overflow: hidden;
+        }
+        .cl1 {
+            position: absolute;
+            background-color: red;
+            top: 100px;
+            left: 200px;
+            width: 1000px;
+            height: 400px;
+            z-index: 2;
+        }
+        .cl2{
+            position: absolute;
+            top: 10px;
+            width: 100px;
+            height: 200px;
+            background-color: #000000;
+        }
+        .cl3 {
+            position: absolute;
+            background-color: blueviolet;
+            top: 200px;
+            left: 120px;
+            width: 1000px;
+            height: 400px;
+            z-index: 3;
+        }
+        .cl4{
+            position: absolute;
+            width: 100px;
+            height: 200px;
+            background-color: #000000;
+        }
+    </style>
+</head>
+<body>
+<div class="cl1">
+    <div class="cl2"></div>
+</div>
+<div class="cl3">
+    <div class="cl4"></div>
+</div>
+</body>
+</html>
