@@ -1,0 +1,20 @@
+.defaultTopicTreeIcons {
+    background-size: 20px;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.defaultTopicTreeIconsTerminal {
+    background-image: url('/onemap-webapp/static/js/com/butone/onemap/widget/TopicTree/images/defaultTopicTreeIcons.png');
+}
+
+.defaultTopicTreeIconsCollapsed {
+    background-image: url('/onemap-webapp/static/js/com/butone/onemap/widget/TopicTree/images/defaultTopicTreeIcons.png');
+}
+
+.defaultTopicTreeIconsExpanded {
+    background-image: url('/onemap-webapp/static/js/com/butone/onemap/widget/TopicTree/images/defaultTopicTreeIcons.png');
+}
