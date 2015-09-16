@@ -4,11 +4,33 @@
     <meta charset="UTF-8">
     <title>Deferred all when request </title>
     <link rel="stylesheet" type="text/css"
-          href="http://localhost:870/local-cdn/dojo-release-1.10.4/dijit/themes/claro/claro.css"/>
+          href="http://xspc:870/local-cdn/dojo-release-1.10.4/dijit/themes/claro/claro.css"/>
     <link href="//cdn.bootcss.com/animate.css/3.3.0/animate.css" rel="stylesheet">
     <style type="text/css">
         * {
             overflow: hidden;
+        }
+        .uploadBtn{
+            border:1px solid #333333;
+            background:url(images/play.png) #d0d0d0 repeat-x scroll 0px top;
+            font-size:14px;
+            vertical-align:middle; /* emulates a <button> if node is not */
+            text-align:center;
+        }
+        .uploadHover{
+            background-image:url(images/resize_png_new.png);
+            cursor:pointer;
+            font-weight:bold;
+        }
+
+        .uploadPress{
+            background-image:url(images/resize_png_new.png);
+        }
+        .uploadDisabled{
+            background-image:none;
+            background-color:#666;
+            color:#999;
+            border:1px solid #999;
         }
     </style>
     <script type="text/javascript">
@@ -16,12 +38,16 @@
             async: true,
             parseOnLoad: true,
             packages: [
+                {
+                    name: "customWidget",
+                    location: "/web-app/Quark/js/customWidget"
+                }
             ]
         };
     </script>
-    <script type="text/javascript" src="http://localhost:870/local-cdn/dojo-release-1.10.4/dojo/dojo.js"></script>
+    <script type="text/javascript" src="http://xspc:870/local-cdn/dojo-release-1.10.4/dojo/dojo.js"></script>
     <script>
-        require(["dojo/when", "dojo/promise/all", "dojo/Deferred", "dojo/request", "dojo/dom", "dojo/on", "dojo/domReady!"],
+        /*require(["dojo/when", "dojo/promise/all", "dojo/Deferred", "dojo/request", "dojo/dom", "dojo/on", "dojo/domReady!"],
                 function (when, all, Deferred, request, dom, on) {
                     var fun1 = function () {
                         var deferred = new Deferred();
@@ -54,7 +80,7 @@
                         return deferred.promise;
                     };
                     on(dom.byId("startButton"), "click", function () {
-                        /* when(requestFun()).then(function(data){
+                        *//* when(requestFun()).then(function(data){
                          console.log(data);
                          });
                          fun1().then(function(data){
@@ -62,10 +88,10 @@
                          });
                          when(fun1()).then(function(data){
                          console.log(data);
-                         });*/
-                        /*all([fun1(), fun2(), requestFun()]).then(function (data) {
+                         });*//*
+                        *//*all([fun1(), fun2(), requestFun()]).then(function (data) {
                          console.log(data);
-                         });*/
+                         });*//*
                         fun3().then(function (data) {
                             debugger;
                         }, function (data) {
@@ -74,7 +100,29 @@
                             debugger;
                         });
                     });
-                });
+                });*/
+        require(["dijit/layout/TabContainer","dijit/layout/ContentPane","customWidget/contentPane/ContentPane","dojo/domReady!"],function(TabContainer,ContentPane,ContentPane1){
+            var tabContainer=new TabContainer();
+            tabContainer.placeAt("tabContainer");
+           var contentPane1= new ContentPane({
+                title:"标签1"
+            });
+            tabContainer.addChild(contentPane1);
+            var contentPane2= new ContentPane1({
+                parentNode:tabContainer
+            });
+            tabContainer.startup();
+        });
+
+        require(["dojox/form/FileUploader","dojo/domReady!"],function(FileUploader){
+            var uploader = new FileUploader({
+                hoverClass:"uploadHover",
+                activeClass:"uploadBtn",
+                pressClass:"uploadPress",
+                disabledClass:"uploadDisable",
+                uploadUrl:"www.baidu.com"
+            }, "btn");
+        });
     </script>
 </head>
 <body class="claro">
@@ -82,5 +130,8 @@
 
 <div id="output"></div>
 <button type="button" id="startButton">Start</button>
+<div id="tabContainer" style="height: 400px;width: 200px;"></div>
+
+<button id="btn" style="background-image: url('images/play.png')" class="uploadBtn">上传</button>
 </body>
 </html>
