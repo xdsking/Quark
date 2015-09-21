@@ -32,6 +32,9 @@
             color:#999;
             border:1px solid #999;
         }
+        .labelClass{
+            text-align: right;
+        }
     </style>
     <script type="text/javascript">
         var dojoConfig = {
@@ -133,5 +136,39 @@
 <div id="tabContainer" style="height: 400px;width: 200px;"></div>
 
 <button id="btn" style="background-image: url('images/play.png')" class="uploadBtn">上传</button>
+
+
+<table>
+    <tr>
+        <td class="labelClass"><label>缓冲半径:</label></td>
+        <td><input type="text" data-dojo-type="dijit/form/NumberTextBox" data-dojo-props="style:'width:150px;'"></td>
+    </tr>
+    <tr>
+        <td class="labelClass"><label>年份:</label></td>
+        <td><select data-dojo-type="dijit/form/Select">
+            <option value="">--请选择--</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+        </select></td>
+    </tr>
+    <tr>
+        <td class="labelClass"><label>已/未供应:</label></td>
+        <td><select data-dojo-type="dijit/form/Select">
+            <option value="">--请选择--</option>
+            <option value="已供应">已供应</option>
+            <option value="未供应">未供应</option>
+        </select></td>
+    </tr>
+    <tr>
+        <td class="labelClass"><label>供应方式:</label></td>
+        <td><select data-dojo-type="dijit/form/Select">
+            <option value="">--请选择--</option>
+            <option value="出让">出让</option>
+            <option value="其它">其它</option>
+        </select></td>
+    </tr>
+</table>
 </body>
 </html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <title>jQuery mobile 例子</title>
+    <link rel="stylesheet" href="../CDN/lib/jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.css">
+    <!--<link rel="stylesheet" href="../CDN/lib/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css">-->
+    <script src="../CDN/lib/jQuery/jQuery-1.11.1.js"></script>
+    <script src="../CDN/lib/jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.js"></script>
+    <!--<script src="../CDN/lib/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
+</head>
+<body>
+<div data-role="page">
+    <div data-role="header" data-theme="b"><!-- data-position="fixed" data-fullscreen="true"-->
+        <a data-icon="arrow-l" data-iconpos="notext" data-iconshadow="true" data-corners="false"></a>
+        <!--data-role="button" 在工具栏中是自动的-->
+        <h1>页眉</h1>
+        <a data-icon="arrow-r" data-iconpos="notext" data-iconshadow="true" data-corners="false"
+           class="ui-btn-right"></a>
+    </div>
+    <div data-role="content">
+        <fieldset data-role="controlgroup">
+            <legend>请选择您的性别：</legend>
+            <label for="male">男性</label>
+            <input type="radio" name="gender" id="male" value="male" checked>
+            <label for="female">女性</label>
+            <input type="radio" name="gender" id="female" value="male">
+        </fieldset>
+        <fieldset data-role="controlgroup">
+            <legend>请选择您喜爱的颜色：</legend>
+            <label for="red">红色</label>
+            <input type="checkbox" name="favcolor" id="red" value="red">
+            <label for="green">绿色</label>
+            <input type="checkbox" name="favcolor" id="green" value="green">
+            <label for="blue">蓝色</label>
+            <input type="checkbox" name="favcolor" id="blue" value="blue">
+        </fieldset>
+        <a data-role="button" data-icon="arrow-r" data-iconpos="notext" data-iconshadow="true" data-corners="false" data-theme="a"></a>
+        <a data-role="button" data-icon="arrow-r" data-iconpos="notext" data-iconshadow="true" data-corners="false" data-theme="b"></a>
+        <a data-role="button" data-icon="arrow-r" data-iconpos="notext" data-iconshadow="true" data-corners="false" data-theme="c"></a>
+        <a data-role="button" data-icon="arrow-r" data-iconpos="notext" data-iconshadow="true" data-corners="false" data-theme="d"></a>
+        <a data-role="button" data-icon="arrow-r" data-iconpos="notext" data-iconshadow="true" data-corners="false" data-theme="e"></a>
+    </div>
+    <div data-role="footer" data-position="fixed" data-fullscreen="true" data-theme="c" >
+        <h1>页脚</h1>
+    </div>
+</div>
+</body>
+</html>
