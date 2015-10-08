@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<title>Test page</title><title>Cross-device Address Bar Hide - Example 1</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script src="../../CDN/lib/jQuery/jQuery-1.11.1.js"></script>
+	<!--<script src="hide-address-bar.js"></script>-->
+    <script>
+        $(function(){
+            $("#mainViewPane").css("height",(document.body.scrollHeight+1)+"px")
+        });
+    </script>
+</head>
+<body>
+<div id="mainViewPane">
+    <p>The script on this page should hide the address bar on iOS and Android.</p>
+    <input type="text" style="width: 200px;">
+</div>
+
+</body>
+</html>
