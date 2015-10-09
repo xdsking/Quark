@@ -5,7 +5,8 @@
     Request = {
         getPrameter: getPrameter,
         getPrameterValues: getPrameterValues,
-        setParam1:setParam1
+        setParam1:setParam1,
+        性别:"男"
     };
     var param1={aa:11,bb:22};
     function getPrameter(){
