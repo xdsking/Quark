@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Deferred all when request </title>
+    <link rel="stylesheet" type="text/css"
+          href="../CDN/lib/dojo-release-1.9.3/dijit/themes/claro/claro.css"/>
+    <link href="//cdn.bootcss.com/animate.css/3.3.0/animate.css" rel="stylesheet">
+    <style type="text/css">
+    body{
+        margin: 0;
+        overflow:hidden
+    }
+    </style>
+    <script type="text/javascript">
+        var dojoConfig = {
+            async: true,
+            parseOnLoad: true,
+            packages: [
+                {
+                    name: "customWidget",
+                    location: "/web-app/Quark/js/customWidget"
+                }
+            ]
+        };
+    </script>
+    <script type="text/javascript" src="../CDN/lib/dojo-release-1.9.3/dojo/dojo.js"></script>
+    <script>
+        require(["dijit/layout/BorderContainer","dijit/layout/ContentPane","dojo/domReady!"],function(BorderContainer,ContentPane){
+            var bc = new BorderContainer({
+                style: "position: absolute;height: 100%; width: 100%;",
+                liveSplitters:true,
+                gutters:true,
+                design:'sidebar'
+            });
+
+            var cp1 = new ContentPane({
+                region: "left",
+                style: "width: 18%",
+                splitter:true,
+                content: "功能菜单"
+            });
+            bc.addChild(cp1);
+
+            var cp2 = new ContentPane({
+                region: "center"
+            });
+            bc.addChild(cp2);
+            var bc1=new BorderContainer({style: "height: 100%; width: 100%;"});
+            var cp4 = new ContentPane({
+                region: "center",
+                content: "地图对象"
+            });
+            var cp3 = new ContentPane({
+                region: "bottom",
+                splitter:true,
+                style:"height:25%;",
+                content: "结果列表"
+            });
+            bc1.addChild(cp3);
+            bc1.addChild(cp4);
+            cp2.addChild(bc1);
+            bc.placeAt(document.body);
+            bc.startup();
+        });
+    </script>
+</head>
+<body class="claro">
+</body>
+</html>
