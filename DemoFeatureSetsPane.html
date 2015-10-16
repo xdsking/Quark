@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title></title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../CDN/lib/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="../CDN/lib/bootstrap-3.3.0-dist/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!--Font Awesome 图标字体-->
+    <link rel="stylesheet" href="../CDN/lib/Font-Awesome-3.2.1/css/font-awesome.min.css">
+    <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+    <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+    <!--[if lt IE 9]>
+    <script src="../CDN/lib/bootstrap-3.3.0-dist/dist/js/html5shiv.js"></script>
+    <script src="../CDN/lib/bootstrap-3.3.0-dist/dist/js/respond.min.js"></script>
+    <![endif]-->
+    <script src="../CDN/lib/jQuery/jQuery-1.11.1.js"></script>
+    <style>
+        .cstm-panel {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            right: 0;
+            margin-bottom: 0;
+        }
+        .cstm-panel-close{
+            width: 45px;
+        }
+        .cstm-panel-heading {
+            padding: 5px;
+            height: 35px;
+        }
+
+        .cstm-glyphicon {
+            padding: 5px 8px;
+            cursor: pointer;
+        }
+
+        .panel-body-close {
+            display: none;
+        }
+
+        .toolBarPane-close {
+            display: none;
+        }
+
+        .cstm-glyphicon:hover {
+
+            color: #fff;
+            background-color: #563d7c;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#closeFeatureSetsPanel").click(function () {
+
+                $(".cstm-panel").toggleClass("cstm-panel-close");
+                $(".cstm-panel .panel-body").toggleClass("panel-body-close");
+                $(".cstm-panel .toolBarPane").toggleClass("toolBarPane-close");
+                $(this).toggleClass("glyphicon-remove glyphicon-eject");
+            });
+
+        });
+    </script>
+</head>
+
+<body role="document">
+<div class="panel panel-default cstm-panel">
+    <div class="panel-heading cstm-panel-heading" oncontextmenu='return false' ondragstart='return false' onselectstart ='return false' onselect='document.selection.empty()' oncopy='document.selection.empty()' onbeforecopy='return false' onmouseup='document.selection.empty()'>
+        <span class="toolBarPane">
+        <span class="glyphicon glyphicon-align-left cstm-glyphicon" aria-hidden="true"></span>
+        <span class="glyphicon glyphicon-import cstm-glyphicon" aria-hidden="true"></span>
+        <span class="glyphicon glyphicon-export cstm-glyphicon" aria-hidden="true"></span>
+        <span class="glyphicon glyphicon-send cstm-glyphicon" aria-hidden="true"></span>
+        <span class="glyphicon glyphicon-flash cstm-glyphicon" aria-hidden="true"></span>
+        </span>
+        <span id="closeFeatureSetsPanel" class="glyphicon glyphicon-remove cstm-glyphicon" style="float: right;"
+              aria-hidden="true"></span>
+    </div>
+    <div class="panel-body">
+        Panel content
+    </div>
+
+</div>
+</body>
+</html>

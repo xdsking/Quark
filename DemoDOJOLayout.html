@@ -5,12 +5,33 @@
     <title>Deferred all when request </title>
     <link rel="stylesheet" type="text/css"
           href="../CDN/lib/dojo-release-1.9.3/dijit/themes/claro/claro.css"/>
+    <link rel="stylesheet" type="text/css" href="../CDN/lib/dojo-release-1.9.3/dojox/layout/resources/FloatingPane.css">
+    <link rel="stylesheet" type="text/css"
+          href="../CDN/lib/dojo-release-1.9.3/dojox/grid/enhanced/resources/claro/EnhancedGrid.css">
+    <link rel="stylesheet" type="text/css" href="../CDN/lib/dojo-release-1.9.3/dojox/layout/resources/ResizeHandle.css">
     <link href="//cdn.bootcss.com/animate.css/3.3.0/animate.css" rel="stylesheet">
     <style type="text/css">
-    body{
-        margin: 0;
-        overflow:hidden
-    }
+        body {
+            margin: 0;
+            overflow: hidden
+        }
+
+        .titlePaneClass {
+            position: absolute !important;
+            padding: 0;
+            bottom: 0px !important;
+            height: 230px !important;
+        }
+
+        .titlePaneClass .dijitTitlePaneContentOuter {
+            height: 200px;
+        }
+        .bc1{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            padding:0;
+        }
     </style>
     <script type="text/javascript">
         var dojoConfig = {
@@ -26,43 +47,66 @@
     </script>
     <script type="text/javascript" src="../CDN/lib/dojo-release-1.9.3/dojo/dojo.js"></script>
     <script>
-        require(["dijit/layout/BorderContainer","dijit/layout/ContentPane","dojo/domReady!"],function(BorderContainer,ContentPane){
-            var bc = new BorderContainer({
-                style: "position: absolute;height: 100%; width: 100%;",
-                liveSplitters:true,
-                gutters:true,
-                design:'sidebar'
-            });
+        require(["dojo/dom-construct","dijit/layout/TabContainer","dijit/form/Button","dijit/Toolbar", "dijit/TitlePane", "dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dojox/layout/FloatingPane", "dojo/domReady!"],
+                function (domConstruct,TabContainer,Button,Toolbar, TitlePane, BorderContainer, ContentPane, FloatingPane) {
+                    var bc = new BorderContainer({
+                        style: "position: absolute;height: 100%; width: 100%;",
+                        liveSplitters: true,
+                        gutters: true,
+                        design: 'sidebar'
+                    });
 
-            var cp1 = new ContentPane({
-                region: "left",
-                style: "width: 18%",
-                splitter:true,
-                content: "功能菜单"
-            });
-            bc.addChild(cp1);
+                    var cp1 = new ContentPane({
+                        region: "left",
+                        style: "width: 18%",
+                        splitter: true,
+                        content: "功能菜单"
+                    });
+                    bc.addChild(cp1);
 
-            var cp2 = new ContentPane({
-                region: "center"
-            });
-            bc.addChild(cp2);
-            var bc1=new BorderContainer({style: "height: 100%; width: 100%;"});
-            var cp4 = new ContentPane({
-                region: "center",
-                content: "地图对象"
-            });
-            var cp3 = new ContentPane({
-                region: "bottom",
-                splitter:true,
-                style:"height:25%;",
-                content: "结果列表"
-            });
-            bc1.addChild(cp3);
-            bc1.addChild(cp4);
-            cp2.addChild(bc1);
-            bc.placeAt(document.body);
-            bc.startup();
-        });
+                    var cp2 = new ContentPane({
+                        region: "center",
+                        style:"padding:0"
+                    });
+                    bc.addChild(cp2);
+                    var bc1 = new BorderContainer(
+                            {
+                                class:"bc1"
+                            });
+                    var cp4 = new ContentPane({
+                        style: "padding:0",
+                        region: "center",
+                        content: "地图对象"
+                    });
+                    /*var cp3 = new ContentPane({
+                     region: "bottom",
+                     splitter: true,
+                     style: "height:25%;",
+                     content: "结果列表"
+                     });*/
+                    var tp = new TitlePane({
+                        title: "查询结果",
+                        toggleable: false,
+                        "class": "titlePaneClass"
+                    });
+                    var toolbar=new Toolbar();
+                    var copy=new Button({
+                        label:"复制"
+                    });
+                    toolbar.addChild(copy);
+                    //toolbar.placeAt(tp);
+
+                    var tabContainer=TabContainer();
+                    new ContentPane({title:"结果1",content:"1111"}).placeAt(tabContainer);
+                    new ContentPane({title:"结果2",content:"222"}).placeAt(tabContainer);
+                    new ContentPane({title:"结果3",content:"333"}).placeAt(tabContainer);
+                    tp.addChild(tabContainer);
+                    cp4.addChild(tp);
+                    bc1.addChild(cp4);
+                    cp2.addChild(bc1);
+                    bc.placeAt(document.body);
+                    bc.startup();
+                });
     </script>
 </head>
 <body class="claro">
