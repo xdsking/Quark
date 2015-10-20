@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        .class1 {
+            font-weight: 700;
+            color: #FF4400;
+        }
+
+    </style>
+    <script>
+        function dwn(s) {
+            document.write(s + "<br/>")
+        }
+        function ListTemplate(type) {
+            var members = [];
+            var list = function () {
+                this.append.apply(this, arguments);
+            };
+            list.prototype.append = function () {
+                for (var i = 0; i < arguments.length; i++) {
+
+                    if (typeof(arguments[i]) == type ||
+                            (typeof(type) == 'function' && arguments[i] instanceof type)) {
+                        members.push(arguments[i]);
+                    } else {
+                        throw new TypeError("类型不匹配！");
+                    }
+                }
+            };
+            list.prototype.toArray = function () {
+                return members.slice(0);
+            };
+            return list;
+        }
+        NumberList = new ListTemplate("number");
+        var a = new NumberList(1, 2, 3);
+    </script>
+</head>
+<body>
+<p>　　当前地块周围<label class="class1">100</label>米范围内，包含<label class="class1">2</label>个<label
+        class="class1">2015</label>年<label class="class1">出让</label>并<label class="class1">已供应</label>的地块，平均地价为<label
+        class="class1">10000</label>rmb/㎡。</p>
+<input type="checkbox" checked>xxxxxx
+</body>
+</html>
