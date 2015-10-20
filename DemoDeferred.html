@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="http://localhost:870/local-cdn//dojo-release-1.10.4/dijit/themes/claro/claro.css"/>
+    <link rel="stylesheet" type="text/css" href="../CDN/lib/dojo-release-1.10.4/dijit/themes/claro/claro.css"/>
     <script type="text/javascript">
         var dojoConfig = {
             async: true,
@@ -16,10 +16,11 @@
             ]
         };
     </script>
-    <script type="text/javascript" src="http://localhost:870/local-cdn/dojo-release-1.10.4/dojo/dojo.js"></script>
+    <script type="text/javascript" src="../CDN/lib/dojo-release-1.10.4/dojo/dojo.js"></script>
     <script>
-        require(["dojo/on","dojo/dom", "dijit/registry", "dojo/Deferred","dojo/_base/window","dojo/dom-construct",  "dojo/domReady!"
-        ], function (on,dom, registry, Deferred,window,domConstruct) {
+        require(["dojo/on", "dojo/dom", "dijit/registry", "dojo/Deferred", "dojo/promise/all", "dojo/_base/window",
+            "dojo/dom-construct", "dojo/domReady!"
+        ], function (on, dom, registry, Deferred, all, window, domConstruct) {
             function asyncProcess() {
                 var timeout;
                 var deferred = new Deferred(function (reason) {
@@ -27,27 +28,35 @@
                     clearTimeout(timeout);
                     dom.byId("output").innerHTML += "<br/>I was cancelled with reason: " + reason;
                 });
-                //dom.byId("output").innerHTML += "<br/>I'm running...";
                 timeout = setTimeout(function () {
-                    //dom.byId("output").innerHTML += "<br/>My process completed!";
-                    domConstruct.create("link", {
-                        rel : "stylesheet",
-                        type : "text/css",
-                        href : "css/index.css"
-                    }, window.doc.head||window.doc.getElementsByTagName("head")[0]);
                     deferred.resolve("finished");
                 }, 2000);
                 return deferred.promise;
             }
+
             on(dom.byId("startButton"), "click", function () {
                 var process = asyncProcess();
                 process.then(function (results) {
-                    //dom.byId("output").innerHTML += "<br/>I'm finished, and the result was: " + results;
+                    dom.byId("output").innerHTML += "<br/>I'm finished, and the result was: " + results;
                 });
                 /*setTimeout(function () {
-                    process.cancel("goodbye");
-                }, 1000);*/
+                 process.cancel("goodbye");
+                 }, 1000);*/
             });
+            function moreAsyncProcess() {
+                var asyncProcessArray = [];
+                for (var i = 0; i < 5; i++) {
+                    asyncProcessArray.push(asyncProcess());
+                }
+                return asyncProcessArray;
+            }
+
+            on(dom.byId("startsButton"), "click", function () {
+                var oi = moreAsyncProcess();
+                all(oi).then(function (results) {
+
+                });
+            })
 
         });
     </script>
@@ -55,5 +64,6 @@
 <body class="claro">
 <div id="output">Not yet started.</div>
 <button type="button" id="startButton">Start</button>
+<button type="button" id="startsButton">Starts</button>
 </body>
 </html>
