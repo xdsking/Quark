@@ -7,20 +7,22 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <title></title>
     <link rel="stylesheet" type="text/css"
-          href="http://localhost:870/local-cdn/dojo-release-1.10.4/dijit/themes/claro/claro.css"/>
+          href="../CDN/lib/dojo-release-1.10.4/dijit/themes/claro/claro.css"/>
     <link rel="stylesheet" type="text/css"
-          href="http://localhost:870/local-cdn/arcgis_js_api/3.9/js/dojo/dijit/themes/claro/claro.css">
+          href="../CDN/lib/arcgis_js_api/3.9/js/dojo/dijit/themes/claro/claro.css">
     <link rel="stylesheet" type="text/css"
-          href="http://localhost:870/local-cdn/arcgis_js_api/3.9/js/esri/css/esri.css">
+          href="../CDN/lib/arcgis_js_api/3.9/js/esri/css/esri.css">
     <!--<script type="text/javascript" src="js/dojo-release-1.9.3-src/dojox/mobile/deviceTheme.js"></script>-->
     <style type="text/css">
-        .mapPanel {
+        body{
+            margin: 0;
+        }
+
+        #map {
+            position: absolute;
             width: 100%;
             height: 100%;
-        }
-        #map {
             overflow: hidden;
-            border: solid 1px black;
             padding: 0;
         }
     </style>
@@ -29,177 +31,33 @@
             async: true,
             parseOnLoad: true,
             packages: [
-                {
-                    name: "teamLib",
-                    location: "/Quark/js/com/teamLib"
-                }
             ]
         };
     </script>
-    <script type="text/javascript" src="http://localhost:870/local-cdn/arcgis_js_api/3.9/init.js"></script>
+    <script type="text/javascript" src="../CDN/lib/arcgis_js_api/3.9/init.js"></script>
     <script type="text/javascript">
         require(["dojo/_base/Color", "dojo/on", "dojo/_base/array", "dojo/ready", "esri/map",
                     "esri/dijit/Measurement", "esri/layers/ArcGISTiledMapServiceLayer", "esri/layers/FeatureLayer",
                     "esri/tasks/BufferParameters", "esri/tasks/GeometryService", "esri/graphic",
                     "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol", "esri/units", "esri/tasks/query",
-                    "teamLib/spatialQueryPane/SpatialQueryPane",
                     "dijit/form/Button",
-                    "esri/symbols/TextSymbol","esri/Color", "esri/symbols/Font",
+                    "esri/symbols/TextSymbol", "esri/Color", "esri/symbols/Font",
                     "dijit/layout/BorderContainer", "dijit/layout/ContentPane"],
-                function (Color, on, array, ready, Map, Measurement, ArcGISTiledMapServiceLayer, FeatureLayer, BufferParameters, GeometryService, Graphic, SimpleFillSymbol, SimpleLineSymbol, units, Query, SpatialQueryPane, Button,
-                          TextSymbol,esriColor,Font) {
+                function (Color, on, array, ready, Map, Measurement, ArcGISTiledMapServiceLayer, FeatureLayer, BufferParameters, GeometryService, Graphic, SimpleFillSymbol, SimpleLineSymbol, units, Query, Button, TextSymbol, esriColor, Font) {
                     var map;
-                    var addTextSymbol;
+                    ready(function () {
+                        init();
+                    });
                     function init() {
                         map = new Map("map", {slider: true, autoResize: false});
-                        var layer = new ArcGISTiledMapServiceLayer("http://localhost:6080/arcgis/rest/services/YJ/XZQ/MapServer");
+                        var layer = new ArcGISTiledMapServiceLayer("http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer");
                         map.addLayer(layer);
-                        var resizeTimer;
-                        on(map, 'onLoad', function () {
-                            on(dijit.byId('map'), 'resize', function () {
-                                clearTimeout(resizeTimer);
-                                resizeTimer = setTimeout(function () {
-                                    //map.resize(false);
-                                    map.reposition();
-                                    /* require(["esri/toolbars/navigation"],function(navigation){
-                                     var nav=new navigation(window.map);
-                                     nav.zoomToFullExtent();
-                                     debugger;
-                                     });*/
-                                }, 1000);
-                            });
-                        });
                     }
-
-                    function registerQueryButton() {
-                        var curGraphic;
-                        var featureLayer;
-
-                        function selectInBuffer(response) {
-                            array.forEach(response.features, function (feature) {
-                                var lineSymbol = new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID).setWidth(2).setColor(new Color([211, 0, 0]));
-                                var highLightPolygonSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, lineSymbol, new Color([211, 111, 255, 0.5]));//.setOutline(lineSymbol);
-                                feature.setSymbol(highLightPolygonSymbol);
-                                map.graphics.add(feature);
-                            });
-
-                        }
-
-                        new Button({
-                            label: "添加土地用途图层",
-                            onClick: function () {
-                                if (featureLayer) {
-                                    alert("已添加!");
-                                    return;
-                                }
-                                featureLayer = new ArcGISTiledMapServiceLayer("http://localhost:6080/arcgis/rest/services/YJ/TDYT/MapServer",
-                                        {
-                                            opacity: 0.7
-                                        });
-                                on(featureLayer, "click", function (evt) {
-                                    var lineSymbol = new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID).setWidth(2).setColor(new Color([211, 0, 0]));
-                                    var highLightPolygonSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, lineSymbol, new Color([211, 111, 255, 0.5]));//.setOutline(lineSymbol);
-                                    curGraphic = evt.graphic;
-                                    curGraphic.setSymbol(highLightPolygonSymbol);
-                                    map.graphics.add(curGraphic);
-                                });
-                                map.addLayer(featureLayer);
-                            }
-                        }).placeAt("toolPane");
-
-                        new Button({
-                            label: "addTextSymbol",
-                            onClick: function () {
-                                addTextSymbol=on(map,"click",function(evt){
-                                    var textSymbol =  new TextSymbol("<div>Hello World</div>").setColor(
-                                            new esriColor([128,0,0])).setAlign(Font.ALIGN_START).setAngle(0).setFont(
-                                            new Font("12pt").setWeight(Font.WEIGHT_BOLD));
-                                    var labelGraphic = new Graphic(evt.mapPoint, textSymbol);
-                                    map.graphics.add(labelGraphic);
-
-                                });
-
-                            }
-                        }).placeAt("toolPane");
-                        new Button({
-                            label: "查询相邻地块",
-                            onClick: function (evt) {
-                                if (curGraphic) {
-                                    var bufferParameters = new BufferParameters();
-                                    bufferParameters.distances = [1];
-                                    bufferParameters.unit = GeometryService.UNIT_KILOMETER;
-                                    bufferParameters.outSpatialReference = map.spatialReference;
-                                    bufferParameters.geometries = [curGraphic.geometry];
-                                    var geometryService = new GeometryService("http://localhost:6080/arcgis/rest/services/Utilities/Geometry/GeometryServer");
-                                    geometryService.buffer(bufferParameters, function (bufferedGeometries) {
-                                        var symbol = new SimpleFillSymbol(
-                                                SimpleFillSymbol.STYLE_SOLID,
-                                                new SimpleLineSymbol(
-                                                        SimpleLineSymbol.STYLE_SOLID,
-                                                        new Color([255, 0, 0, 0.65]), 2
-                                                ),
-                                                new Color([255, 0, 0, 0.35])
-                                        );
-
-                                        array.forEach(bufferedGeometries, function (geometry) {
-                                            var graphic = new Graphic(geometry, symbol);
-                                            map.graphics.add(graphic);
-                                            var query = new Query();
-                                            query.spatialRelationship = Query.SPATIAL_REL_INTERSECTS;
-                                            query.geometry = graphic.geometry.getExtent();
-                                            featureLayer.queryFeatures(query, selectInBuffer);
-                                        });
-                                    });
-                                } else {
-                                    alert("未选择图斑!");
-                                }
-                            }
-                        }).placeAt("toolPane");
-                        new Button({
-                            label: "清除",
-                            onClick: function () {
-                                if(addTextSymbol){
-                                    addTextSymbol.remove();
-                                }
-                                map.graphics.clear();
-                            }
-                        }).placeAt("toolPane");
-                    }
-
-                    function initMapPaneHeight() {
-                        var mapPaneNode = dojo.byId("map");
-                        var bodyScrollHeight = document.body.scrollHeight;
-                        mapPaneNode.style.height = (bodyScrollHeight - 18) + "px";
-                    }
-
-                    ready(function () {
-                        initMapPaneHeight();
-                        init();
-                        registerQueryButton();
-                        new SpatialQueryPane({map: map}).placeAt("widgetPane");
-                        var measurement = new Measurement({
-                            map: map,
-                            defaultLengthUnit: units.KILOMETERS,
-                            defaultAreaUnit: units.SQUARE_KILOMETERS
-                        }).placeAt("measurementPane");
-                        measurement.startup();
-
-                    });
                 });
 
     </script>
 </head>
 <body class="claro">
-<div class="mapPanel">
-    <div id="map" data-dojo-type="dijit/layout/ContentPane" region="center"></div>
-</div>
-<div style="position: absolute;top: 9px;right: 9px;font-size: 12px;">
-    <div data-dojo-type="dijit/TitlePane" id="widgetPane"
-         data-dojo-props="open:false,title:'客户端绘制',style:'float:right;background-color: #808080;'"></div>
-    <div data-dojo-type="dijit/TitlePane" id="measurementPane"
-         data-dojo-props="open:false,title:'测量',style:'float:right;background-color: #808080;'"></div>
-    <div data-dojo-type="dijit/TitlePane" id="toolPane"
-         data-dojo-props="open:false,title:'工具',style:'float:right;background-color: #808080;'"></div>
-</div>
+<div id="map" data-dojo-type="dijit/layout/ContentPane" region="center"></div>
 </body>
 </html>

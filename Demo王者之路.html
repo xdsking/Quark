@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script>
+    var hashTale = {a: 1, b: 2, c: 3};
+    console.log(hashTale["b"]);
+    delete hashTale.c;
+    console.log(hashTale["c"]);
+    hashTale["d"] = 4;
+    for (var f in hashTale) {
+        console.log(hashTale[f]);
+    }
+    var d = "h";
+    console.log(d in hashTale);
+    /*集合操作及闭包*/
+    function trans(list, op) {
+        for (var i = 0; i < list.length; i++) {
+            list[i] = op(list[i]);
+        }
+    }
+    var list = [1, 2, 3, 4, 5];
+    console.log(list);
+    trans(list, function (x) {
+        return x + 1;
+    });
+    console.log(list);
+</script>
+<body>
+
+</body>
+</html>

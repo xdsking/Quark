@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="js/dojo-release-1.9.3-src/dijit/themes/claro/claro.css"/>
+    <link rel="stylesheet" type="text/css" href="../CDN/lib/dojo-release-1.9.3/dijit/themes/claro/claro.css"/>
     <link rel="stylesheet" type="text/css" href="css/index.css"/>
     <script type="text/javascript">
         var dojoConfig = {
@@ -17,20 +17,32 @@
             ]
         };
     </script>
-    <script type="text/javascript" src="js/dojo-release-1.9.3-src/dojo/dojo.js"></script>
+    <script type="text/javascript" src="../CDN/lib/dojo-release-1.9.3/dojo/dojo.js"></script>
     <script>
-        require([ "dojo/topic","dijit/form/Button"],
-                function (topic,Button) {
+        require([ "dojo/topic","dijit/form/Button","dojo/on"],
+                function (topic,Button,on) {
                     function fun1(params){
-                        console.log("触发订阅/发布机制");
+                        console.log("触发订阅/发布机制1");
                     }
-                    topic.subscribe("onemap/topic/layer-add",fun1);
-                    new Button({
+                    function fun2(params){
+                        console.log("触发订阅/发布机制2");
+                    }
+                    //setTimeout(function(){
+                        topic.subscribe("onemap/topic/layer-add",fun1);
+                        topic.subscribe("onemap/topic/layer-add",fun2);
+                    //},10000);
+                    var  vv=new Button({
                         label:"publish",
                         onClick:function(){
                             topic.publish("onemap/topic/layer-add",{one:1,two:2});
                         }
                     },"callTopic");
+                    on(vv,"click",function(){
+                        console.log(1);
+                    });
+                    on(vv,"click",function(){
+                        console.log(2);
+                    });
                 });
     </script>
 </head>
