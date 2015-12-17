@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../CDN/lib/dojo-release-1.9.3/dijit/themes/claro/claro.css"/>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+    <script type="text/javascript">
+        var dojoConfig = {
+            async: true,
+            parseOnLoad: true,
+            packages: [
+            ]
+        };
+    </script>
+    <script type="text/javascript" src="../CDN/lib/dojo-release-1.9.3/dojo/dojo.js"></script>
+    <script>
+        require(["dojox/charting/Chart",
+            "dojox/charting/themes/Tom",
+
+            "dojox/charting/plot2d/Lines",
+
+            "dojox/charting/plot2d/Markers",
+
+            "dojox/charting/axis2d/Default",
+
+            "dojo/domReady!"
+        ], function (Chart, theme) {
+            var chartData = [10000, 9200, 11811, 12000, 7662, 13887, 14200, 12222, 12000, 10009, 11288, 12099];
+            var chart = new Chart("chartNode");
+            chart.setTheme(theme);
+            chart.addPlot("default", {
+                type: "Lines",
+                markers: true
+            });
+
+            chart.addAxis("x");
+            chart.addAxis("y", { min: 5000, max: 15000, vertical: true, fixLower: "major", fixUpper: "major" });
+
+            chart.addSeries("SalesThisDecade", chartData);
+            chart.render();
+
+        });
+        /*require([
+         // Require the basic 2d chart resource: Chart2D
+         "dojox/charting/Chart",
+
+         // Require the theme of our choosing
+         "dojox/charting/themes/Dollar",
+
+         // Charting plugins:
+
+         //     We want to plot StackedAreas
+         "dojox/charting/plot2d/StackedAreas",
+
+         //    We want to use Markers
+         "dojox/charting/plot2d/Markers",
+
+         //    We&#x27;ll use default x/y axes
+         "dojox/charting/axis2d/Default",
+
+         // Wait until the DOM is ready
+         "dojo/domReady!"
+         ], function(Chart, theme) {
+
+         // Define the data
+         var chartData = [10000,9200,11811,12000,7662,13887,14200,12222,12000,10009,11288,12099];
+         var chartData2 = [3000,12000,17733,9876,12783,12899,13888,13277,14299,12345,12345,15763];
+
+         // Create the chart within it&#x27;s "holding" node
+         var chart = new Chart("chartNode1");
+
+         // Set the theme
+         chart.setTheme(theme);
+
+         // Add the only/default plot
+         chart.addPlot("default", {
+         type: "StackedAreas",
+         markers: true
+         });
+
+         // Add axes
+         chart.addAxis("x");
+         chart.addAxis("y", { min: 5000, max: 30000, vertical: true, fixLower: "major", fixUpper: "major" });
+
+         // Add the series of data
+         chart.addSeries("Monthly Sales - 2010",chartData);
+         chart.addSeries("Monthly Sales - 2009",chartData2);
+
+         // Render the chart!
+         chart.render();
+
+         });*/
+    </script>
+</head>
+<body>
+<div style="position: absolute;right: 20px;bottom: 100px;width: 300px;height: 200px;">
+    <div id="chartNode" style="width:100%;height:100%;position: absolute;"></div>
+</div>
+<!--<div id="chartNode" style="width:800px;height:400px;"></div>-->
+<!--<div id="chartNode1" style="width:800px;height:400px;"></div>-->
+</body>
+</html>

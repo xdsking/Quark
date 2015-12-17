@@ -7,11 +7,11 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <title></title>
     <link rel="stylesheet" type="text/css"
-          href="http://localhost:870/local-cdn/dojo-release-1.10.4/dijit/themes/claro/claro.css"/>
+          href="../CDN/lib/dojo-release-1.10.4/dijit/themes/claro/claro.css"/>
     <link rel="stylesheet" type="text/css"
-          href="http://localhost:870/local-cdn/arcgis_js_api/3.9/js/dojo/dijit/themes/claro/claro.css">
+          href="../CDN/lib/arcgis_js_api/3.9/js/dojo/dijit/themes/claro/claro.css">
     <link rel="stylesheet" type="text/css"
-          href="http://localhost:870/local-cdn/arcgis_js_api/3.9/js/esri/css/esri.css">
+          href="../CDN/lib/arcgis_js_api/3.9/js/esri/css/esri.css">
     <!--<script type="text/javascript" src="js/dojo-release-1.9.3-src/dojox/mobile/deviceTheme.js"></script>-->
     <style type="text/css">
         .mapPanel {
@@ -26,6 +26,7 @@
     </style>
     <script type="text/javascript">
         var djConfig = {
+            baseUrl:"../CDN/lib/arcgis_js_api/3.9/js/dojo/dojo",
             async: true,
             parseOnLoad: true,
             packages: [
@@ -36,23 +37,24 @@
             ]
         };
     </script>
-    <script type="text/javascript" src="http://localhost:870/local-cdn/arcgis_js_api/3.9/init.js"></script>
+    <script type="text/javascript" src="../CDN/lib/arcgis_js_api/3.9/init.js"></script>
     <script type="text/javascript">
         require(["dojo/_base/Color", "dojo/on", "dojo/_base/array", "dojo/ready", "esri/map",
                     "esri/dijit/Measurement", "esri/layers/ArcGISTiledMapServiceLayer", "esri/layers/FeatureLayer",
                     "esri/tasks/BufferParameters", "esri/tasks/GeometryService", "esri/graphic",
                     "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol", "esri/units", "esri/tasks/query",
-                    "teamLib/spatialQueryPane/SpatialQueryPane",
-                    "dijit/form/Button",
+                    "dijit/form/Button","esri/layers/WMTSLayerInfo", "esri/layers/WMTSLayer",
                     "esri/symbols/TextSymbol","esri/Color", "esri/symbols/Font",
                     "dijit/layout/BorderContainer", "dijit/layout/ContentPane"],
-                function (Color, on, array, ready, Map, Measurement, ArcGISTiledMapServiceLayer, FeatureLayer, BufferParameters, GeometryService, Graphic, SimpleFillSymbol, SimpleLineSymbol, units, Query, SpatialQueryPane, Button,
+                function (Color, on, array, ready, Map, Measurement, ArcGISTiledMapServiceLayer, FeatureLayer,
+                          BufferParameters, GeometryService, Graphic, SimpleFillSymbol, SimpleLineSymbol, units, Query,
+                          Button,WMTSLayerInfo, WMTSLayer,
                           TextSymbol,esriColor,Font) {
                     var map;
                     var addTextSymbol;
                     function init() {
                         map = new Map("map", {slider: true, autoResize: false});
-                        var layer = new ArcGISTiledMapServiceLayer("http://localhost:6080/arcgis/rest/services/YJ/XZQ/MapServer");
+                        /*var layer = new ArcGISTiledMapServiceLayer("http://192.168.110.2:6080/arcgis/rest/services/YJ/XZQ/MapServer");
                         map.addLayer(layer);
                         var resizeTimer;
                         on(map, 'onLoad', function () {
@@ -61,14 +63,27 @@
                                 resizeTimer = setTimeout(function () {
                                     //map.resize(false);
                                     map.reposition();
-                                    /* require(["esri/toolbars/navigation"],function(navigation){
+                                    *//* require(["esri/toolbars/navigation"],function(navigation){
                                      var nav=new navigation(window.map);
                                      nav.zoomToFullExtent();
                                      debugger;
-                                     });*/
+                                     });*//*
                                 }, 1000);
                             });
+                        });*/
+
+                        var layerInfo = new WMTSLayerInfo({
+                            identifier: "XZQ:XZQ",
+                            tileMatrixSet: "EPSG:4326_XZQ",
+                            format: "png"
                         });
+                        var options = {
+                            serviceMode: "KVP",
+                            layerInfo: layerInfo
+                        };
+                        esriConfig.defaults.io.proxyUrl ="http://xspc:8080/onemap-cdn/proxy.jsp";//解决跨域问题
+                        var wmtsLayer = new WMTSLayer("http://192.168.110.2:6163/igs/rest/ogc/WMTSServer", options);
+                        map.addLayer(wmtsLayer);
                     }
 
                     function registerQueryButton() {
@@ -176,7 +191,6 @@
                         initMapPaneHeight();
                         init();
                         registerQueryButton();
-                        new SpatialQueryPane({map: map}).placeAt("widgetPane");
                         var measurement = new Measurement({
                             map: map,
                             defaultLengthUnit: units.KILOMETERS,

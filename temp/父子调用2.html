@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../../CDN/lib/jQuery/jQuery-1.11.1.js"></script>
+    <script>
+        $(function () {
+            $(window).keydown({a:1111},function(event){
+                alert(event.keyCode);
+
+            });
+            $(window).keydown(function(event){
+                alert(22222);
+            });
+            $("#pro").click(function(){
+                $(window).keydown();
+            });
+            $("#next").click(function(){
+                $(window).keydown();
+            });
+        });
+
+    </script>
+</head>
+<body>
+<button style="display: none" id="pro">rrrr</button>
+<button style="display: none" id="next">rrrr</button>
+</body>
+</html>
