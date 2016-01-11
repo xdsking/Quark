@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <meta charset="utf-8" />
+    <title>yeziyuan</title>
+    <meta name="viewport" content="width=320.1,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui" />
+    <meta name="apple-mobile-web-app-title" content="yeziyuan" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="full-screen" content="yes" />
+    <meta name="x5-fullscreen" content="true" />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.2/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.2/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<style>
+    #languageButtons {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .language-switch-button {
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+        width: 20%;
+        padding: 8px;
+        border-radius: 3px;
+        margin-top: 10px;
+        font-size: 12px;
+        text-align: center;
+        color: #fff;
+        background: #ee8a65;
+        font-family: sans-serif;
+        font-weight: bold;
+    }
+    .language-switch-button:hover{
+        color:#FF4400;
+    }
+</style>
+<div id='map'></div>
+<ul id="languageButtons">
+    <li onclick='switchLanguage("fr");' class='language-switch-button'>French</li>
+    <li onclick='switchLanguage("ru");' class='language-switch-button'>Russian</li>
+    <li onclick='switchLanguage("de");' class='language-switch-button'>German</li>
+    <li onclick='switchLanguage("es");' class='language-switch-button'>Spanish</li>
+</ul>
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoieGRza2luZyIsImEiOiJjaWo5ZTVlZXAwMDJzdWlseHlhZDAxMGVpIn0.wb6J6mRxUQnjjAJCSRZOaA';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/light-v8',
+        center: [16.05, 48],
+        zoom: 2.9
+    });
+
+    function switchLanguage(language) {
+        // Use setLayoutProperty to set the value of a layout property in a style layer.
+        // The three arguments are the id of the layer, the name of the layout property,
+        // and the new property value.
+        map.setLayoutProperty('country-label-lg', 'text-field', '{name_' + language + '}');
+    }
+</script>
+
+</body>
+</html>
