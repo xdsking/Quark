@@ -7,10 +7,17 @@
     <title>我是个网页，但不显示滚动条</title>
     <script src="../CDN/lib/jQuery/jQuery-1.11.1.js"></script>
     <script>
-
+        $(function(){
+            var y=100;
+            $("#scrollTo").click(function(){
+                window.scrollTo(0,y);
+                y+=100;
+            });
+        });
     </script>
 </head>
 <body style="background: #000000;">
-<div style="height: 300px"></div>
+<div style="height: 2300px;background-color: red;width: 200px;"></div>
+<button id="scrollTo" style="position: fixed;top: 20px;left: 20px;">滚动</button>
 </body>
 </html>

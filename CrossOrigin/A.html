@@ -16,11 +16,11 @@
 	if(typeof(exec_obj)=='undefined'){
 		exec_obj = document.createElement('iframe');
 		exec_obj.name = 'tmp_frame';
-		exec_obj.src = 'http://xspc:8080/onemap-webapp/execB.jsp';
+		exec_obj.src = 'http://xspc:9876/web-app/Quark/CrossOrigin/execB.html?aa=222&bb=rrr';
 		exec_obj.style.display = 'none';
 		document.body.appendChild(exec_obj);
 	}else{
-		exec_obj.src = 'http://xspc:8080/onemap-webapp/execB.jsp?' + Math.random();
+		exec_obj.src = 'http://xspc:9876/web-app/Quark/CrossOrigin/execB.html?aa=111&random' + Math.random();
 	}
   }
   </script>
@@ -28,8 +28,8 @@
  </head>
 
  <body>
-  <p>A.html main</p>
+  <p id="p1">A.html main</p>
   <p><input type="button" value="exec iframe function" onclick="exec_iframe()"></p>
-  <iframe src="http://xspc:8080/onemap-webapp/B.jsp" name="myframe" width="500" height="100"></iframe>
+  <iframe src="http://xspc:9876/web-app/Quark/CrossOrigin/B.html" name="myframe" width="500" height="100"></iframe>
  </body>
 </html>
