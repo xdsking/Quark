@@ -1,0 +1,28 @@
+.cstm-content-pane {
+    text-align: center;
+    background: linear-gradient(45deg,#020031 0,#6d3353 100%);
+}
+.v1 {
+    text-align: center;
+    background: linear-gradient(45deg,#820031 0,#8d3353 100%);
+}
+.v2 {
+    text-align: center;
+    background: linear-gradient(45deg,#220031 0,#8d3353 100%);
+}
+.v3 {
+    text-align: center;
+    background: linear-gradient(45deg,#020031 0,#4d3353 100%);
+}
+.cstm-content-pane:after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url(bs-docs-masthead-pattern.png) repeat center center;
+    opacity: .7;
+    box-sizing: border-box;
+}
