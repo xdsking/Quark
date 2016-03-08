@@ -2,6 +2,10 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <title></title>
     <style rel="stylesheet" type="text/css">
         @media screen and (orientation: portrait) {
@@ -51,8 +55,9 @@
     <script type="application/javascript" src="../CDN/lib/jQuery/jQuery-1.11.1.js"></script>
     <script type="application/javascript">
         $(function () {
-            var width = document.documentElement.clientWidth;
-            var height = document.documentElement.clientHeight;
+            var width = document.body.clientWidth;
+            var height = document.body.clientHeight;
+            alert("clientWidth:" + width + "clientHeight:" + height);//980//1521
             if (width < height) {
                 console.log(width + " " + height);
                 $print = $('#print');
@@ -67,11 +72,11 @@
                     orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
             // var evt = "onorientationchange" in window ? "orientationchange" : "resize";
             window.addEventListener(orientationEvent, function () {
-                var width = document.documentElement.clientWidth;
-                var height = document.documentElement.clientHeight;
-                alert("clientWidth:" + document.documentElement.offsetWidth + "clientHeight:" + document.documentElement.offsetHeight);
-                $print = $('#print');
-                if (window.orientation == 90 || window.orientation == -90) {
+                var width = document.body.clientWidth;
+                var height = document.body.clientHeight;
+                alert("clientWidth:" + document.body.clientWidth + "clientHeight:" + document.body.clientHeight);
+                if (window.orientation == 90 || window.orientation == -90) {//安卓横屏
+                    $print = $('#print');
                     $print.width(width);
                     $print.height(height);
                     $print.css('top', 0);
@@ -80,7 +85,6 @@
                     $print.css('transform-origin', '50% 50%');
                 }
                 else if (window.orientation == 0 || window.orientation == 180) {
-
                     $print.width(height);
                     $print.height(width);
                     $print.css('top', (height - width) / 2);
