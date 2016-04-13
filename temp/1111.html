@@ -1,46 +1,288 @@
-<div id="upload_panel" style="display: none;" class="modal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button id="upload_close_button" type="button" aria-hidden="true" class="close upload_close_button">×</button>
-                <h4 class="modal-title">上传资料</h4>
+<!DOCTYPE html>
+<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <%@ include file="/assets/global.jsp"%>
+    <title>首页</title>
+    <link rel="stylesheet" href="${ctx}/assets/css/comm.css"/>
+    <link rel="stylesheet" href="${ctx}/assets/css/main1.css"/>
+    <link rel="stylesheet" href="${ctx}/assets/css/fixer.css"/>
+    <script src="${ctx}/assets/libs/avalon/avalon.min.js"></script>
+    <script src="${ctx}/assets/libs/cseajs/csea$.js" id="seajsnode"></script>
+    <script type="text/javascript" src="${ctx}/assets/js/ol3/ol-debug.js"></script>
+    <script type="text/javascript" src="${ctx}/assets/js/main1.js"></script>
+    <script type="text/javascript" src="${ctx}/assets/js/conf_4490.js"></script>
+    <script type="text/javascript" src="${ctx}/assets/js/main_layer.js"></script>
+    <script type="text/javascript" src="${ctx}/assets/js/main_measure.js"></script>
+    <script type="text/javascript" src="${ctx}/assets/js/main_poi_tree.js"></script>
+    <script>
+        var pageCfg = {
+            /**
+             * 左侧数数据
+             */
+            action_ltree: ctx + "/govpub/getserlist",
+
+            /**
+             * 区域列表数据
+             */
+            action_zone: ctx + "/bou/all",
+
+
+            /**
+             * 搜索
+             */
+            action_search: ctx + "/govpoi/getlist",
+            /**
+             *添加纠错信息
+             */
+            dataerror_add: ctx + "/datacorrigenda/savedatacorrigenda",
+            /**
+             *添加意见建议
+             */
+            suggest_add: ctx + "/govsuggestion/addSuggest"
+
+
+            //poi数据
+            //"poi_tree_data":""
+        };
+    </script>
+    <style>
+        .hidden {
+            display: none !important;
+        }
+
+        .tooltip {
+            position: relative;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+            color: white;
+            padding: 4px 8px;
+            opacity: 0.7;
+            white-space: nowrap;
+        }
+
+        .tooltip-measure {
+            opacity: 1;
+            font-weight: bold;
+        }
+
+        .tooltip-static {
+            background-color: #ffcc33;
+            color: black;
+            border: 1px solid white;
+        }
+
+        .tooltip-measure:before,
+        .tooltip-static:before {
+            border-top: 6px solid rgba(0, 0, 0, 0.5);
+            border-right: 6px solid transparent;
+            border-left: 6px solid transparent;
+            content: "";
+            position: absolute;
+            bottom: -6px;
+            margin-left: -7px;
+            left: 50%;
+        }
+
+        .tooltip-static:before {
+            border-top-color: #ffcc33;
+        }
+    </style>
+</head>
+<body onload="init_wmts()">
+<em class="cl_loading"></em>
+
+<div class="root">
+    <jsp:include page="/assets/top.jsp"></jsp:include>
+    <div class="main">
+        <div class="toolbar"></div>
+
+        <!--控制面板-->
+        <div class="ctr_pan">
+            <a class="layer">
+                <i></i>
+            </a>
+            <a class="zoom" title="地图缩放">
+                <i class="in"></i>
+                <i class="out"></i>
+            </a>
+        </div>
+        <!--/ctr_pan-->
+
+        <!--浮出框-->
+        <div id="pop" ms-controller="ppan">
+            <h3>{{dt.title}}</h3>
+            <em class="close" ms-click="close">×</em>
+
+            <div class="yh_table">
+                <table>
+                    <tr ms-include="pop_row" ms-repeat="dt.datas" data-include-replace="1"></tr>
+                </table>
+                <textarea type="avalon" style="display: none;" id="pop_row">
+                    <tr>
+                        <td colspan="2" class="tit">{{el.title}}</td>
+                    </tr>
+                    <tr ms-repeat="el.datas">
+                        <td>{{$key}}</td>
+                        <td>{{$val|linkparse|html}}</td>
+                    </tr>
+                </textarea>
             </div>
-            <div class="upload_form_cont">
-                <form id="upload_form" enctype="multipart/form-data" method="post" action="/uplaodVideoTutorial">
-                    <div>
-                        <div>
-                            <button type="button" onclick="startUploading()" style="width: 20%;float: right;" class="btn btn-primary">上传</button>
-                            <input id="image_file" type="file" name="thumbnail" multiple="mutiple" onchange="fileSelected();" style="width: 80%;"/>
-                        </div>
-                    </div>
-                    <div id="fileinfo">
-                        <div id="filename"></div>
-                        <div id="filesize"></div>
-                        <div id="filetype"></div>
-                        <div id="filedim"></div>
-                    </div>
-                    <div id="error">选择有效的文件!</div>
-                    <div id="error2">在上传文件的时候发生了错误！</div>
-                    <div id="abort">上传被取消！</div>
-                    <div id="warnsize">文件太大，选择一个小的文件上传</div>
-                    <div id="progress_info">
-                        <div id="progress"></div>
-                        <div id="progress_percent"> </div>
-                        <div class="clear_both"></div>
-                        <div>
-                            <div id="speed"> </div>
-                            <div id="remaining"> </div>
-                            <div id="b_transfered"> </div>
-                            <div class="clear_both"></div>
-                        </div>
-                        <div id="upload_response"></div>
-                    </div>
-                </form>
+        </div>
+        <!--/pop-->
+        <div id="map"></div>
+
+        <div class="menu">
+            <ul>
+                <li id="add_suggest"><i class="icon yijian s21"></i><span>意见建议</span></li>
+                <li id="add_dataCorr"><i class="icon jiucuo s21"></i><span>地图纠错</span></li>
+                <li id="search_host"><i class="icon sousuo s21"></i><span>搜 索</span></li>
+                <li><i class="icon mian s21"></i><span>测 面</span></li>
+                <li><i class="icon ceju s21"></i><span>测 距</span></li>
+                <li><i class="icon del  s21"></i><span>删 除</span></li>
+                <li id="layer_tree_host"><i class="icon tuceng s21"></i><span>图层/POI</span></li>
+                <li id="layer_tree_choosed"><i class="icon tuceng2 s21"></i><span>已选图层</span></li>
+                <li id="info_show"><i class="icon xinxi s21"></i><span>信息</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="new_nav">
+        <i class="icon_user"></i>
+        <span>当前登录用户:<a href="#">黄局</a></span>
+        <b></b>
+        <a href="#">资源展示</a>
+        <a href="<%=request.getContextPath()%>/assets/pages/tianditu.html">开发者中心</a>
+        <a href="<%=request.getContextPath()%>/manage">管理中心</a>
+        <b></b>
+            <span class="zone" ms-controller="zone">
+                当前位置：
+                <em>{{sel.name}}</em><i></i>
+                <ul class="listpan">
+                    <li>
+                        <em>余杭区</em>
+                        <a ms-repeat="dt" ms-visible="el.id!=0" ms-class-1="ed:el.id==sel.id" ms-click="choose(el)">{{el.name}}</a>
+                    </li>
+                </ul>
+            </span>
+
+    </div>
+
+</div>
+
+
+<!-- 已选图层面板 -->
+<div class="lctl" ms-controller="_ctr_pan">
+    <table>
+        <tr>
+            <th class="name">图层名称</th>
+            <th style="width: 40px;">位移</th>
+            <th style="width: 60px;">透明度</th>
+            <th style="width: 40px;">高亮</th>
+            <th style="width: 40px;">移除</th>
+        </tr>
+
+        <tr ms-visible="!ly.length" class="blank">
+            <td colspan="5"><em>请打开图层树勾选图层</em></td>
+        </tr>
+        <tr ms-repeat="ly">
+            <td class="name">{{el.name}}</td>
+            <td>
+                <!--移动-->
+                <span class="cl_spinner">
+                    <a>
+                        <i class="up" ms-class-1="disable:$first"
+                           ms-click="ly_move(el,$index,$first?0:1)"></i>
+                        <i ms-class-1="disable:$last" ms-click="ly_move(el,$index,$last?0:-1)"
+                           class="down"></i>
+                    </a>
+                </span>
+            </td>
+
+            <td>
+                <!--透明度-->
+                <span class="cl_spinner no_opt" sett="10,100,10">
+                    <b>{{el.alpha}}</b>
+                    <a>
+                        <i class="up" ms-click="ly_alpha(el,1)"
+                           ms-class-1="disable:el.alpha==100"></i>
+                        <i class="down" ms-click="ly_alpha(el,-1)"
+                           ms-class-1="disable:el.alpha==10"></i></a>
+                </span>
+            </td>
+            <td>
+                <!--高亮-->
+                <a class="icon s30 deng_m" ms-visible="el.hlStyle" ms-class-1="deng_l:el.light"
+                   ms-click="ly_light(el)"></a>
+            </td>
+            <!--移除-->
+            <td><a ms-click="ly_remove(el)" class="icon s30 del1"></a></td>
+        </tr>
+    </table>
+</div>
+
+
+<!--搜索功能-->
+<div id="search_wrapper">
+    <span class="input search" ms-controller="search" ms-class-3="view_0:vmode==0" ms-class-1="view_1:vmode==1"
+          ms-class-2="view_2:vmode==2">
+        <input ms-duplex="key" placeholder="请输入关键字进行搜索" ms-on-keydown="input_key_down" ms-on-focus="focus"
+               ms-on-blur="blur"/> <span class="lb" ms-click="dosearch($event)"><i class="icon s21 glass"></i>搜索</span> <i
+            ms-click="doclear()" class="clear">×</i>
+        <div class="poi_type_pan">
+            <a ms-repeat="poitype" ms-click="poi_type_click(el)" ms-attr-code="el.code"><i class="icon s36"
+                                                                                           ms-css-background-image="url({{webroot + el.img}})"></i><em>{{el.title}}</em></a>
+        </div>
+
+        <!--搜索结果-->
+        <div class="result_pan">
+            <div class="inner">
+                <div class="geom_filter"> 过滤区域: &nbsp;&nbsp;<a geom="circ">圆</a> <a geom="rect">矩形</a> <a geom="poly">任意多边形</a>
+                </div>
+                <div class="list">
+                    <a ms-repeat="ret" ms-mouseover="item_mouse(el,$index,$event)"
+                       ms-click="item_mouse(el,$index,$event)"><i
+                            class="dingwei icon s36">{{$index+1}}</i>{{el.name}}</a>
+                </div>
+                <ul class="page"></ul>
             </div>
-            <div class="modal-footer">
-                <button id="upload_button_cancel" type="button" onclick="cancelUploading()" class="btn btn-default upload_close_button">取消</button>
-                <button id="upload_button_ok" style="display: none;" class="btn btn-primary">确定</button>
+        </div>
+    </span>
+</div>
+
+
+<div class="switcher_cont">
+    <a href="#" type="0" class="icon_street"><em>矢量地图</em></a>
+    <a href="#" type="1" class="icon_image"><em>影像地图</em></a>
+    <!--<a href="#" type="2"><em></em></a>-->
+</div>
+
+
+<!--history/2view-->
+<div class="history_pan" ms-controller="history_pan">
+    <div class="sldcont">
+        <div class="sldWrapper">
+            <a class="lbtn"></a>
+            <a class="rbtn"></a>
+
+            <div class="sld">
+                <div class="el"></div>
             </div>
         </div>
     </div>
+    <div class="btnCont">
+        <a class="play" ms-visible="!isplay" ms-click="play(true)"> <em>播放</em> <i></i> </a>
+        <a class="pause" ms-visible="isplay" ms-click="play(false)"> <em>暂停</em> <i></i> </a>
+        <a class="dbview" ms-visible="!isdbview" ms-click="dbview(true)"> <em>对比</em> <i></i> </a>
+        <a class="exit" ms-visible="isdbview" ms-click="dbview(false)"> <em>退出</em> <i></i> </a>
+    </div>
 </div>
+
+</body>
+</html>
