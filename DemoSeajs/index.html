@@ -13,13 +13,13 @@
         base:"./sea-modules",
         // 设置路径，方便跨目录调用
         paths: {
-            'jQuery': '../../../CDN/lib/jQuery'
+            'jQuery': '../../CDN/lib/jQuery'
         },
         alias: {
             '$': 'jQuery/jQuery-1.11.1.js'
         }
     });
-    seajs.use("main");
+    seajs.use(["$","main"]);
 </script>
 </body>
 </html>
