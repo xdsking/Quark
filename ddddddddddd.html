@@ -1,0 +1,78 @@
+<!doctype html><html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <%@ include file="/assets/global.jsp"%>
+    <title></title>
+    <link rel="stylesheet" href="${ctx}/assets/css/login.css"/>
+    <script src="${ctx}/assets/libs/cseajs/csea$.js" id="seajsnode" main="__/js/login.js"></script>
+    <script type="text/javascript">
+        function reRand(){
+            $("#randImg").attr("src", ctx+"/random?t=" + new Date());
+        }
+    </script>
+</head>
+<body>
+<div class="login_left"><img src="../images/bg_left.png"></div>
+<div class="logo"><img src="../images/login_logo.png"></div>
+<div class="login_left"><img src="../images/bg_left.png"></div>
+<div class="login_right"><img src="../images/bg_right.png"></div>
+<div class="bg_center"><img src="../images/bg_center.png"></div>
+
+<form action="#" class="login_content" id="__fm1" action="/cas/login?service=http%3A%2F%2Fwww.qtmap.com%2Fqtplatform%2Flogin.jsp"
+      method="post">
+    <p>
+        <img src="../images/title.png" class="title">
+    </p>
+    <p><input name="username" placeholder="用户名/邮箱" autocomplete="off"></p>
+    <p><input name="password" placeholder="密码" type="password" size="25" autocomplete="off"></p>
+    <p>
+        <input name="code" placeholder="验证码">
+        <!-- <img src="../images/safecode.png" class="code_pic"> -->
+        <img title="看不清点击切换" class="safecode_img" alt="必须输入验证码。"
+             onclick="this.src='../images/captcha.jpg?'+Math.random()" src="../images/captcha.jpg">
+    </p>
+    <input class="pass-button" name="submit" accesskey="l" value="登 录" tabindex="4" type="submit">
+    <!-- <em name="submit" type="submit"></em> -->
+</form>
+
+
+<div class="botton_lf"><img src="../images/bg_bottom_lf.png"></div>
+<div class="botton_rg"><img src="../images/bg_bottom_rg.png"></div>	0
+<div class="footer">建设单位：陕西天润科技股份有限公司</div>
+<script>
+    var login_area = ({
+        init:function(){
+            var m = this;
+            m.el = $(".login-area").show();;
+
+            m.calc_size = function(){
+                m.el.show().css({
+                    marginTop: -m.el.outerHeight() / 2,
+                    marginLeft: -m.el.outerWidth() / 2
+                });
+            }
+
+            setInterval(function(){
+                m.calc_size();
+            },888);
+
+            m.calc_size();
+
+
+
+
+
+            return m;
+        }
+    }).init();
+
+
+</script>
+</body>
+</html>
