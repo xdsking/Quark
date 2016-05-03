@@ -8,6 +8,7 @@ var zoom = 14, mapClick = null;
 var initMap = function () {
     map = new AMap.Map('mapBox', {
         resizeEnable: true,
+        layers: [new AMap.TileLayer.Satellite()],
         zoom: 14,
         center: [108.947071, 34.261365]
 
@@ -17,8 +18,7 @@ var initMap = function () {
 };
 /**
  * @summary 添加要素点
- * @param lng
- * @param lat
+ * @param feature
  */
 function addMarker(map, feature) {
     var marker = new AMap.Marker({
