@@ -22,7 +22,7 @@ var initMap = function () {
  */
 function addMarker(map, feature) {
     var marker = new AMap.Marker({
-        icon: "../img/mapMark.png",
+        icon: "img/mapMark.png",
         position: [feature.lng, feature.lat]
     });
     regMarkerClick(marker, feature);
