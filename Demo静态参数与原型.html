@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        function newBirder(){
+            this._handles=[];
+        }
+        newBirder.prototype.ti=4000;
+        newBirder.prototype.pushHandle=function(value){
+            this._handles.push(value);
+        };
+        newBirder._handles=[];
+        newBirder.pushHandle1=function(value){
+            this._handles.push(value);
+        };
+        var o=new newBirder();
+        newBirder.pushHandle1("L1");
+        newBirder.pushHandle1("L2");
+        o.pushHandle("r1");
+        var o2=new newBirder();
+        o2.pushHandle("r2");
+        console.log(newBirder._handles);
+        console.log(o._handles);
+        console.log(o2._handles);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
