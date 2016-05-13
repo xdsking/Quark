@@ -8,8 +8,8 @@ var zoom = 14, mapClick = null;
 var initMap = function () {
     map = new AMap.Map('mapBox', {
         resizeEnable: true,
-        layers: [new AMap.TileLayer.Satellite()],
-        zoom: 14,
+        /*layers: [new AMap.TileLayer.Satellite()],*/
+        zoom: 3,
         center: [108.947071, 34.261365]
 
     });

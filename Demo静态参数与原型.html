@@ -3,30 +3,51 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <script>
-        function newBirder(){
-            this._handles=[];
+    <style rel="stylesheet">
+        .function-buttons-padding {
+            position: relative;
+            height: 18px;
+            border-right: 1px solid #EEE;
+            top: 10px;
+            float: left;
         }
-        newBirder.prototype.ti=4000;
-        newBirder.prototype.pushHandle=function(value){
+    </style>
+    <script>
+        function newBirder() {
+            this._handles = [];
+            this.po = function () {
+                console.log("1");
+            }
+        }
+        newBirder.prototype.ti = {a: 4000};
+        newBirder.prototype.pushHandle = function (value) {
             this._handles.push(value);
         };
-        newBirder._handles=[];
-        newBirder.pushHandle1=function(value){
+        newBirder.prototype.setTi = function (value) {
+            this.ti = value;
+        };
+        newBirder._handles = [];
+        newBirder.pushHandle1 = function (value) {
             this._handles.push(value);
         };
-        var o=new newBirder();
+        var o = new newBirder();
         newBirder.pushHandle1("L1");
         newBirder.pushHandle1("L2");
         o.pushHandle("r1");
-        var o2=new newBirder();
+        //o.setTi({a: 3000});
+        var o2 = new newBirder();
         o2.pushHandle("r2");
-        console.log(newBirder._handles);
+        //o2.setTi({a: 2000});
+        //console.log(newBirder._handles);
         console.log(o._handles);
         console.log(o2._handles);
     </script>
 </head>
 <body>
+<div style="float: left">11111</div>
+<b class="function-buttons-padding"></b>
 
+<div style="float: left">22222</div>
+<div>22222</div>
 </body>
 </html>
