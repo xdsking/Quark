@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../CDN/lib/jQuery/jQuery-1.11.1.js"></script>
+    <script>
+        $(function () {
+            $("#re1").click(function () {
+                var request = new Request("data/7day-M2.5.json", {
+                    method: 'get',
+                    mode: 'cors',
+                    redirect: 'follow',
+                    headers: new Headers({
+                        /*'Content-Type': 'text/plain'*/
+                        'Content-Type': 'application/json'
+                    })
+                });
+                fetch(request).then(function (response) {
+                    /* return response.json();*/
+                    return response.text();
+                }).then(function (data) {
+                    console.log(data);
+                });
+            });
+            var data1="http://localhost:8080/gov-web/assets/images/icon_xinxi.png";
+            $("#re2").click(function () {
+                fetch(data1, {
+                    method: 'GET',
+                    mode:"no-cors"
+                }).then(function (res) {
+                    return res.blob();
+                }).then(function(imageBlob){
+                    var url=URL.createObjectURL(imageBlob);
+                    debugger;
+                });
+            });
+        });
+
+    </script>
+</head>
+<body>
+<button id="re1">get请求</button>
+<button id="re2">postt请求</button>
+<img src="http://localhost:8080/gov-web/assets/images/icon_xinxi.png">
+</body>
+</html>
