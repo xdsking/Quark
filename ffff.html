@@ -7,49 +7,9 @@
     <script src="//cdn.bootcss.com/three.js/r71/three.js"></script>
     <script>
 
-        var scene, camera, renderer;
-        var geometry, material, mesh;
-$(function(){
-    init();
-    animate();
-});
-
-
-        function init() {
-
-            scene = new THREE.Scene();
-
-            camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
-            camera.position.z = 200;
-
-            geometry = new THREE.RingGeometry( 1, 5, 32 );
-            material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
-
-            mesh = new THREE.Mesh( geometry, material );
-            scene.add( mesh );
-
-            renderer = new THREE.WebGLRenderer();
-            renderer.setSize( window.innerWidth, window.innerHeight );
-
-            //document.body.appendChild( renderer.domElement );
-            $("body").append( renderer.domElement );
-
-        }
-
-        function animate() {
-
-            requestAnimationFrame( animate );
-
-            mesh.rotation.x += 0.01;
-            mesh.rotation.y += 0.02;
-
-            renderer.render( scene, camera );
-
-        }
-
     </script>
 </head>
 <body>
-
+<img src="http://i01.i.aliimg.com/wsphoto/v0/1364808721/Fashion-Jewelry-925-Sterling-Silver-Young-font-b-Original-b-font-Handmade-font-b-Cross-b.jpg">
 </body>
 </html>

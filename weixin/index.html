@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../../CDN/lib/jQuery/jQuery-1.11.1.js"></script>
+    <script src="../../CDN/lib/tools/sha1.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+        var timestamp = Date.parse(new Date());
+        timestamp = timestamp / 1000;
+        var sha1Str="jsapi_ticket=r4Q3LFNv2hESyZi1_EJ6r3OnKzt6ZigG-aBtH3g6j-fxIzT5NxI5ffXUrfEAuke7Np0z0-VSm_m6GYkFEPpWPxRvuG6SvpnLeYa_Vkosk3Q9fe90qz2RPIoEHNWq8K74KMNeAIAFHI" +
+                "&noncestr=5236d804ed654c73a78f633b8a837054" +
+                "&timestamp=" +timestamp+
+                "&url=http://youzan.com:8765/GitHub/Quark/weixin/index.html";
+        sha1Str="jsapi_ticket=kgt8ON7yVITDhtdwci0qeaplqNO_ZFqyWxgkgZG50Vu71nJ6UxCwXI1z_MssfiS6J3_wUoew2gnObtCGxlvuYQ&noncestr=5236d804ed654c73a78f633b8a837054&timestamp=1465783386&url=http://youzan.com:8765/GitHub/Quark/weixin/index.html"
+        var signature ="59a20cc9380388a4402ecee1767934d8626457bd";
+        //var ss="jsapi_ticket=kgt8ON7yVITDhtdwci0qeaplqNO_ZFqyWxgkgZG50Vu71nJ6UxCwXI1z_MssfiS6J3_wUoew2gnObtCGxlvuYQ&noncestr=5236d804ed654c73&timestamp=1465786811&url=http://youzan.com/weixin/index.html";
+        //ss1=sha1(ss);
+        wx.config({
+            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            appId: 'wxb9882316d5c3a39d', // 必填，公众号的唯一标识
+            timestamp: "1465786811", // 必填，生成签名的时间戳
+            nonceStr: '5236d804ed654c73', // 必填，生成签名的随机串a78f633b8a837054
+            signature: signature,// 必填，签名，见附录1
+            jsApiList: ['chooseImage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        });
+        wx.ready(function () {
+            $(function(){
+                $("#shanchuan").click(function(){
+                    // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+                    wx.chooseImage({
+                        count: 1, // 默认9
+                        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+                        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+                        success: function (res) {
+                            var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                        },
+                        fail:function(error){
+                            debugger;
+                        }
+                    });
+                });
+            });
+        });
+        wx.error(function (res) {
+            // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+        });
+
+    </script>
+</head>
+<body>
+<button id="shanchuan">上传照片</button>
+</body>
+</html>

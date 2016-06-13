@@ -10,6 +10,7 @@ requirejs.config({
     }
 });
 requirejs(["jquery", "util", "tools"], function ($, util, tools) {
+
     tools.push(1);
     console.log(tools.getArray());
     tools.push(2);
@@ -32,5 +33,4 @@ requirejs(["jquery", "util", "tools"], function ($, util, tools) {
     console.log(tools.getArray());
     tools.pop();
     console.log(tools.getArray());
-    debugger;
 });
