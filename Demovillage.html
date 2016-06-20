@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title></title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../CDN/lib/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../CDN/lib/jQuery/jQuery-1.11.1.js"></script>
+    <script src="../CDN/lib/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
+    <style rel="stylesheet">
+        .dropdown {
+            margin: 10px 0;
+        }
+
+        .dropdownMenu {
+            width: 100%;
+        }
+
+        .dropdown-menu {
+            width: 100%;
+        }
+
+    </style>
+    <script>
+        var setMenu=function(that){
+            var $parent= $(that.parentNode),value=$(that).text(),
+                    menuId= $parent.attr("aria-labelledby"),
+                    $menu=$("#"+menuId),firstChildNode=$menu.children()[0];
+            $menu.val(value);
+            $(firstChildNode).text(value);
+            return value;
+        };
+        $(function(){
+            $("#dropdown-list1>li").click(function(){
+               var  type= setMenu(this);
+                if(type==="遗产保护"){
+                    $("#dropdown2").slideDown();
+                    $("#dropdown3").slideUp();
+                }else if(type==="遗产利用"){
+                    $("#dropdown3").slideDown();
+                    $("#dropdown2").slideUp();
+                }
+
+            });
+            $("#dropdown-list2>li").click(function(){
+                setMenu(this);
+            });
+            $("#dropdown-list3>li").click(function(){
+                setMenu(this);
+            });
+        });
+    </script>
+</head>
+
+<body role="document">
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle dropdownMenu" type="button" id="villageList"
+                        data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                    <label>选择村镇</label>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="villageList">
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle dropdownMenu" type="button" id="dropdownMenu1"
+                        data-toggle="dropdown" value="遗产保护" aria-haspopup="true" aria-expanded="true">
+                    <label>遗产保护</label>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" id="dropdown-list1" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">遗产保护</a></li>
+                    <li><a href="#">遗产利用</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="dropdown2">
+        <div class="col-xs-12">
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle dropdownMenu" type="button" id="dropdownMenu2"
+                        data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                    <label>建筑风貌保护</label>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" id="dropdown-list2" aria-labelledby="dropdownMenu2">
+                    <li><a href="#">建筑风貌保护</a></li>
+                    <li><a href="#">空间环境保护</a></li>
+                    <li><a href="#">非物质遗产保护</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="dropdown3" style="display: none;">
+        <div class="col-xs-12">
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle dropdownMenu" type="button" id="dropdownMenu3"
+                        data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                    <label>传统性利用</label>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" id="dropdown-list3" aria-labelledby="dropdownMenu3">
+                    <li><a href="#">传统性利用</a></li>
+                    <li><a href="#">公益性利用</a></li>
+                    <li><a href="#">商业性利用</a></li>
+                    <li><a href="#">旅游开发</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <button id="stratUpload" class="btn btn-default">开始上传</button>
+        </div>
+        <div class="col-xs-3">
+            <button id="stratUpload2" class="btn btn-primary">开始上传</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
