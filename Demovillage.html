@@ -21,43 +21,54 @@
             width: 100%;
         }
 
+        .dropdownMenu label {
+            margin-top: 5px;
+        }
+
+        .dropdownMenu span {
+            float: right;
+            margin-top: 12px;
+        }
+
         .dropdown-menu {
             width: 100%;
         }
-        .dropdown-menu li{
+
+        .dropdown-menu li {
             margin: 0 10px;
             border-bottom: 1px dashed #cccccc;
         }
-        .dropdown-menu li a{
+
+        .dropdown-menu li a {
             padding: 6px 2px;
         }
 
     </style>
     <script>
-        var setMenu=function(that){
-            var $parent= $(that.parentNode),value=$(that).text(),
-                    menuId= $parent.attr("aria-labelledby"),
-                    $menu=$("#"+menuId),firstChildNode=$menu.children()[0];
+        var setMenu = function (that) {
+            var $parent = $(that.parentNode), value = $(that).text(),
+                    menuId = $parent.attr("aria-labelledby"),
+                    $menu = $("#" + menuId), firstChildNode = $menu.children()[0];
             $menu.val(value);
             $(firstChildNode).text(value);
             return value;
         };
-        $(function(){
-            $("#dropdown-list1>li").click(function(){
-               var  type= setMenu(this);
-                if(type==="遗产保护"){
+        $(function () {
+            $("#dropdown-list1>li").click(function () {
+                var type = setMenu(this);
+                if (type === "遗产保护") {
                     $("#dropdown2").slideDown();
                     $("#dropdown3").slideUp();
-                }else if(type==="遗产利用"){
+                } else if (type === "遗产利用") {
                     $("#dropdown3").slideDown();
                     $("#dropdown2").slideUp();
                 }
 
             });
-            $("#dropdown-list2>li").click(function(){
+            $("#dropdown-list2>li").click(function () {
                 setMenu(this);
             });
-            $("#dropdown-list3>li").click(function(){
+            $("#dropdown-list3>li").click(function () {
                 setMenu(this);
             });
         });
