@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style rel="stylesheet">
+    </style>
+    <script src="../CDN/lib/jQuery/jQuery-1.11.1.js"></script>
+    <script>
+        var data, url = "data/primer-dataset.json";
+        $(function () {
+            var promise=$.getJSON(url, function (source) {
+                data = source;
+                for (var i = 0; i < 20; i++) {
+                    var item = data[i];
+                    $("#box").append($("<li>", {
+                        text: item.name,
+                        "class": "item"
+                    }));
+                }
+            });
+            promise.then(function(res){
+                debugger;
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="box"></div>
+</body>
+</html>
