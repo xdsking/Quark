@@ -3,7 +3,10 @@
  */
 define(["jquery", "require"], function ($, require) {
     return {
-        //异步加载css文件
+        /**
+         * @summary 加载css文件
+         * @param url
+         */
         loadStyleSheet: function (url) {
             //获得相对于baseUrl的地址
             var cssUrl = require.toUrl(url);
@@ -13,13 +16,21 @@ define(["jquery", "require"], function ($, require) {
                 href: cssUrl
             }));
         },
+        /**
+         * @summary 异步加载模板
+         * @param url 模板路径
+         * @param [position] 放置位置
+         * @returns deferred
+         */
         loadTemplate: function (url, position) {
             var deferred = $.Deferred();
             var templateUrl = require.toUrl(url);
             var res = $.get(templateUrl);
             res.done(function (template) {
                 var $template = $(template);
-                $(position).append($template);
+                if (position) {
+                    $(position).append($template);
+                }
                 deferred.resolve($template);
             });
             return deferred;
