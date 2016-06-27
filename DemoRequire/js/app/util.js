@@ -4,8 +4,13 @@
  */
 define(function(){
     return {
-        dos:function(){
-
+        //异步加载css文件
+        loadStyleSheet:function(url){
+            $("head").append($("<link>",{
+                rel:"stylesheet",
+                type:"text/css",
+                href:url
+            }));
         }
     }
 });

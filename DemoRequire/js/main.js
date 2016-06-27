@@ -6,11 +6,13 @@ requirejs.config({
     baseUrl: 'js/app',
     paths: {
         lib: "../../../../CDN/lib",
-        jquery:"../../../../CDN/lib/jQuery/jQuery-1.11.1"
+        jquery: "../../../../CDN/lib/jQuery/jQuery-1.11.1"
     }
 });
-requirejs(["jquery", "util", "tools"], function ($, util, tools) {
-
+requirejs(["jquery", "tools"], function ($, tools) {
+    requirejs(["util"], function (util) {
+        util.loadStyleSheet("./css/index.css");
+    });
     tools.push(1);
     console.log(tools.getArray());
     tools.push(2);
