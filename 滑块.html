@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../CDN/lib/Flat-UI-master/dist/css/flat-ui.min.css">
+    <style rel="stylesheet">
+        #slider {
+            width: 300px;
+        }
+    </style>
+    <script src="../CDN/lib/jQuery/jQuery-1.11.1.js"></script>
+    <script src="../CDN/lib/Flat-UI-master/dist/js/flat-ui.min.js"></script>
+    <script>
+        $(function () {
+            $.fn.addSliderSegments = function () {
+                return this.each(function () {
+                    var $this = $(this),
+                            option = $this.slider('option'),
+                            amount = (option.max - option.min) / option.step,
+                            orientation = option.orientation;
+                    if ('vertical' === orientation) {
+                        var output = '', i;
+                        console.log(amount);
+                        for (i = 1; i <= amount - 1; i++) {
+                            output += '<div class="ui-slider-segment" style="top:' + 100 / amount * i + '%;"></div>';
+                        }
+                        $this.prepend(output);
+                    } else {
+                        var segmentGap = 100 / (amount) + '%';
+                        var segment = '<div class="ui-slider-segment" style="margin-left: ' + segmentGap + ';"></div>';
+                        $this.prepend(segment.repeat(amount - 1));
+                    }
+                });
+            };
+            var $slider = $('#slider');
+            if ($slider.length > 0) {
+                $slider.slider({
+                    max: 15,
+                    step: 1,
+                    value: 2,
+                    orientation: 'horizontal',
+                    slide: function (event, ui) {
+                        var value = arguments[1].value + 1;
+                        $("#value").text(value);
+                        $("#preview").css("border-bottom", value + "px solid #1abc9c");
+                    },
+                    range: 'min'
+                }).addSliderSegments();
+            }
+        });
+    </script>
+</head>
+<body>
+<div id="slider" class="ui-slider">
+</div>
+<label id="value">3</label>px
+<div id="preview" style="border-bottom: 3px solid #1abc9c;width: 200px;">预览：</div>
+</body>
+</html>
