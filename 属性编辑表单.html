@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="../CDN/lib/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style rel="stylesheet">
+        .input-list-box .cstm-checkbox {
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        .input-list-box .input-group {
+            margin: 5px;
+        }
+
+        .input-list-box th {
+            text-align: center;
+        }
+
+        .cstm-panel {
+            margin-bottom: 5px;
+        }
+
+        .cstm-panel .panel-body {
+            padding: 2px 4px;
+        }
+
+        .submit-panel {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="panel panel-default cstm-panel">
+    <div class="panel-body">
+        <div class="btn-group style-panel" role="group">
+            <button type="button" class="btn btn-default" aria-label="Left Align"><img src="images/icon/hospital.png">
+            </button>
+            <button type="button" class="btn btn-default" aria-label="Left Align"><img src="images/icon/house.png">
+            </button>
+            <button type="button" class="btn btn-default" aria-label="Left Align"><img src="images/icon/Park.png">
+            </button>
+            <button type="button" class="btn btn-default" aria-label="Left Align"><img src="images/icon/post.png">
+            </button>
+            <button type="button" class="btn btn-default" aria-label="Left Align"><img src="images/icon/restaurant.png">
+            </button>
+            <button type="button" class="btn btn-default" aria-label="Left Align"><img src="images/icon/school.png">
+            </button>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default cstm-panel">
+    <div class="panel-body">
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default add-key-value" aria-label="Left Align" title="添加记录"><span
+                    class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+            <button class="btn btn-default remove-key-value" title="删除"><span class="glyphicon glyphicon-trash"
+                                                                              aria-hidden="true"></span></button>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default dropdown-toggle edit-key-value" data-toggle="dropdown"
+                        title="权限编辑"
+                        aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><img src="images/111.gif"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default cstm-panel">
+    <div class="panel-body">
+        <table class="input-list-box">
+            <tr>
+                <th></th>
+                <th>属性名</th>
+                <th>属性值</th>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="cstm-checkbox"></td>
+                <td>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" aria-describedby="basic-addon1">
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" aria-describedby="basic-addon1">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="cstm-checkbox"></td>
+                <td>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" aria-describedby="basic-addon1">
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" aria-describedby="basic-addon1">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="cstm-checkbox"></td>
+                <td>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" aria-describedby="basic-addon1">
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" aria-describedby="basic-addon1">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="cstm-checkbox"></td>
+                <td>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" aria-describedby="basic-addon1">
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" aria-describedby="basic-addon1">
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="submit-panel">
+            <button type="button" class="btn btn-primary">提交</button>
+            <button type="button" class="btn btn-info">取消</button>
+        </div>
+    </div>
+</div>
+<script src="../CDN/lib/jQuery/jQuery-1.11.1.js"></script>
+<script src="../CDN/lib/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        var styleButtonList = $(".style-panel button");
+        styleButtonList.click(function () {
+            styleButtonList.each(function (i, item) {
+                $(item).removeClass("btn-primary");
+            });
+            $(this).addClass("btn-primary");
+        });
+        var addKeyValue = $(".add-key-value"), removeKeyValue = $(".remove-key-value"), editKeyValue = $(".edit-key-value"), keyValueBox = $(".input-list-box");
+        var keyValueTemplate = '<tr><td><input type="checkbox" class="cstm-checkbox"></td><td><div class="input-group input-group-sm"><input type="text" class="form-control" aria-describedby="basic-addon1"></div></td><td><div class="input-group input-group-sm"><input type="text" class="form-control" aria-describedby="basic-addon1"></div></td></tr>';
+        addKeyValue.click(function () {
+            keyValueBox.append($(keyValueTemplate));
+        });
+        removeKeyValue.click(function () {
+            var delArray=[],keyValueList = keyValueBox.find("tr");
+            keyValueList.each(function (i, item) {
+                var checkbox = $(item).find(".cstm-checkbox");
+                if (checkbox[0] && checkbox[0].checked) {
+                    delArray.push(item);
+                }
+            });
+            var f = confirm("确认删除？");
+            if (f) {
+                for(var h=0;h<delArray.length;h++){
+                    $(delArray[h]).remove();
+                }
+            }
+        });
+        editKeyValue.click(function () {
+            var keyValueList = keyValueBox.find("tr");
+            var checkItemArray = [];
+            keyValueList.each(function (i, item) {
+                var checkbox = $(item).find(".cstm-checkbox");
+                if (checkbox[0] && checkbox[0].checked) {
+                    checkItemArray.push(item);
+                }
+            });
+            if (checkItemArray.length != 1) {
+                alert("选择一条进行编辑");
+                return false;
+            }
+            //TODO
+        });
+    });
+</script>
+</body>
+</html>
