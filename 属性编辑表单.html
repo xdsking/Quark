@@ -75,20 +75,15 @@
     <div class="panel-body">
         <table class="input-list-box">
             <tr>
-                <th></th>
-                <th>属性名</th>
-                <th>属性值</th>
-            </tr>
-            <tr>
                 <td><input type="checkbox" class="cstm-checkbox"></td>
                 <td>
                     <div class="input-group input-group-sm">
-                        <input type="text" class="form-control" aria-describedby="basic-addon1">
+                        <input type="text" class="form-control" placeholder="属性名..." aria-describedby="basic-addon1">
                     </div>
                 </td>
                 <td>
                     <div class="input-group input-group-sm">
-                        <input type="text" class="form-control" aria-describedby="basic-addon1">
+                        <input type="text" class="form-control" placeholder="属性值..." aria-describedby="basic-addon1">
                     </div>
                 </td>
             </tr>
@@ -183,6 +178,9 @@
                 return false;
             }
             //TODO
+        });
+        $(".dropdown-menu li").click(function(evt){
+            evt.stopPropagation();
         });
     });
 </script>
