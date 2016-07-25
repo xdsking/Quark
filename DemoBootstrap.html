@@ -50,6 +50,12 @@
         .cstm-panel .panel-body {
             padding: 2px 4px;
         }
+        .cstm-close{
+            position: relative;
+            top: -32px;
+            left: -4px;
+            background-color: gray;
+        }
     </style>
 </head>
 
@@ -435,9 +441,41 @@
 </div>
 
 
-<br>//////////////////////////////////////////////////////////////////////////////////////<br>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Age</th>
+            <th>City</th>
+            <th>Country</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>AnnaAnnaAnnaAnnaAnnaAnnaAnna</td>
+            <td>Pitt</td>
+            <td>35</td>
+            <td>New York</td>
+            <td>USA</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
+<div class="container">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a>Home</a></li>
+        <li><a>HTML</a><span class="close cstm-close" aria-label="close">&times;</span></li>
+        <li><a>CSS</a><span class="close cstm-close" aria-label="close">&times;</span></li>
+        <li><a>About</a><span class="close cstm-close" aria-label="close">&times;</span></li>
+    </ul>
+</div>
 
+<button type="button" class="btn btn-default cstm-button">Example Button</button>
 <script src="../CDN/lib/jQuery/jQuery-1.11.1.js"></script>
 <script src="../CDN/lib/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
 <script src="../CDN/lib/jquery-ui-bootstrap-jquery-ui/js/jquery-ui-1.9.2.custom.min.js"></script>
